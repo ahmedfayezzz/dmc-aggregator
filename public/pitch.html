@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Leap — A B2B distribution platform for Middle East &amp; Africa travel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-base: #FAF8F3;
+    --bg-raised: #FFFFFF;
+    --bg-sunken: #F2EFE8;
+    --bg-cream: #F7F3E9;
+    --ink-primary: #1A1612;
+    --ink-secondary: #5C564E;
+    --ink-tertiary: #8A8278;
+    --ink-quaternary: #B5AC9F;
+    --border-subtle: #EEE9DD;
+    --border-default: #DDD5C5;
+    --border-strong: #C9C1AC;
+    --accent: #B58A3F;
+    --accent-hover: #8A6628;
+    --accent-soft: #FBF7ED;
+    --accent-border: #E5C988;
+    --accent-bright: #D4A65A;
+    --success: #3D7A5C;
+    --success-soft: #E8F0EA;
+    --warning: #B58A3F;
+    --warning-soft: #FBF7ED;
+    --danger: #A04428;
+    --danger-soft: #F5E5DF;
+    --info: #4A7C9E;
+    --info-soft: #E7EFF5;
+    --shadow-sm: 0 1px 2px rgba(26,22,18,0.04), 0 1px 1px rgba(26,22,18,0.06);
+    --shadow-md: 0 4px 12px rgba(26,22,18,0.06), 0 2px 4px rgba(26,22,18,0.04);
+    --shadow-lg: 0 12px 32px rgba(26,22,18,0.08), 0 4px 12px rgba(26,22,18,0.05);
+    --font-display: "Fraunces", "Noto Serif SC", Georgia, serif;
+    --font-body: "Geist", "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: "Geist Mono", "SF Mono", Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg-base);
+    color: var(--ink-primary);
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+  body { scroll-snap-type: y mandatory; }
+
+  .slide {
+    min-height: 100vh;
+    padding: 8vh 10vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    scroll-snap-align: start;
+    position: relative;
+  }
+
+  .slide-cream { background: var(--bg-cream); }
+  .slide-sunken { background: var(--bg-sunken); }
+
+  /* ───── Typography ───── */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-tertiary);
+    margin-bottom: 14px;
+  }
+  .eyebrow.accent { color: var(--accent); }
+  .eyebrow.success { color: var(--success); }
+  .eyebrow.info { color: var(--info); }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(48px, 7vw, 88px);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    margin: 0 0 24px;
+    font-variation-settings: "SOFT" 80, "opsz" 144;
+    color: var(--ink-primary);
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(32px, 4.2vw, 56px);
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    margin: 0 0 20px;
+    font-variation-settings: "SOFT" 50, "opsz" 96;
+    color: var(--ink-primary);
+  }
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin: 0 0 8px;
+    color: var(--ink-primary);
+    font-variation-settings: "SOFT" 30, "opsz" 60;
+  }
+  h4 {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 15px;
+    margin: 0 0 6px;
+    color: var(--ink-primary);
+    letter-spacing: -0.005em;
+  }
+
+  p {
+    color: var(--ink-secondary);
+    margin: 0 0 16px;
+    max-width: 60ch;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  p.lead {
+    color: var(--ink-primary);
+    font-size: 22px;
+    line-height: 1.45;
+    max-width: 64ch;
+    font-weight: 400;
+  }
+  p.caption {
+    color: var(--ink-tertiary);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  p.long { max-width: 70ch; }
+
+  /* ───── Nav + counter ───── */
+  .nav-pill {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    display: flex;
+    gap: 6px;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-default);
+    border-radius: 999px;
+    z-index: 50;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    box-shadow: var(--shadow-sm);
+  }
+  .nav-pill a {
+    color: var(--ink-secondary);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 999px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-pill a:hover { background: var(--bg-sunken); color: var(--ink-primary); }
+  .nav-pill a.primary {
+    background: var(--ink-primary);
+    color: var(--bg-base);
+  }
+  .nav-pill a.primary:hover { background: #2a241e; color: var(--bg-base); }
+
+  .slide-counter {
+    position: absolute;
+    bottom: 32px;
+    right: 10vw;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-tertiary);
+    letter-spacing: 0.1em;
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 10vw;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-tertiary);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .scroll-hint::after { content: "  ↓"; opacity: 0.6; animation: bob 2s ease-in-out infinite; display: inline-block; }
+  @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
+
+  /* ───── Layouts ───── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  @media (max-width: 900px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; gap: 16px; }
+    .slide { padding: 8vh 6vw; }
+  }
+
+  /* ───── Cover (hero with full-bleed image) ───── */
+  .cover {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    min-height: 100vh;
+    padding: 0;
+    gap: 0;
+  }
+  .cover .text {
+    padding: 14vh 6vw 8vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--bg-base);
+  }
+  .cover .image {
+    background-image:
+      linear-gradient(180deg, rgba(26,22,18,0.1) 0%, rgba(26,22,18,0.45) 100%),
+      url("https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=1800&q=80");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  .cover .image::after {
+    content: "Petra · Jordan";
+    position: absolute;
+    bottom: 32px;
+    right: 32px;
+    color: rgba(255,255,255,0.7);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  @media (max-width: 900px) {
+    .cover { grid-template-columns: 1fr; }
+    .cover .image { min-height: 40vh; }
+    .cover .text { padding: 10vh 6vw; }
+  }
+
+  /* ───── Cards ───── */
+  .card {
+    background: var(--bg-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 28px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s, transform 0.15s;
+  }
+  .card.accent {
+    border-color: var(--accent-border);
+    background: linear-gradient(180deg, var(--accent-soft) 0%, var(--bg-raised) 100%);
+    box-shadow: var(--shadow-md);
+  }
+
+  .stat-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 24px;
+    background: var(--bg-raised);
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-sm);
+  }
+  .stat-block .num {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 0.9;
+    color: var(--ink-primary);
+    letter-spacing: -0.03em;
+    font-variation-settings: "SOFT" 60, "opsz" 100;
+  }
+  .stat-block .num.accent { color: var(--accent); }
+  .stat-block .sub {
+    color: var(--ink-tertiary);
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    margin-top: 4px;
+  }
+
+  /* ───── Pills ───── */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    height: 26px;
+    padding: 0 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid;
+    background: transparent;
+    margin-right: 6px;
+  }
+  .pill.gold { color: var(--accent); border-color: var(--accent-border); background: var(--accent-soft); }
+  .pill.green { color: var(--success); border-color: rgba(61, 122, 92, 0.3); background: var(--success-soft); }
+  .pill.info { color: var(--info); border-color: rgba(74, 124, 158, 0.3); background: var(--info-soft); }
+
+  /* ───── Bullets ───── */
+  .bullets { list-style: none; padding: 0; margin: 14px 0 0; }
+  .bullets li {
+    color: var(--ink-secondary);
+    font-size: 15px;
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .bullets li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .bullets.compact li { font-size: 14px; margin-bottom: 6px; }
+  .check-list { list-style: none; padding: 0; margin: 16px 0 0; }
+  .check-list li {
+    color: var(--ink-secondary);
+    font-size: 15px;
+    padding-left: 28px;
+    position: relative;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .check-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  /* ───── CTA buttons ───── */
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: var(--ink-primary);
+    color: var(--bg-base);
+    font-weight: 500;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+    margin-top: 28px;
+    box-shadow: var(--shadow-md);
+  }
+  .cta:hover { background: #2a241e; transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+  .cta.gold { background: var(--accent); color: white; }
+  .cta.gold:hover { background: var(--accent-hover); }
+  .cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: var(--bg-raised);
+    color: var(--ink-primary);
+    border: 1px solid var(--border-default);
+    font-weight: 500;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 6px;
+    margin-top: 28px;
+    margin-left: 8px;
+    box-shadow: var(--shadow-sm);
+  }
+  .cta-secondary:hover { border-color: var(--border-strong); }
+
+  /* ───── Architecture diagram (slide 3) ───── */
+  .arch-diagram {
+    margin-top: 32px;
+    padding: 40px 24px;
+    background: var(--bg-raised);
+    border-radius: 12px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-md);
+  }
+  .arch-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .arch-node {
+    flex: 1;
+    min-width: 160px;
+    padding: 20px;
+    background: var(--bg-base);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    text-align: center;
+  }
+  .arch-node.platform {
+    background: linear-gradient(180deg, var(--accent-soft) 0%, var(--bg-raised) 100%);
+    border-color: var(--accent-border);
+    box-shadow: var(--shadow-sm);
+  }
+  .arch-node-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 12px;
+    display: grid;
+    place-items: center;
+    background: var(--bg-sunken);
+    border-radius: 8px;
+    color: var(--accent);
+  }
+  .arch-node.platform .arch-node-icon { background: var(--accent); color: white; }
+  .arch-node-role {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink-tertiary);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .arch-node.platform .arch-node-role { color: var(--accent); }
+  .arch-node-name {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--ink-primary);
+    line-height: 1.2;
+    margin-bottom: 4px;
+    font-variation-settings: "SOFT" 30, "opsz" 60;
+  }
+  .arch-node-desc { font-size: 12px; color: var(--ink-tertiary); line-height: 1.45; }
+  .arch-flow { color: var(--accent); font-size: 20px; flex-shrink: 0; }
+
+  /* ───── Portal preview cards (slides 4-6) ───── */
+  .persona-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 32px;
+    align-items: stretch;
+  }
+  @media (max-width: 900px) {
+    .persona-grid { grid-template-columns: 1fr; }
+  }
+  .persona-image {
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    min-height: 360px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+  }
+  .persona-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(26,22,18,0.05) 60%, rgba(26,22,18,0.3) 100%);
+  }
+  .persona-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* ───── Margin transparency flow ───── */
+  .margin-flow {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 12px;
+    align-items: center;
+    margin-top: 32px;
+  }
+  @media (max-width: 900px) {
+    .margin-flow { grid-template-columns: 1fr; }
+    .margin-flow .arrow { transform: rotate(90deg); }
+  }
+  .margin-box {
+    padding: 24px;
+    background: var(--bg-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+  }
+  .margin-box.peak {
+    background: linear-gradient(180deg, var(--accent-soft) 0%, var(--bg-raised) 100%);
+    border-color: var(--accent-border);
+    box-shadow: var(--shadow-md);
+  }
+  .margin-box .label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink-tertiary);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .margin-box.peak .label { color: var(--accent); }
+  .margin-box .price {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 40px;
+    color: var(--ink-primary);
+    line-height: 1;
+    letter-spacing: -0.025em;
+    font-variation-settings: "SOFT" 50, "opsz" 80;
+  }
+  .margin-box.peak .price { color: var(--accent-hover); }
+  .margin-box .price-sub { font-size: 12px; color: var(--ink-tertiary); margin-top: 6px; }
+  .margin-flow .arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--ink-tertiary);
+  }
+  .margin-flow .arrow .markup {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .margin-flow .arrow .glyph { font-size: 22px; }
+
+  /* ───── Feature grid (slide 8) ───── */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border-subtle);
+    margin-top: 28px;
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+  @media (max-width: 900px) { .feature-grid { grid-template-columns: 1fr; } }
+  .feature {
+    background: var(--bg-raised);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+  }
+  .feature-icon {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    background: var(--accent-soft);
+    border-radius: 8px;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .feature-icon svg { width: 18px; height: 18px; }
+  .feature h4 {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink-primary);
+    margin: 0 0 6px;
+  }
+  .feature p {
+    font-size: 13px;
+    color: var(--ink-secondary);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ───── Business model ───── */
+  .table-economics {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  .table-economics th, .table-economics td {
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--ink-secondary);
+  }
+  .table-economics th {
+    color: var(--ink-tertiary);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    background: var(--bg-sunken);
+  }
+  .table-economics td.amount { font-family: var(--font-mono); text-align: right; color: var(--ink-primary); }
+  .table-economics tr.total td {
+    font-weight: 500;
+    color: var(--accent-hover);
+    border-top: 2px solid var(--accent-border);
+    border-bottom: none;
+    padding-top: 14px;
+    font-size: 16px;
+  }
+  .table-economics tr.total td.amount { font-size: 16px; }
+
+  /* ───── Markets / Map ───── */
+  .markets-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 36px;
+    align-items: center;
+    margin-top: 32px;
+  }
+  @media (max-width: 900px) { .markets-layout { grid-template-columns: 1fr; } }
+  .map-container {
+    background: var(--bg-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    padding: 24px;
+    position: relative;
+    aspect-ratio: 4 / 3;
+  }
+  .map-container svg { width: 100%; height: 100%; display: block; }
+  .market-country { fill: var(--bg-sunken); stroke: var(--border-default); stroke-width: 1; }
+  .market-country.phase1 { fill: var(--accent); stroke: var(--accent-hover); }
+  .market-country.phase2 { fill: var(--info-soft); stroke: var(--info); stroke-dasharray: 2 2; }
+  .map-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    fill: var(--ink-tertiary);
+    text-transform: uppercase;
+  }
+  .map-label.phase1 { fill: white; }
+  .map-marker { fill: var(--accent); }
+  .phase-key {
+    display: flex;
+    gap: 16px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+  .phase-key-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--ink-tertiary);
+    font-family: var(--font-mono);
+    letter-spacing: 0.06em;
+  }
+  .phase-key-swatch { width: 12px; height: 12px; border-radius: 3px; }
+
+  /* ───── Roadmap ───── */
+  .roadmap-rail {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  @media (max-width: 1000px) { .roadmap-rail { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 640px) { .roadmap-rail { grid-template-columns: 1fr; } }
+  .phase {
+    padding: 24px;
+    background: var(--bg-raised);
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+  }
+  .phase::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+  }
+  .phase .phase-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .phase h4 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink-primary);
+    margin: 0 0 12px;
+    font-variation-settings: "SOFT" 30, "opsz" 60;
+  }
+  .phase ul { list-style: none; padding: 0; margin: 0; }
+  .phase ul li {
+    color: var(--ink-secondary);
+    font-size: 13px;
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .phase ul li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--ink-quaternary);
+  }
+
+  /* ───── Finale slide ───── */
+  .finale {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    min-height: 100vh;
+    padding: 0;
+    gap: 0;
+  }
+  .finale .content {
+    padding: 14vh 6vw 8vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--bg-base);
+  }
+  .finale .image {
+    background-image:
+      linear-gradient(180deg, rgba(26,22,18,0.05) 0%, rgba(26,22,18,0.4) 100%),
+      url("https://images.unsplash.com/photo-1597211833712-5e41faa202ea?auto=format&fit=crop&w=1800&q=80");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  .finale .image::after {
+    content: "Marrakech · Morocco";
+    position: absolute;
+    bottom: 32px;
+    right: 32px;
+    color: rgba(255,255,255,0.75);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  @media (max-width: 900px) {
+    .finale { grid-template-columns: 1fr; }
+    .finale .image { min-height: 40vh; }
+  }
+
+  /* ───── Footer ───── */
+  .footer {
+    padding: 36px 10vw;
+    border-top: 1px solid var(--border-subtle);
+    color: var(--ink-tertiary);
+    font-size: 12px;
+    font-family: var(--font-mono);
+    letter-spacing: 0.08em;
+    background: var(--bg-base);
+  }
+
+  @media print {
+    html, body { scroll-snap-type: none; background: white; }
+    .slide { min-height: auto; page-break-after: always; padding: 50px 40px; }
+    .nav-pill, .scroll-hint, .slide-counter { display: none; }
+    .cover, .finale { grid-template-columns: 1fr; }
+    .cover .image, .finale .image { display: none; }
+  }
+
+  /* Slide-specific image backgrounds */
+  .img-marrakech { background-image: url("https://images.unsplash.com/photo-1597211833712-5e41faa202ea?auto=format&fit=crop&w=1200&q=80"); }
+  .img-pyramids  { background-image: url("https://images.unsplash.com/photo-1572252009286-268acec5ca0a?auto=format&fit=crop&w=1200&q=80"); }
+  .img-sahara    { background-image: url("https://images.unsplash.com/photo-1489493585363-d69421e0edd3?auto=format&fit=crop&w=1200&q=80"); }
+  .img-petra     { background-image: url("https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=1200&q=80"); }
+  .img-wadirum   { background-image: url("https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80"); }
+  .img-chefchaouen { background-image: url("https://images.unsplash.com/photo-1538652046123-2c8c7e21ec78?auto=format&fit=crop&w=1200&q=80"); }
+</style>
+</head>
+<body>
+
+<nav class="nav-pill">
+  <a href="/docs.html">Index</a>
+  <a href="/demo-guide.html">Guide</a>
+  <a href="/" class="primary">Open demo →</a>
+</nav>
+
+<!-- 1 · Cover ─────────────────────────────────────── -->
+<section class="slide cover" id="cover">
+  <div class="text">
+    <div class="eyebrow accent">Travel Leap · 旅跃</div>
+    <h1>The bridge between China and the world's most underserved travel markets.</h1>
+    <p class="lead" style="margin-top: 8px;">A B2B distribution platform connecting Chinese travel wholesalers with curated DMC supply across Jordan, Morocco and Egypt.</p>
+    <div style="margin-top: 28px; display: flex; gap: 8px; flex-wrap: wrap;">
+      <span class="pill gold">Multi-tenant SaaS</span>
+      <span class="pill info">White-label</span>
+      <span class="pill green">中 ↔ EN</span>
+    </div>
+  </div>
+  <div class="image"></div>
+  <div class="slide-counter" style="bottom: 32px; right: 32px;">01 / 12</div>
+</section>
+
+<!-- 2 · The opportunity ───────────────────────────── -->
+<section class="slide" id="gap">
+  <div class="eyebrow">The opportunity</div>
+  <h2>Two markets that want each other<br>and no easy way to connect.</h2>
+
+  <p class="long" style="margin-top: 8px;">Chinese mid-tier agencies are pivoting from saturated Southeast Asia to higher-margin niches. Jordan, Morocco and Egypt have the inventory but lack the channels. The bridge doesn't exist — yet.</p>
+
+  <div class="grid-4" style="margin-top: 36px;">
+    <div class="stat-block">
+      <div class="num">130M+</div>
+      <div class="sub">Annual Chinese outbound travelers (pre-pandemic baseline)</div>
+    </div>
+    <div class="stat-block">
+      <div class="num accent">~1.5%</div>
+      <div class="sub">Currently reach MEA — a ten-year low</div>
+    </div>
+    <div class="stat-block">
+      <div class="num">200+</div>
+      <div class="sub">Established DMC operators in target markets</div>
+    </div>
+    <div class="stat-block">
+      <div class="num accent">~$3.2B</div>
+      <div class="sub">Estimated TAM by 2028 if reached at 8% share</div>
+    </div>
+  </div>
+
+  <p class="caption" style="margin-top: 32px;">Sources: UNWTO outbound estimates · CTA channel data · internal market sizing. Figures directional, not bookable.</p>
+  <div class="slide-counter">02 / 12</div>
+</section>
+
+<!-- 3 · The system ────────────────────────────────── -->
+<section class="slide slide-cream" id="system">
+  <div class="eyebrow">How it works</div>
+  <h2>A three-sided platform with a white-labeled distribution layer.</h2>
+
+  <p>Travel Leap aggregates DMC supply on one side, distributes it through wholesaler-branded portals, and surfaces it to downstream retail agencies. Each side gets a purpose-built portal; the platform handles curation, contracts, payments, translation, and quality control.</p>
+
+  <div class="arch-diagram">
+    <div class="arch-row">
+      <div class="arch-node">
+        <div class="arch-node-icon">
+          <!-- DMC icon: mountain -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 L2 21 L22 21 L15 6 L11 12 L8 3z"/></svg>
+        </div>
+        <div class="arch-node-role">DMC</div>
+        <div class="arch-node-name">Petra Heritage</div>
+        <div class="arch-node-desc">Local operator in Amman, Marrakech, Cairo</div>
+      </div>
+      <div class="arch-flow">→</div>
+      <div class="arch-node platform">
+        <div class="arch-node-icon">
+          <!-- Platform icon: layers -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L22 7 L12 12 L2 7 L12 2z M2 17 L12 22 L22 17 M2 12 L12 17 L22 12"/></svg>
+        </div>
+        <div class="arch-node-role">Travel Leap</div>
+        <div class="arch-node-name">Aggregator</div>
+        <div class="arch-node-desc">Curation · contracts · translation · payments</div>
+      </div>
+      <div class="arch-flow">→</div>
+      <div class="arch-node">
+        <div class="arch-node-icon">
+          <!-- Wholesaler icon: building -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M9 9h.01 M15 9h.01 M9 13h.01 M15 13h.01 M9 17h.01 M15 17h.01"/></svg>
+        </div>
+        <div class="arch-node-role">Wholesaler</div>
+        <div class="arch-node-name">天行国旅</div>
+        <div class="arch-node-desc">White-label portal · their brand</div>
+      </div>
+      <div class="arch-flow">→</div>
+      <div class="arch-node">
+        <div class="arch-node-icon">
+          <!-- Agency icon: storefront -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8h18v13 M3 8 L5 3h14l2 5 M9 12h6"/></svg>
+        </div>
+        <div class="arch-node-role">Agency</div>
+        <div class="arch-node-name">北京华夏国旅</div>
+        <div class="arch-node-desc">Downstream retail agency</div>
+      </div>
+    </div>
+  </div>
+
+  <ul class="check-list" style="margin-top: 28px;">
+    <li>Four portals — DMC, Platform Admin, Wholesaler, Agency — each with its own role and tooling.</li>
+    <li>Bilingual by design — every UI string keyed, every entity stored in 中文 + English.</li>
+    <li>Multi-tenant — each wholesaler on their own subdomain with isolated state and full white-labeling.</li>
+  </ul>
+  <div class="slide-counter">03 / 12</div>
+</section>
+
+<!-- 4 · For wholesalers ──────────────────────────── -->
+<section class="slide" id="wholesaler">
+  <div class="eyebrow accent">For wholesalers</div>
+  <h2>A turnkey distribution operation, branded as you.</h2>
+
+  <div class="persona-grid" style="margin-top: 32px;">
+    <div class="persona-image img-petra"></div>
+    <div class="persona-content">
+      <p style="font-size: 16px; margin: 0;">Chinese travel wholesalers get a platform they could not build themselves — full white-label, complete curated catalog, managed agency network — with margin economics they fully control.</p>
+
+      <div class="grid-2" style="margin-top: 20px; gap: 16px;">
+        <div>
+          <h4>Curated catalog</h4>
+          <p style="font-size: 13px; margin: 0; color: var(--ink-tertiary);">12+ itineraries across Jordan, Morocco, Egypt. Add new supply monthly.</p>
+        </div>
+        <div>
+          <h4>Manage agencies</h4>
+          <p style="font-size: 13px; margin: 0; color: var(--ink-tertiary);">Onboard, set wallet terms, track GMV per agency.</p>
+        </div>
+        <div>
+          <h4>Set your margin</h4>
+          <p style="font-size: 13px; margin: 0; color: var(--ink-tertiary);">Per-itinerary or category. Agencies see only retail price.</p>
+        </div>
+        <div>
+          <h4>RFQ pipeline</h4>
+          <p style="font-size: 13px; margin: 0; color: var(--ink-tertiary);">SLA-tracked queue, quote/decline, agency visibility.</p>
+        </div>
+        <div>
+          <h4>Booking lifecycle</h4>
+          <p style="font-size: 13px; margin: 0; color: var(--ink-tertiary);">Request → confirmation → travel → settlement.</p>
+        </div>
+        <div>
+          <h4>Live BI</h4>
+          <p style="font-size: 13px; margin: 0; color: var(--ink-tertiary);">GMV trends, top agencies, conversion funnel.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-counter">04 / 12</div>
+</section>
+
+<!-- 5 · For agencies ─────────────────────────────── -->
+<section class="slide slide-cream" id="agency">
+  <div class="eyebrow accent">For downstream agencies</div>
+  <h2>A premium consumer-grade browse-to-book experience.</h2>
+
+  <div class="persona-grid" style="margin-top: 32px; grid-template-columns: 1fr 1.2fr;">
+    <div class="persona-content">
+      <p style="font-size: 16px; margin: 0;">What Chinese mid-tier agency owners see day-to-day. They never see Travel Leap — only the wholesaler's brand. The experience matches what they'd expect from a top-tier OTA, fully localized.</p>
+
+      <ul class="check-list" style="margin-top: 20px;">
+        <li>Rich filters: country, theme, duration, departure type</li>
+        <li>Photo-led detail pages with day-by-day and sticky price panel</li>
+        <li>Customization wizard: dates, pax, rooms, upgrades, excursions</li>
+        <li>Quote save with TTL — convert to booking in one click</li>
+        <li>3-step booking flow with real wallet deduction</li>
+        <li>Co-branded voucher ready to share via WeChat</li>
+      </ul>
+    </div>
+    <div class="persona-image img-chefchaouen"></div>
+  </div>
+  <div class="slide-counter">05 / 12</div>
+</section>
+
+<!-- 6 · For DMCs ──────────────────────────────── -->
+<section class="slide" id="dmc">
+  <div class="eyebrow accent">For DMC suppliers</div>
+  <h2>An operations cockpit that turns inventory into a sellable product.</h2>
+
+  <div class="persona-grid" style="margin-top: 32px;">
+    <div class="persona-image img-sahara"></div>
+    <div class="persona-content">
+      <p style="font-size: 16px; margin: 0;">Jordanian, Moroccan and Egyptian operators get a clean tool to manage inventory and respond to incoming demand — without building a Chinese-market team.</p>
+
+      <div class="grid-2" style="margin-top: 20px; gap: 16px;">
+        <div>
+          <h4>Itinerary content</h4>
+          <p style="font-size: 13px; margin: 0; color: var(--ink-tertiary);">Bilingual editor, day-by-day, hero gallery, draft → publish workflow.</p>
+        </div>
+        <div>
+          <h4>Pricing matrix</h4>
+          <p style="font-size: 13px; margin: 0; color: var(--ink-tertiary);">Per-pax bands × seasonal multipliers with live editing.</p>
+        </div>
+        <div>
+          <h4>Allotments</h4>
+          <p style="font-size: 13px; margin: 0; color: var(--ink-tertiary);">Per-date capacity for FIXED tours, weekly rolling for ON_DEMAND.</p>
+        </div>
+        <div>
+          <h4>Bookings inbox</h4>
+          <p style="font-size: 13px; margin: 0; color: var(--ink-tertiary);">SLA-tracked confirmations, one-click confirm/decline.</p>
+        </div>
+        <div>
+          <h4>Schedules</h4>
+          <p style="font-size: 13px; margin: 0; color: var(--ink-tertiary);">Add departure dates, manage capacity, view fill rates.</p>
+        </div>
+        <div>
+          <h4>Statements</h4>
+          <p style="font-size: 13px; margin: 0; color: var(--ink-tertiary);">Monthly settlement summaries by currency, PDF export.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-counter">06 / 12</div>
+</section>
+
+<!-- 7 · Margin transparency ───────────────────── -->
+<section class="slide slide-sunken" id="margin">
+  <div class="eyebrow accent">The trust mechanism</div>
+  <h2>Every layer visible. Every party aligned.</h2>
+
+  <p class="long" style="margin-top: 8px;">Every booking has price layers — DMC net, platform margin, wholesaler markup, agency retail — and each party sees the layers they own. No FX games, no hidden fees, no surprise reconciliations. This is what unlocks the wholesaler partnership.</p>
+
+  <div class="margin-flow">
+    <div class="margin-box">
+      <div class="label">DMC net</div>
+      <div class="price">$1,480</div>
+      <div class="price-sub">per pax · Petra Heritage</div>
+    </div>
+    <div class="arrow">
+      <span class="markup">+ $200</span>
+      <span class="glyph">→</span>
+    </div>
+    <div class="margin-box">
+      <div class="label">Platform sell</div>
+      <div class="price">$1,680</div>
+      <div class="price-sub">contractually locked</div>
+    </div>
+    <div class="arrow">
+      <span class="markup">+ $320</span>
+      <span class="glyph">→</span>
+    </div>
+    <div class="margin-box peak">
+      <div class="label">Agency retail</div>
+      <div class="price">$2,000</div>
+      <div class="price-sub">visible to agency only</div>
+    </div>
+  </div>
+
+  <p class="caption" style="margin-top: 28px;">The platform layer is locked at wholesaler signing. The wholesaler layer is editable per-itinerary or by category — wholesalers run promotions, vary by season, set group rates. The agency sees only retail.</p>
+  <div class="slide-counter">07 / 12</div>
+</section>
+
+<!-- 8 · Platform capabilities ─────────────────── -->
+<section class="slide" id="capabilities">
+  <div class="eyebrow">Platform capabilities</div>
+  <h2>What the system includes today.</h2>
+
+  <p>Beyond the four portals, the platform handles the operational primitives that make the product work end-to-end.</p>
+
+  <div class="feature-grid">
+    <div class="feature">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18 M12 3a14 14 0 0 1 0 18 M12 3a14 14 0 0 0 0 18"/></svg>
+      </div>
+      <h4>Multi-tenant theming</h4>
+      <p>Each wholesaler gets a subdomain, brand colors, logo, voucher header. CSS-variable based — adding tenants is config, not code.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l6-3 6 3 v8 l-6 3 -6-3z M11 5v3 M5 8l6 3 6-3"/></svg>
+      </div>
+      <h4>Bilingual-native</h4>
+      <p>Every UI string keyed. Every itinerary, day, agency, city stored bilingually. Per-portal locale defaults; one-click manual override.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <h4>Layered margin model</h4>
+      <p>DMC net → platform markup → wholesaler markup → agency retail. Every layer visible to the parties that own it. Live edit.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M21 11h-4a2 2 0 0 0 0 4h4 M3 10V8a2 2 0 0 1 2-2h12"/></svg>
+      </div>
+      <h4>Dual-mode wallet</h4>
+      <p>Prepaid (top-up + draw down) or credit (line of credit + monthly settlement). Configurable per-agency. Full transaction ledger.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <h4>SLA &amp; RFQ tracking</h4>
+      <p>24h response windows with live countdown. Color-coded urgency. Escalation path to platform when wholesaler can't respond.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v4H4z M4 12h16v4H4z M4 20h10"/></svg>
+      </div>
+      <h4>Curation &amp; publishing</h4>
+      <p>Per-wholesaler supply filtering. Per-agency publish toggles. Draft → review → publish workflow with translation checkpoint.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <h4>Capacity management</h4>
+      <p>Per-departure allotments (FIXED) or weekly rolling capacity (ON_DEMAND). Automatic guaranteed/open/full status based on fill rate.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      </div>
+      <h4>Co-branded vouchers</h4>
+      <p>White voucher document with wholesaler header + DMC footer. Booking ref, pax data, day-by-day services, supplier info.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18 M7 15l4-4 4 3 5-7"/></svg>
+      </div>
+      <h4>Wholesaler analytics</h4>
+      <p>GMV by month, top agencies, top itineraries, conversion funnel. Real-time aggregates. Cross-tenant view for platform admins.</p>
+    </div>
+  </div>
+  <div class="slide-counter">08 / 12</div>
+</section>
+
+<!-- 9 · Business model ─────────────────────── -->
+<section class="slide slide-cream" id="business">
+  <div class="eyebrow">Business model</div>
+  <h2>Transaction-based revenue, aligned with wholesaler success.</h2>
+
+  <p class="long" style="margin-top: 8px;">The platform takes a transparent markup layer on every booking. No subscription required to get started; no per-seat licensing; no setup fees. We earn when our partners earn.</p>
+
+  <div class="grid-2" style="margin-top: 28px;">
+    <div class="card">
+      <h3>Per-booking platform margin</h3>
+      <p style="font-size: 14px; margin-top: 6px;">A fixed markup per pax on every booking, tiered by itinerary type. Contractually locked with each wholesaler — they see the number on day one and it doesn't change.</p>
+      <table class="table-economics">
+        <thead>
+          <tr><th>Tour tier</th><th style="text-align:right;">Platform take · per pax</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Standard FIXED departures</td><td class="amount">$160 – $300</td></tr>
+          <tr><td>ON_DEMAND custom tours</td><td class="amount">$200 – $400</td></tr>
+          <tr><td>Premium / RFQ-only bespoke</td><td class="amount">$700 – $1,500</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card accent">
+      <h3>Sample booking economics</h3>
+      <p style="font-size: 14px; margin-top: 6px;">A typical 7-day Jordan FIXED tour for a family of 4:</p>
+      <table class="table-economics">
+        <thead>
+          <tr><th>Layer</th><th style="text-align:right;">Per pax</th><th style="text-align:right;">Total · 4 pax</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>DMC net cost</td><td class="amount">$1,480</td><td class="amount">$5,920</td></tr>
+          <tr><td>Platform markup</td><td class="amount">$200</td><td class="amount">$800</td></tr>
+          <tr><td>Wholesaler markup</td><td class="amount">$320</td><td class="amount">$1,280</td></tr>
+          <tr class="total"><td>Agency retail</td><td class="amount">$2,000</td><td class="amount">$8,000</td></tr>
+        </tbody>
+      </table>
+      <p class="caption" style="margin-top: 12px;">Platform earns $800. Wholesaler earns $1,280. Both visible to both — no surprise reconciliations.</p>
+    </div>
+  </div>
+
+  <p class="caption" style="margin-top: 24px;">
+    <strong style="color: var(--ink-primary);">Future revenue streams</strong> (not in MVP): premium wholesaler tier with advanced analytics · transaction processing fee for non-wholesaler-funded bookings · DMC SaaS subscription for operations features · translation-as-a-service for non-platform itineraries.
+  </p>
+  <div class="slide-counter">09 / 12</div>
+</section>
+
+<!-- 10 · Markets / Map ─────────────────────── -->
+<section class="slide" id="markets">
+  <div class="eyebrow">Markets</div>
+  <h2>Launching in Jordan, Morocco, Egypt — expanding outward.</h2>
+
+  <p class="long">We start in three high-opportunity destinations where Chinese inbound demand is rising and Western competition is thin. The model extends to any DMC-rich destination with a bilingual Mandarin gap.</p>
+
+  <div class="markets-layout">
+    <div class="map-container">
+      <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+        <!-- Mediterranean Sea backdrop -->
+        <rect x="0" y="0" width="400" height="300" fill="var(--bg-cream)"/>
+
+        <!-- Morocco (Phase 1 — accent) -->
+        <path class="market-country phase1" d="M 30 130 L 80 120 L 95 140 L 90 170 L 70 195 L 35 200 L 25 175 L 28 145 Z"/>
+        <text x="55" y="170" class="map-label phase1" text-anchor="middle">MAROC</text>
+
+        <!-- Egypt (Phase 1 — accent) -->
+        <path class="market-country phase1" d="M 200 145 L 250 140 L 270 160 L 275 200 L 250 225 L 210 220 L 195 195 L 190 165 Z"/>
+        <text x="232" y="190" class="map-label phase1" text-anchor="middle">EGYPT</text>
+
+        <!-- Jordan (Phase 1 — accent) -->
+        <path class="market-country phase1" d="M 260 110 L 290 105 L 295 130 L 280 140 L 265 135 L 258 122 Z"/>
+        <text x="275" y="125" class="map-label phase1" text-anchor="middle">JORDAN</text>
+
+        <!-- Saudi Arabia (Phase 2 — info) -->
+        <path class="market-country phase2" d="M 285 130 L 340 125 L 360 165 L 345 210 L 295 220 L 280 180 L 280 145 Z"/>
+        <text x="320" y="180" class="map-label" text-anchor="middle">KSA</text>
+
+        <!-- UAE (Phase 2) -->
+        <path class="market-country phase2" d="M 350 175 L 375 175 L 380 195 L 360 200 L 348 188 Z"/>
+        <text x="365" y="190" class="map-label" text-anchor="middle">UAE</text>
+
+        <!-- Oman (Phase 2) -->
+        <path class="market-country phase2" d="M 360 200 L 385 200 L 390 230 L 365 235 L 355 215 Z"/>
+        <text x="372" y="220" class="map-label" text-anchor="middle">OMAN</text>
+
+        <!-- Markers for active DMCs -->
+        <circle class="map-marker" cx="55" cy="155" r="3"/>
+        <circle class="map-marker" cx="50" cy="170" r="3"/>
+        <circle class="map-marker" cx="68" cy="145" r="3"/>
+        <circle class="map-marker" cx="225" cy="175" r="3"/>
+        <circle class="map-marker" cx="240" cy="195" r="3"/>
+        <circle class="map-marker" cx="275" cy="120" r="3"/>
+        <circle class="map-marker" cx="280" cy="130" r="3"/>
+
+        <!-- Compass -->
+        <g transform="translate(360, 60)">
+          <circle cx="0" cy="0" r="18" fill="var(--bg-raised)" stroke="var(--border-default)"/>
+          <text x="0" y="-6" fill="var(--ink-tertiary)" font-family="var(--font-mono)" font-size="8" text-anchor="middle">N</text>
+          <line x1="0" y1="-2" x2="0" y2="8" stroke="var(--accent)" stroke-width="1.5"/>
+        </g>
+      </svg>
+    </div>
+
+    <div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="card" style="padding: 18px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+            <span class="phase-key-swatch" style="background: var(--accent);"></span>
+            <span class="eyebrow accent" style="margin: 0;">Phase 1 · today</span>
+          </div>
+          <h3 style="font-size: 20px; margin: 0 0 6px;">Jordan · Morocco · Egypt</h3>
+          <p style="font-size: 13px; margin: 0; color: var(--ink-tertiary);">7 DMCs · 12 itineraries · 4 Jordan, 4 Morocco, 3 Egypt, 2 multi-country</p>
+        </div>
+        <div class="card" style="padding: 18px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+            <span class="phase-key-swatch" style="background: var(--info-soft); border: 2px dashed var(--info);"></span>
+            <span class="eyebrow info" style="margin: 0;">Phase 2 · 2026 H2</span>
+          </div>
+          <h3 style="font-size: 20px; margin: 0 0 6px;">+ Saudi · UAE · Oman</h3>
+          <p style="font-size: 13px; margin: 0; color: var(--ink-tertiary);">Saudi e-visa just opened. AlUla and Diriyah as premium hooks. GCC corridor complete.</p>
+        </div>
+        <div class="card" style="padding: 18px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+            <span class="phase-key-swatch" style="background: var(--bg-sunken); border: 1px solid var(--border-default);"></span>
+            <span class="eyebrow" style="margin: 0;">Phase 3 · 2027+</span>
+          </div>
+          <h3 style="font-size: 20px; margin: 0 0 6px;">Broader Africa &amp; Central Asia</h3>
+          <p style="font-size: 13px; margin: 0; color: var(--ink-tertiary);">Kenya · Tanzania · Georgia · Uzbekistan. Same model, same playbook.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-counter">10 / 12</div>
+</section>
+
+<!-- 11 · Roadmap ───────────────────────────── -->
+<section class="slide slide-cream" id="roadmap">
+  <div class="eyebrow">Roadmap</div>
+  <h2>From clickable prototype to scaled platform.</h2>
+
+  <p>Forty weeks from today's working demo to a production platform serving multiple wholesalers and 20+ DMCs.</p>
+
+  <div class="roadmap-rail">
+    <div class="phase">
+      <div class="phase-label">Weeks 1–8</div>
+      <h4>Foundation</h4>
+      <ul>
+        <li>Production database</li>
+        <li>Auth + user management</li>
+        <li>Payment rails (Stripe + bank)</li>
+        <li>First 3 DMC contracts</li>
+        <li>Onboarding playbook</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-label">Weeks 9–16</div>
+      <h4>First pilot</h4>
+      <ul>
+        <li>1 wholesaler live</li>
+        <li>3–5 agencies onboarded</li>
+        <li>6–8 itineraries published</li>
+        <li>Real-money booking flow</li>
+        <li>Translation review live</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-label">Weeks 17–28</div>
+      <h4>Scale</h4>
+      <ul>
+        <li>Second + third wholesaler</li>
+        <li>20+ DMCs across JO/MA/EG/SA/UAE</li>
+        <li>40+ itineraries</li>
+        <li>Mobile-responsive</li>
+        <li>WeChat-native sharing</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-label">Weeks 29–40+</div>
+      <h4>Platform</h4>
+      <ul>
+        <li>AI itinerary customization</li>
+        <li>Dynamic packaging</li>
+        <li>Open DMC marketplace tier</li>
+        <li>Premium analytics</li>
+        <li>Gulf + Africa expansion</li>
+      </ul>
+    </div>
+  </div>
+  <div class="slide-counter">11 / 12</div>
+</section>
+
+<!-- 12 · CTA finale ──────────────────────── -->
+<section class="slide finale" id="cta">
+  <div class="content">
+    <div class="eyebrow accent">Get involved</div>
+    <h1 style="font-size: clamp(40px, 5vw, 64px);">A bridge worth building. Let's build it together.</h1>
+
+    <div style="margin-top: 20px;">
+      <h4 style="font-family: var(--font-display); font-size: 22px; font-weight: 400; font-variation-settings: 'SOFT' 30, 'opsz' 60; color: var(--accent); margin: 24px 0 6px;">Wholesalers</h4>
+      <p style="margin: 0; font-size: 15px;">Become the launch partner. First pilot starts weeks 12–16. Whitebox onboarding, locked margin terms, dedicated platform team.</p>
+
+      <h4 style="font-family: var(--font-display); font-size: 22px; font-weight: 400; font-variation-settings: 'SOFT' 30, 'opsz' 60; color: var(--accent); margin: 24px 0 6px;">DMCs</h4>
+      <p style="margin: 0; font-size: 15px;">Join the supply network. 5–7 partners per market. Chinese demand without building a Mandarin team.</p>
+
+      <h4 style="font-family: var(--font-display); font-size: 22px; font-weight: 400; font-variation-settings: 'SOFT' 30, 'opsz' 60; color: var(--accent); margin: 24px 0 6px;">Investors</h4>
+      <p style="margin: 0; font-size: 15px;">Series Pre-A in motion. Unit economics and 40-week milestone plan ready to share.</p>
+    </div>
+
+    <div>
+      <a href="/" class="cta gold">See the working demo →</a>
+      <a href="mailto:hello@tripon.io" class="cta-secondary">hello@tripon.io</a>
+    </div>
+  </div>
+  <div class="image"></div>
+  <div class="slide-counter" style="color: rgba(245,239,224,0.7); bottom: 32px; right: 32px;">12 / 12</div>
+</section>
+
+<footer class="footer">
+  Travel Leap · A B2B distribution platform for Middle East &amp; Africa travel · 2026
+</footer>
+
+<script>
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp' && e.key !== 'PageDown' && e.key !== 'PageUp') return;
+    e.preventDefault();
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const y = window.scrollY + window.innerHeight / 2;
+    let current = 0;
+    slides.forEach((s, i) => { if (s.offsetTop <= y) current = i; });
+    const dir = (e.key === 'ArrowDown' || e.key === 'PageDown') ? 1 : -1;
+    const next = Math.max(0, Math.min(slides.length - 1, current + dir));
+    slides[next].scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>

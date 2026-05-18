@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Leap — Demo Docs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-base: #0E0C09;
+    --bg-raised: #161310;
+    --bg-sunken: #0A0807;
+    --ink-primary: #F5EFE0;
+    --ink-secondary: #A89F8B;
+    --ink-tertiary: #6B6557;
+    --border-subtle: rgba(245, 239, 224, 0.06);
+    --border-default: rgba(245, 239, 224, 0.10);
+    --accent: #D4A65A;
+    --accent-soft: rgba(212, 166, 90, 0.08);
+    --accent-border: rgba(212, 166, 90, 0.24);
+    --info: #5E8FA8;
+    --font-display: "Fraunces", Georgia, serif;
+    --font-body: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: "Geist Mono", "SF Mono", Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg-base);
+    color: var(--ink-primary);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 80px 32px 96px;
+  }
+
+  header.hero {
+    margin-bottom: 56px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(40px, 5.5vw, 72px);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    margin: 0 0 16px;
+    font-variation-settings: "SOFT" 80, "opsz" 144;
+  }
+  .lead {
+    color: var(--ink-secondary);
+    font-size: 18px;
+    line-height: 1.55;
+    max-width: 56ch;
+    margin: 0;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 880px) { .cards { grid-template-columns: 1fr; } }
+
+  a.card {
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    background: var(--bg-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.15s, background 0.2s;
+    color: inherit;
+    min-height: 280px;
+  }
+  a.card:hover {
+    border-color: var(--accent-border);
+    transform: translateY(-2px);
+  }
+  a.card.primary {
+    background: linear-gradient(180deg, var(--accent-soft) 0%, var(--bg-raised) 100%);
+    border-color: var(--accent-border);
+  }
+  a.card .num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-tertiary);
+    letter-spacing: 0.16em;
+    margin-bottom: 18px;
+  }
+  a.card.primary .num { color: var(--accent); }
+  a.card h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+    font-variation-settings: "SOFT" 40, "opsz" 80;
+    color: var(--ink-primary);
+  }
+  a.card p {
+    color: var(--ink-secondary);
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+    flex: 1;
+  }
+  a.card .footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-subtle);
+  }
+  a.card .url {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+  }
+  a.card .arrow {
+    color: var(--ink-tertiary);
+    transition: transform 0.15s, color 0.15s;
+  }
+  a.card:hover .arrow { transform: translateX(4px); color: var(--accent); }
+
+  .meta {
+    margin-top: 48px;
+    padding: 20px 24px;
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    background: var(--bg-sunken);
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    color: var(--ink-secondary);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .meta .bullet {
+    color: var(--info);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .meta strong { color: var(--ink-primary); }
+  .meta code {
+    font-family: var(--font-mono);
+    background: var(--bg-raised);
+    border: 1px solid var(--border-subtle);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--accent);
+    font-size: 12px;
+  }
+
+  footer.footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-subtle);
+    color: var(--ink-tertiary);
+    font-size: 12px;
+    font-family: var(--font-mono);
+    letter-spacing: 0.08em;
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="hero">
+    <div class="eyebrow">Travel Leap · Demo docs</div>
+    <h1>Two documents, one demo</h1>
+    <p class="lead">
+      A short framing deck to play before the demo, a long-form guide to read once and reference during. Pick a card.
+    </p>
+  </header>
+
+  <div class="cards">
+
+    <a class="card" href="/pitch.html">
+      <div class="num">01 · System</div>
+      <h2>Product pitch deck</h2>
+      <p>Twelve slides covering what Travel Leap is, the four portals, value for wholesalers / agencies / DMCs, the margin model, business model, markets, roadmap, and how to engage. The substantive overview you give before opening the demo.</p>
+      <div class="footer-row">
+        <span class="url">/pitch.html</span>
+        <span class="arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card" href="/demo-guide.html">
+      <div class="num">02 · Walk-through</div>
+      <h2>Click-by-click demo guide</h2>
+      <p>Setup checklist, the 12-minute stakeholder version, the 20-minute wholesaler version, what's intentionally faked, anticipated Q&amp;A. Read once, then keep open on a second screen during the demo.</p>
+      <div class="footer-row">
+        <span class="url">/demo-guide.html</span>
+        <span class="arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card primary" href="/">
+      <div class="num">03 · The product</div>
+      <h2>Open the live demo</h2>
+      <p>Lands on the persona switcher. Default state: Chinese language, dark mode. Switch personas via the floating control in the bottom-right of any page. Switch language via the globe icon in the topbar.</p>
+      <div class="footer-row">
+        <span class="url">/</span>
+        <span class="arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="meta">
+    <span class="bullet">●</span>
+    <div>
+      <strong>Suggested flow.</strong> Open three tabs:
+      <code>/pitch.html</code> for the product introduction (5–10 min walk-through),
+      <code>/</code> for the live working demo,
+      <code>/demo-guide.html</code> on a separate device or second monitor as a live cheat-sheet during the demo.
+      All three are served from <code>http://localhost:3001</code> alongside the running app — the HTML pages are static, no Next.js routing involved.
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span>Travel Leap · internal demo docs · 2026</span>
+    <span>Stakeholder review</span>
+  </footer>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Leap — Demo Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-base: #0E0C09;
+    --bg-raised: #161310;
+    --bg-sunken: #0A0807;
+    --ink-primary: #F5EFE0;
+    --ink-secondary: #A89F8B;
+    --ink-tertiary: #6B6557;
+    --ink-quaternary: #4A4538;
+    --border-subtle: rgba(245, 239, 224, 0.06);
+    --border-default: rgba(245, 239, 224, 0.10);
+    --border-strong: rgba(245, 239, 224, 0.16);
+    --accent: #D4A65A;
+    --accent-soft: rgba(212, 166, 90, 0.08);
+    --accent-border: rgba(212, 166, 90, 0.24);
+    --success: #7AAA8B;
+    --warning: #D4A65A;
+    --danger: #C25A3D;
+    --info: #5E8FA8;
+    --font-display: "Fraunces", "Noto Serif SC", Georgia, serif;
+    --font-body: "Geist", "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: "Geist Mono", "SF Mono", Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg-base);
+    color: var(--ink-primary);
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+  }
+
+  aside.toc {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 32px 24px;
+    border-right: 1px solid var(--border-subtle);
+    background: var(--bg-sunken);
+  }
+
+  aside.toc .brand {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink-primary);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+    font-variation-settings: "SOFT" 40, "opsz" 80;
+  }
+  aside.toc .brand-sub {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-tertiary);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  aside.toc nav { display: flex; flex-direction: column; gap: 4px; }
+  aside.toc nav a {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--ink-secondary);
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border-left: 2px solid transparent;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    line-height: 1.4;
+  }
+  aside.toc nav a:hover { background: var(--bg-raised); color: var(--ink-primary); }
+  aside.toc nav a.active { color: var(--accent); border-left-color: var(--accent); background: var(--accent-soft); }
+  aside.toc .toc-section {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink-tertiary);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 20px 12px 6px;
+  }
+  aside.toc .external {
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  aside.toc .external a {
+    border-left: none;
+    padding: 6px 12px;
+    color: var(--ink-tertiary);
+    font-size: 12px;
+  }
+  aside.toc .external a:hover { color: var(--accent); background: transparent; }
+  aside.toc .external a.primary { color: var(--accent); background: var(--accent-soft); border: 1px solid var(--accent-border); border-radius: 4px; padding: 8px 12px; text-align: center; margin-top: 8px; }
+
+  main {
+    padding: 48px 64px 96px;
+    max-width: 880px;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    margin: 0 0 12px;
+    font-variation-settings: "SOFT" 80, "opsz" 144;
+  }
+  .lead {
+    font-size: 19px;
+    color: var(--ink-secondary);
+    max-width: 60ch;
+    line-height: 1.55;
+    margin: 0 0 48px;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 64px 0 16px;
+    font-variation-settings: "SOFT" 40, "opsz" 80;
+    scroll-margin-top: 24px;
+  }
+  h2 .num {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 18px;
+    margin-right: 14px;
+    vertical-align: 4px;
+  }
+  h3 {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 18px;
+    margin: 36px 0 12px;
+    color: var(--ink-primary);
+    scroll-margin-top: 24px;
+  }
+  h4 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-tertiary);
+    margin: 28px 0 8px;
+  }
+
+  p {
+    color: var(--ink-secondary);
+    margin: 0 0 14px;
+    max-width: 62ch;
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  strong { color: var(--ink-primary); font-weight: 500; }
+  em { color: var(--ink-primary); font-style: italic; }
+
+  code, .url {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    background: var(--bg-raised);
+    border: 1px solid var(--border-subtle);
+    padding: 1px 6px;
+    border-radius: 3px;
+    color: var(--accent);
+    word-break: break-all;
+  }
+
+  pre {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    background: var(--bg-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 12px 16px;
+    overflow-x: auto;
+    color: var(--ink-primary);
+    margin: 12px 0 20px;
+    line-height: 1.55;
+  }
+
+  ol, ul { color: var(--ink-secondary); padding-left: 22px; max-width: 60ch; line-height: 1.6; font-size: 15px; }
+  ol li, ul li { margin-bottom: 8px; }
+
+  .callout {
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    padding: 14px 18px;
+    margin: 18px 0 24px;
+    border-radius: 0 4px 4px 0;
+    font-size: 14px;
+    color: var(--ink-secondary);
+  }
+  .callout strong { color: var(--accent); }
+  .callout.warning { border-left-color: var(--warning); background: rgba(212, 166, 90, 0.10); }
+  .callout.warning strong { color: var(--warning); }
+  .callout.danger { border-left-color: var(--danger); background: rgba(194, 90, 61, 0.08); }
+  .callout.danger strong { color: var(--danger); }
+  .callout.info { border-left-color: var(--info); background: rgba(94, 143, 168, 0.08); }
+  .callout.info strong { color: var(--info); }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 16px 0 24px;
+    font-size: 13px;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--ink-secondary);
+    vertical-align: top;
+  }
+  th {
+    color: var(--ink-tertiary);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    background: var(--bg-raised);
+  }
+  td.url-cell { font-family: var(--font-mono); color: var(--accent); font-size: 12px; white-space: nowrap; }
+  td.time-cell { font-family: var(--font-mono); color: var(--ink-tertiary); font-size: 12px; white-space: nowrap; }
+  td strong { color: var(--ink-primary); }
+
+  .step {
+    display: flex;
+    gap: 16px;
+    margin: 14px 0;
+    padding: 14px 16px;
+    background: var(--bg-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+  }
+  .step .num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--bg-base);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    display: grid;
+    place-items: center;
+  }
+  .step .body { flex: 1; }
+  .step .body strong { color: var(--ink-primary); display: block; margin-bottom: 4px; font-size: 15px; }
+  .step .body span { font-size: 14px; color: var(--ink-secondary); line-height: 1.5; }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    height: 22px;
+    padding: 0 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid;
+    margin-right: 4px;
+  }
+  .pill.gold { color: var(--accent); border-color: var(--accent-border); background: var(--accent-soft); }
+  .pill.green { color: var(--success); border-color: rgba(122, 170, 139, 0.3); background: rgba(122, 170, 139, 0.10); }
+  .pill.red { color: var(--danger); border-color: rgba(194, 90, 61, 0.3); background: rgba(194, 90, 61, 0.10); }
+  .pill.info { color: var(--info); border-color: rgba(94, 143, 168, 0.3); background: rgba(94, 143, 168, 0.10); }
+  .pill.neutral { color: var(--ink-secondary); border-color: var(--border-default); background: var(--bg-sunken); }
+
+  .qa { margin: 18px 0; }
+  .qa .q {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ink-primary);
+    font-size: 17px;
+    margin: 0 0 8px;
+    font-variation-settings: "SOFT" 60, "opsz" 80;
+  }
+  .qa .q::before { content: "Q. "; color: var(--accent); }
+  .qa .a { color: var(--ink-secondary); font-size: 14px; line-height: 1.6; padding-left: 24px; }
+  .qa .a::before { content: "→ "; color: var(--accent); margin-left: -16px; }
+
+  @media (max-width: 980px) {
+    .layout { grid-template-columns: 1fr; }
+    aside.toc { position: relative; height: auto; }
+    main { padding: 32px 24px 64px; }
+  }
+
+  @media print {
+    aside.toc { display: none; }
+    .layout { grid-template-columns: 1fr; }
+    main { padding: 30px 40px; max-width: none; }
+    h2 { page-break-after: avoid; }
+    .callout, .step, table { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+<aside class="toc">
+  <div class="brand">Travel Leap</div>
+  <div class="brand-sub">Demo guide</div>
+  <nav>
+    <div class="toc-section">Before</div>
+    <a href="#setup">1 · Pre-demo setup</a>
+    <div class="toc-section">Walk-through</div>
+    <a href="#stakeholder">2 · Stakeholder version (12 min)</a>
+    <a href="#wholesaler">3 · Wholesaler version (20 min)</a>
+    <div class="toc-section">Landing</div>
+    <a href="#land">4 · What to land vs skim</a>
+    <div class="toc-section">Handle</div>
+    <a href="#fake">5 · What's visibly fake</a>
+    <a href="#qa">6 · Q&amp;A primer</a>
+    <div class="toc-section">After</div>
+    <a href="#after">7 · After the review</a>
+    <a href="#card">8 · Quick reference card</a>
+  </nav>
+  <div class="external">
+    <a href="/pitch.html">← Pre-demo pitch deck</a>
+    <a href="/docs.html">All demo docs</a>
+    <a href="/" class="primary">Open the demo →</a>
+  </div>
+</aside>
+
+<main>
+
+<h1>Demo guide</h1>
+<p class="lead">
+  Walk-through, key moments, what's intentionally faked, and how to answer the questions the wholesaler will ask. Read once start-to-finish before the first demo. Use the quick reference card at the bottom during the demo itself.
+</p>
+
+<div class="callout info">
+  <strong>Demo focus:</strong> this prototype centers on <strong>Jordan, Morocco, and Egypt</strong> — three markets with low competition for Chinese inbound and high Chinese-traveler interest right now. 4 Jordan itineraries, 4 Morocco, 3 Egypt, 2 multi-country grand tours.
+</div>
+
+<!-- 1 · Setup ─────────────────────────────────────── -->
+<h2 id="setup"><span class="num">1</span>Pre-demo setup</h2>
+<p>Run through this 10 minutes before the stakeholder arrives. The first hit on any route takes 5–15 seconds to compile under Turbopack — you don't want that compile lag happening in front of the audience.</p>
+
+<h4>Boot the app</h4>
+<pre>cd D:\dev\Yarvel\dmc-aggregator
+npm run dev</pre>
+<p>Wait for <code>✓ Ready</code>. Open <code>http://localhost:3001</code> in an <strong>Incognito Chrome window</strong> so prior session state (drafts, languages, persona) doesn't leak in.</p>
+
+<h4>Verify the starting state</h4>
+<p>The landing page should show Chinese display text (<em>深度·定制·中东之旅</em>) on a dark warm-neutral background. If you see English instead, you have stale localStorage — DevTools → Application → Storage → <em>Clear site data</em> → refresh.</p>
+
+<h4>Pre-warm critical routes</h4>
+<p>Click through each of these once. They'll be instant on the next hit.</p>
+<ol>
+  <li><code>/wholesaler/dashboard</code> → <code>/wholesaler/agencies</code> → click any agency</li>
+  <li><code>/wholesaler/catalog</code> → click <code>it-001</code> (Jordan flagship — <strong>this is your money shot</strong>)</li>
+  <li><code>/wholesaler/rfqs</code> → click any RFQ</li>
+  <li><code>/agency/browse</code> → click <code>it-003</code> (Morocco Royal Cities — <strong>the wow page</strong>)</li>
+  <li><code>/agency/customize/it-003</code> → <code>/agency/quote/it-003</code> → <code>/agency/book/it-003</code> → <code>/agency/voucher/it-003</code></li>
+  <li><code>/dmc/dashboard</code> → <code>/dmc/itineraries/new</code></li>
+  <li><code>/dmc/pricing</code> → <code>/dmc/allotments</code> → <code>/dmc/schedules</code></li>
+  <li><code>/platform/overview</code></li>
+</ol>
+<p>Then clear site data once more and refresh — fresh state, all routes hot.</p>
+
+<h4>Check the images</h4>
+<p>Open <code>/agency/browse</code> and filter to Morocco, then Egypt, then Jordan. If any card is missing a hero image, the Unsplash photo ID is stale — swap that itinerary's <code>heroImage</code> in <code>lib/mock/itineraries.ts</code> for a known-good one from a sibling itinerary. Petra and Cairo IDs are verified.</p>
+
+<h4>Window size + monitor</h4>
+<p>Resize to <strong>1440 × 900</strong>. The build was designed for laptop-projector resolution. Below 1280px wide the catalog detail page starts to feel cramped.</p>
+
+<div class="callout">
+  <strong>Demo doc setup:</strong> have <code>/pitch.html</code> open in tab 1 and <code>/</code> in tab 2. Open <code>/demo-guide.html</code> on a phone or second monitor as a live cheat-sheet. Don't switch to this guide on the projected screen.
+</div>
+
+<!-- 2 · Stakeholder walk-through ─────────────────── -->
+<h2 id="stakeholder"><span class="num">2</span>Stakeholder walk-through (12–15 min)</h2>
+<p>Keep this less rehearsed than the wholesaler pitch. The stakeholder isn't a customer — they're your project owner, validating that what you've built will hold up in front of a partner. Slow down at the margin breakdown card and the agency wow page. Skim everything else.</p>
+
+<div class="step">
+  <div class="num">0</div>
+  <div class="body">
+    <strong>Open at <code>/pitch.html</code></strong>
+    <span>Walk through the 7-slide deck in ~2 minutes. The deck does the strategic framing so you don't have to verbalize it. Hit "Begin demo →" on the last slide to land in the product.</span>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">1</div>
+  <div class="body">
+    <strong>Persona landing — <code>/</code></strong>
+    <span>"This is the persona switcher. In production each user-type lives on its own subdomain — agencies see only their portal, wholesalers see only theirs. For the demo we use one URL with a switcher in the bottom-right of every page." Click "进入批发商门户" (Enter as Wholesaler).</span>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">2</div>
+  <div class="body">
+    <strong>Wholesaler dashboard — 1 min</strong>
+    <span>Point out: the brand is <em>天行国旅</em>, not Travel Leap. This is the wholesaler's portal, branded as them. Four KPIs (monthly GMV, active bookings, pending RFQs, active agencies). Pending bookings panel + upcoming departures + activity feed. <strong>This is the operational answer to "do you white-label?"</strong></span>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">3</div>
+  <div class="body">
+    <strong>Agencies — <code>/wholesaler/agencies</code> — 1 min</strong>
+    <span>"15 agencies under this one wholesaler. Filter by status, by wallet mode." Click any agency — say <em>北京华夏国旅</em>. Show the four tabs (Overview / Bookings / Wallet / Settings). On Settings tab, click between Prepaid and Credit — the KPI tile recomputes. <strong>"Wallet config is per-agency. The wholesaler decides terms with each downstream agency."</strong></span>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">4</div>
+  <div class="body">
+    <strong>Catalog — <code>/wholesaler/catalog/it-001</code> — 3 min <span class="pill gold">money shot</span></strong>
+    <span>The trust-building moment. Pause here. Walk the margin breakdown card on the right:<br>
+      • "DMC's net: $1,480"<br>
+      • "Platform markup: $200 — fully transparent, locked at contract"<br>
+      • "Wholesaler sell-in: $1,680"<br>
+      • Click the <strong>pencil on "Your markup"</strong> → edit live to $400 → agency retail recomputes instantly<br>
+      • Hit <strong>Save</strong> → toast confirms<br>
+      Then scroll down → <strong>Publish to agencies</strong>: toggle 2–3 agencies, Save → toast. <em>"This is how supply gets distributed selectively. Not every agency sees every product."</em></span>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">5</div>
+  <div class="body">
+    <strong>RFQs — <code>/wholesaler/rfqs</code> — 1 min</strong>
+    <span>Point at the live SLA timers ticking down (24h response window). Click <code>rfq-001</code> (Egypt VIP deep-culture request). Fill an amount → <strong>Send Quote</strong> → toast + redirect. <em>"Every customization request runs through a tracked SLA. The agency sees the response in their portal."</em></span>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">6</div>
+  <div class="body">
+    <strong>Switch to Agency persona</strong>
+    <span>Click the floating control bottom-right → Agency. URL changes to <code>/agency/browse</code>, but the brand stays Tianxing. <strong>"Same tenant, different role. We're now inside one of their downstream agencies."</strong></span>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">7</div>
+  <div class="body">
+    <strong>Browse — <code>/agency/browse</code> — 1 min</strong>
+    <span>Show the destination filter — Jordan, Morocco, Egypt at the top. Click Morocco. Cards show <em>摩洛哥皇城蓝白8日</em>, <em>摩洛哥撒哈拉沙漠探险6日</em>, etc. Hover one card to show the hover state. Click <code>it-003</code>.</span>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">8</div>
+  <div class="body">
+    <strong>Wow page — <code>/agency/browse/it-003</code> — 2 min <span class="pill gold">money shot</span></strong>
+    <span>Let it sit for 5–10 seconds before clicking anything. Hero photo, gallery, bilingual subtitle, sticky right-side booking panel with price and pax controls. Walk the tabs: <em>Highlights</em> → <em>Day by day</em> → <em>Inclusions</em>. Then click <strong>立即预订</strong> (Book Now) on the right panel.</span>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">9</div>
+  <div class="body">
+    <strong>Booking flow — 3 steps</strong>
+    <span>Review → Pax → Confirm. On <strong>Confirm</strong>: watch the wallet balance pulse + decrement (real Zustand mutation, persists). Land on the success screen.</span>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">10</div>
+  <div class="body">
+    <strong>Voucher — <code>/agency/voucher/it-003</code></strong>
+    <span>The co-branded PDF preview — white document, wholesaler logo + DMC contact info side-by-side. <em>"The agency's customer never sees Travel Leap. Wholesaler brand on top, DMC underneath as the local supplier."</em> Click <strong>Download PDF</strong> or <strong>Share via WeChat</strong> — both fire toasts (the WeChat one copies the link to clipboard).</span>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">11</div>
+  <div class="body">
+    <strong>Switch to DMC persona — 2 min</strong>
+    <span>"Now the supply side. This is what the Jordan, Morocco, Egypt operators see." Walk:<br>
+      • <strong>Dashboard</strong> — confirm a pending booking → row disappears, KPI ticks down. Real, not a toast.<br>
+      • <strong>/dmc/pricing</strong> — read the explainer banner at the top, then edit a price cell, Save → toast.<br>
+      • <strong>/dmc/allotments</strong> — read the FIXED vs ON_DEMAND explainer, edit a departure capacity.<br>
+      • <strong>/dmc/itineraries/new</strong> — show the create form. Fill bilingual title + cities + countries → Save Draft → redirect to detail page with day-by-day editor + inclusions editor inline.</span>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">12</div>
+  <div class="body">
+    <strong>Platform admin — 30 sec</strong>
+    <span>Switch to Platform persona. Show <code>/platform/overview</code> KPIs and <code>/platform/dmcs</code> (7 DMCs across JO/MA/EG with trust tiers). <em>"This is our control plane. Multi-wholesaler, multi-DMC. Today one of each."</em> Don't dwell.</span>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">13</div>
+  <div class="body">
+    <strong>Bilingual flip — 10 sec</strong>
+    <span>Click the globe icon top-right → English. The entire UI flips in one frame — no flicker. <em>"Every UI string is keyed. Every entity stored bilingually. No second-class language."</em> Click back to 中文.</span>
+  </div>
+</div>
+
+<!-- 3 · Wholesaler version ─────────────────────────── -->
+<h2 id="wholesaler"><span class="num">3</span>Wholesaler walk-through (20 min)</h2>
+<p>Use this when the stakeholder hands off to the wholesaler partner. The structure follows <code>docs/demo-build-plan.md §4</code>. Differences from the stakeholder version: lead with the DMC supply story before showing the wholesaler portal; spend more time on the agency journey; close with the roadmap.</p>
+
+<table>
+  <thead>
+    <tr><th>Part</th><th>Time</th><th>What</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>1</strong></td><td class="time-cell">2 min</td><td>Open <code>/pitch.html</code>. Slides 1–4 only. Hit "Begin demo →"</td></tr>
+    <tr><td><strong>2</strong></td><td class="time-cell">3 min</td><td>Switch to DMC persona first. Show <code>/dmc/dashboard</code> + <code>/dmc/itineraries</code> with translation status. <em>"This is what your supplier partners use to manage inventory."</em> Frame: this is where supply comes from. Then show how it gets distributed.</td></tr>
+    <tr><td><strong>3</strong></td><td class="time-cell">6 min</td><td>Switch to Wholesaler. <strong>"This is your portal, branded as you."</strong> Dashboard → Agencies (click one) → Catalog → <code>it-001</code> with margin breakdown card. RFQs briefly. Reports glance.</td></tr>
+    <tr><td><strong>4</strong></td><td class="time-cell">7 min</td><td>Switch to Agency. <em>"Your agencies operate in your brand, not ours."</em> Browse → filter Morocco → click <code>it-003</code>. Walk the wow page slowly. Click 立即预订 → 3-step flow → voucher. Quick look at <code>/agency/bookings</code>. Locale toggle to English.</td></tr>
+    <tr><td><strong>5</strong></td><td class="time-cell">1 min</td><td>Switch to Platform. <code>/platform/overview</code>. <em>"This is our control plane across all wholesalers and DMCs."</em> Don't dwell.</td></tr>
+    <tr><td><strong>6</strong></td><td class="time-cell">1–2 min</td><td>Open <code>/pitch.html#roadmap</code>. Walk the 40-week phased delivery. Q&amp;A.</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Demo wins if</strong> by the end, the wholesaler is asking: "When can we start?" / "Can our agencies start with this catalog first?" / "What's the commercial structure?" / "Can we add our existing DMC relationships?"
+</div>
+
+<!-- 4 · What to land vs skim ────────────────────── -->
+<h2 id="land"><span class="num">4</span>What to land vs what to skim</h2>
+
+<h3>Land hard</h3>
+<ol>
+  <li>The wholesaler portal is <strong>theirs</strong> — brand, agencies, margin control.</li>
+  <li>The <strong>margin breakdown card</strong> with live markup editing. Slow down here.</li>
+  <li>The <strong>agency wow page</strong> + 3-step booking + co-branded voucher.</li>
+  <li>The <strong>pricing &amp; allotments explainer banners</strong>: they answer the partner's structural questions in writing, in the UI.</li>
+  <li><strong>Bilingual locale switch</strong>: one click, no flicker.</li>
+</ol>
+
+<h3>Skim past</h3>
+<ul>
+  <li>Reports page (recharts) — show for 5 seconds, don't dwell.</li>
+  <li>Platform admin — context only, 30 seconds max.</li>
+  <li>DMC schedules and statements — visit but don't edit deeply.</li>
+  <li>Agency wallet ledger — mention it exists, don't walk transactions.</li>
+  <li>Detail pages for non-marquee itineraries (anything other than it-001 and it-003).</li>
+</ul>
+
+<!-- 5 · What's fake ──────────────────────────────── -->
+<h2 id="fake"><span class="num">5</span>What's visibly fake — be ready</h2>
+<p>Honesty here prevents being blindsided. The stakeholder should know all of these. The wholesaler will figure most out anyway if they probe — own it early.</p>
+
+<div class="callout danger">
+  <strong>No real backend.</strong> State lives in Zustand persisted to localStorage. Page reload preserves most state (drafts, action history, wallet deltas) within a browser session. Cross-device and cross-session, nothing persists.
+</div>
+
+<div class="callout warning">
+  <strong>Wallet deductions are simulated.</strong> No Stripe, no escrow, no real payments. The decrement animation is a UI effect on top of the Zustand store. The "Top Up" dialog adds to the same in-memory balance.
+</div>
+
+<div class="callout warning">
+  <strong>DMC API integrations don't exist.</strong> The 7 DMCs (Petra Heritage, Atlas Mountains, Sahara Caravan, etc.) are mock entities. The DMC portal shows <em>what they would see</em> if integrated, not real ops data.
+</div>
+
+<div class="callout warning">
+  <strong>The booking confirmation doesn't book anything.</strong> The 3-step flow has visible state but the success screen is hardcoded after Step 3. No supplier confirmation actually goes out.
+</div>
+
+<div class="callout warning">
+  <strong>Translations are pre-curated.</strong> Every bilingual string was written by hand for the demo. The "Pending Review" badges on some itineraries are intentional — they're our story for a translation workflow that doesn't exist yet.
+</div>
+
+<div class="callout warning">
+  <strong>Photos are stock Unsplash.</strong> Verified working for Petra, Cairo, Marrakech. Other destinations occasionally 404 — check before the demo. For production, DMCs supply real on-the-ground photography.
+</div>
+
+<div class="callout warning">
+  <strong>No auth.</strong> The persona switcher is the entire identity model. Fine for demo, obviously not production.
+</div>
+
+<div class="callout warning">
+  <strong>One hardcoded wholesaler.</strong> 天行国旅 (Tianxing Tours) is the only wholesaler configured. The multi-tenant architecture is real (CSS variable theming + <code>data-tenant</code> attribute on the layout root), but only one tenant has values populated. Adding a second is a config change, not code.
+</div>
+
+<p>
+  If the partner pushes on any of these, the consistent answer is: <strong>this is a clickable prototype, not a beta.</strong> The point is to validate the product story before we build the production system. The 40-week roadmap (in the pitch deck) is when this gets built for real.
+</p>
+
+<!-- 6 · Q&A ─────────────────────────────────────── -->
+<h2 id="qa"><span class="num">6</span>Q&amp;A primer</h2>
+<p>Anticipated wholesaler questions and crisp answers. Memorize the first 4.</p>
+
+<div class="qa">
+  <p class="q">How do my agencies get onboarded?</p>
+  <p class="a">Point at <code>/wholesaler/agencies</code> → Invite dialog. Real onboarding is KYC review + wallet setup + first credit limit. The wholesaler invites, our platform handles KYC, agency is live within 48 hours.</p>
+</div>
+
+<div class="qa">
+  <p class="q">What's your cut?</p>
+  <p class="a">Point at the margin breakdown card. Platform takes the middle layer — typically $200–$700 per pax depending on tier. Locked at contract signing, visible to everyone. No hidden fees, no FX games.</p>
+</div>
+
+<div class="qa">
+  <p class="q">Can I block specific DMCs?</p>
+  <p class="a">In production yes. Today the wholesaler catalog shows every published itinerary; supply curation lives in our platform admin. Roadmap: per-wholesaler supply filters.</p>
+</div>
+
+<div class="qa">
+  <p class="q">What if a DMC cancels last-minute?</p>
+  <p class="a">Today we mock the SLA queue. In production: automated fallback logic + platform escalation + force-majeure clauses in DMC contracts. Show <code>/wholesaler/rfqs</code> as proof we already track time-sensitive operations.</p>
+</div>
+
+<div class="qa">
+  <p class="q">How do I pay you?</p>
+  <p class="a">Two modes: <strong>credit</strong> (we float working capital, monthly settlement) or <strong>prepaid</strong> (top-up wallet, draw down per booking). Their choice at contract. Show <code>/platform/wholesalers</code> to make it concrete.</p>
+</div>
+
+<div class="qa">
+  <p class="q">How do I sell this to my agencies?</p>
+  <p class="a">White-label is the answer. Their agencies log into <code>tianxing.travelleap.com</code> and see only Tianxing branding. The aggregator is invisible to the agency. Demonstrate by switching personas — the wholesaler brand persists across pages.</p>
+</div>
+
+<div class="qa">
+  <p class="q">What does this cost me to start?</p>
+  <p class="a">Defer to follow-up commercial conversation. The stakeholder sets this number, not the demo.</p>
+</div>
+
+<div class="qa">
+  <p class="q">Why Jordan, Morocco, Egypt specifically?</p>
+  <p class="a">UAE and Saudi are valid but more competitive — Chinese groups already flow there. JO/MA/EG have lower competition for Chinese inbound and strong cultural interest right now. We lead with these three deliberately; UAE/SA/OM are roadmap.</p>
+</div>
+
+<div class="qa">
+  <p class="q">Can I see real bookings volume?</p>
+  <p class="a">Not in the demo. Hint at the platform overview KPIs being multi-tenant aggregates in production.</p>
+</div>
+
+<div class="qa">
+  <p class="q">How long until I can actually use this?</p>
+  <p class="a">Reference the 40-week roadmap in the pitch deck. First wholesaler pilot is weeks 12–16 with limited DMCs and one downstream agency.</p>
+</div>
+
+<!-- 7 · After ─────────────────────────────────── -->
+<h2 id="after"><span class="num">7</span>After the stakeholder review</h2>
+
+<h3>If he says ship-it-tomorrow</h3>
+<ul>
+  <li>Reset localStorage in the demo browser (DevTools → Storage → Clear).</li>
+  <li>Verify all 8 routes warm-compile before the wholesaler arrives (same pre-warm checklist as section 1).</li>
+  <li>Re-verify hero photos on every itinerary. First impression matters.</li>
+  <li>Have the pitch deck open in tab 1 for the opening 2 minutes and the closing slide.</li>
+  <li>Practice the margin-breakdown click sequence cold. It's the demo's single most important moment.</li>
+</ul>
+
+<h3>If he says fix-this-first</h3>
+<p>Common asks I'd expect:</p>
+<ul>
+  <li><strong>More agencies in the directory</strong> — 30-min mock data edit in <code>lib/mock/agencies.ts</code>.</li>
+  <li><strong>A second wholesaler example</strong> for "see, multi-tenant works" — 30-min in <code>lib/mock/wholesalers.ts</code> + tenant CSS variable.</li>
+  <li><strong>More polished photos</strong> — photo curation; Ahmed-curated URLs go in <code>lib/mock/photos.ts</code>.</li>
+  <li><strong>A real PDF download</strong> instead of a toast — non-trivial; defer to "production downloads a real PDF, this is a click-through prototype."</li>
+</ul>
+
+<h3>If he wants a Loom backup</h3>
+<p>Record the full demo (15 min) once with the section-2 script. Keep it un-edited. Useful if the demo-day network drops or the wholesaler reschedules.</p>
+
+<h3>If he wants a leave-behind</h3>
+<p>The pitch HTML (<code>/pitch.html</code>) is print-friendly — File → Print → Save as PDF. Send the PDF plus the existing stakeholder deck. The live demo is <strong>not</strong> a leave-behind; if they hit it unattended after the meeting, the gaps show. Tell them you'll set up a follow-up session if they want to see it again.</p>
+
+<!-- 8 · Quick reference ───────────────────────── -->
+<h2 id="card"><span class="num">8</span>Quick reference card</h2>
+<p>Print this section. Keep it next to the laptop.</p>
+
+<table>
+  <thead>
+    <tr><th>Step</th><th>URL</th><th>Click moment</th><th>Time</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Frame</td><td class="url-cell">/pitch.html</td><td>7 slides, scroll or ↓</td><td class="time-cell">2m</td></tr>
+    <tr><td>Open</td><td class="url-cell">/</td><td>Persona landing → Enter as Wholesaler</td><td class="time-cell">20s</td></tr>
+    <tr><td>Ops</td><td class="url-cell">/wholesaler/dashboard</td><td>4 KPIs, brand callout</td><td class="time-cell">1m</td></tr>
+    <tr><td>Agencies</td><td class="url-cell">/wholesaler/agencies</td><td>Click one → wallet mode toggle</td><td class="time-cell">1m</td></tr>
+    <tr><td><strong>Money 1</strong></td><td class="url-cell">/wholesaler/catalog/it-001</td><td><strong>Edit markup live → Save → toggle publish</strong></td><td class="time-cell">3m</td></tr>
+    <tr><td>RFQs</td><td class="url-cell">/wholesaler/rfqs</td><td>SLA timers → click one → Send Quote</td><td class="time-cell">1m</td></tr>
+    <tr><td>Switch</td><td class="url-cell">bottom-right</td><td>Persona → Agency</td><td class="time-cell">10s</td></tr>
+    <tr><td>Browse</td><td class="url-cell">/agency/browse</td><td>Filter Morocco</td><td class="time-cell">30s</td></tr>
+    <tr><td><strong>Money 2</strong></td><td class="url-cell">/agency/browse/it-003</td><td><strong>The wow page → 立即预订 → 3-step → Confirm</strong></td><td class="time-cell">3m</td></tr>
+    <tr><td>Voucher</td><td class="url-cell">/agency/voucher/it-003</td><td>Co-branded PDF preview</td><td class="time-cell">30s</td></tr>
+    <tr><td>Supply</td><td class="url-cell">/dmc/dashboard</td><td>Confirm pending → KPI ticks</td><td class="time-cell">30s</td></tr>
+    <tr><td>Pricing</td><td class="url-cell">/dmc/pricing</td><td>Read banner → edit cell → Save</td><td class="time-cell">1m</td></tr>
+    <tr><td>Allotments</td><td class="url-cell">/dmc/allotments</td><td>Read banner → edit capacity</td><td class="time-cell">30s</td></tr>
+    <tr><td>Create</td><td class="url-cell">/dmc/itineraries/new</td><td>Bilingual draft → Save → editors</td><td class="time-cell">1m</td></tr>
+    <tr><td>Platform</td><td class="url-cell">/platform/overview</td><td>Cross-tenant aggregate</td><td class="time-cell">30s</td></tr>
+    <tr><td>Bilingual</td><td class="url-cell">globe top-right</td><td>EN ↔ 中文 full UI flip</td><td class="time-cell">10s</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>If you remember nothing else:</strong> the margin-breakdown card on <code>/wholesaler/catalog/it-001</code> is the demo's anchor. Slow down there, edit the markup live, hit Save. Everything else is supporting cast.
+</div>
+
+</main>
+</div>
+
+<script>
+  // Highlight active section in the TOC as you scroll
+  const links = document.querySelectorAll('aside.toc nav a');
+  const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href')));
+  function updateActive() {
+    const y = window.scrollY + 80;
+    let activeIdx = 0;
+    sections.forEach((s, i) => { if (s && s.offsetTop <= y) activeIdx = i; });
+    links.forEach((l, i) => l.classList.toggle('active', i === activeIdx));
+  }
+  window.addEventListener('scroll', updateActive, { passive: true });
+  updateActive();
+</script>
+
+</body>
+</html>
