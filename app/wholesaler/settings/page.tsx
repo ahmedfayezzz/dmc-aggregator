@@ -41,7 +41,7 @@ export default function WholesalerSettingsPage() {
                 {getLocalized(wholesaler.displayName, locale)}
               </p>
               <p className="text-caption text-ink-tertiary">
-                {wholesaler.subdomain}.travelleap.com
+                {wholesaler.subdomain}.safasoft.com
               </p>
               <div className="mt-2 flex items-center gap-2">
                 <span className="size-4 rounded-sm border border-border-default" style={{ background: wholesaler.brand.primary }} />

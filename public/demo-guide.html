@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Travel Leap — Demo Guide</title>
+<title>Safasoft — Demo Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
@@ -332,7 +332,7 @@
 <div class="layout">
 
 <aside class="toc">
-  <div class="brand">Travel Leap</div>
+  <div class="brand">Safasoft</div>
   <div class="brand-sub">Demo guide</div>
   <nav>
     <div class="toc-section">Before</div>
@@ -427,7 +427,7 @@ npm run dev</pre>
   <div class="num">2</div>
   <div class="body">
     <strong>Wholesaler dashboard — 1 min</strong>
-    <span>Point out: the brand is <em>天行国旅</em>, not Travel Leap. This is the wholesaler's portal, branded as them. Four KPIs (monthly GMV, active bookings, pending RFQs, active agencies). Pending bookings panel + upcoming departures + activity feed. <strong>This is the operational answer to "do you white-label?"</strong></span>
+    <span>Point out: the brand is <em>UB Trip</em>, not Safasoft. This is the wholesaler's portal, branded as them. Four KPIs (monthly GMV, active bookings, pending RFQs, active agencies). Pending bookings panel + upcoming departures + activity feed. <strong>This is the operational answer to "do you white-label?"</strong></span>
   </div>
 </div>
 
@@ -465,7 +465,7 @@ npm run dev</pre>
   <div class="num">6</div>
   <div class="body">
     <strong>Switch to Agency persona</strong>
-    <span>Click the floating control bottom-right → Agency. URL changes to <code>/agency/browse</code>, but the brand stays Tianxing. <strong>"Same tenant, different role. We're now inside one of their downstream agencies."</strong></span>
+    <span>Click the floating control bottom-right → Agency. URL changes to <code>/agency/browse</code>, but the brand stays UB Trip. <strong>"Same tenant, different role. We're now inside one of their downstream agencies."</strong></span>
   </div>
 </div>
 
@@ -497,7 +497,7 @@ npm run dev</pre>
   <div class="num">10</div>
   <div class="body">
     <strong>Voucher — <code>/agency/voucher/it-003</code></strong>
-    <span>The co-branded PDF preview — white document, wholesaler logo + DMC contact info side-by-side. <em>"The agency's customer never sees Travel Leap. Wholesaler brand on top, DMC underneath as the local supplier."</em> Click <strong>Download PDF</strong> or <strong>Share via WeChat</strong> — both fire toasts (the WeChat one copies the link to clipboard).</span>
+    <span>The co-branded PDF preview — white document, wholesaler logo + DMC contact info side-by-side. <em>"The agency's customer never sees Safasoft. Wholesaler brand on top, DMC underneath as the local supplier."</em> Click <strong>Download PDF</strong> or <strong>Share via WeChat</strong> — both fire toasts (the WeChat one copies the link to clipboard).</span>
   </div>
 </div>
 
@@ -605,7 +605,7 @@ npm run dev</pre>
 </div>
 
 <div class="callout warning">
-  <strong>One hardcoded wholesaler.</strong> 天行国旅 (Tianxing Tours) is the only wholesaler configured. The multi-tenant architecture is real (CSS variable theming + <code>data-tenant</code> attribute on the layout root), but only one tenant has values populated. Adding a second is a config change, not code.
+  <strong>One hardcoded wholesaler.</strong> UB Trip is the only wholesaler configured. The multi-tenant architecture is real (CSS variable theming + <code>data-tenant</code> attribute on the layout root), but only one tenant has values populated. Adding a second is a config change, not code.
 </div>
 
 <p>
@@ -643,7 +643,7 @@ npm run dev</pre>
 
 <div class="qa">
   <p class="q">How do I sell this to my agencies?</p>
-  <p class="a">White-label is the answer. Their agencies log into <code>tianxing.travelleap.com</code> and see only Tianxing branding. The aggregator is invisible to the agency. Demonstrate by switching personas — the wholesaler brand persists across pages.</p>
+  <p class="a">White-label is the answer. Their agencies log into <code>ubtrip.safasoft.com</code> and see only UB Trip branding. The aggregator is invisible to the agency. Demonstrate by switching personas — the wholesaler brand persists across pages.</p>
 </div>
 
 <div class="qa">

@@ -1,6 +1,6 @@
 "use client"
 
-import { Building2, Check, ChevronUp, Compass, ShieldCheck, Store } from "lucide-react"
+import { Building2, Check, ChevronsUpDown, Compass, ShieldCheck, Store } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import {
@@ -24,7 +24,18 @@ const personaMeta: Record<Persona, { icon: typeof Building2; labelKey: "demo.ent
   platform:   { icon: ShieldCheck, labelKey: "demo.enter_platform" },
 }
 
-export function PersonaSwitcher() {
+/**
+ * PersonaSwitcher
+ * - `variant="sidebar"` (default): renders as a sidebar-footer item (full-width, no shadow/positioning)
+ * - `variant="floating"`: renders as fixed bottom-right (used on screens without an AppShell, e.g. /)
+ */
+export function PersonaSwitcher({
+  variant = "sidebar",
+  className,
+}: {
+  variant?: "sidebar" | "floating"
+  className?: string
+}) {
   const router = useRouter()
   const { t, locale } = useTranslation()
   const { persona, setPersona, agencyId, dmcId } = useDemoState()
@@ -41,37 +52,51 @@ export function PersonaSwitcher() {
   const currentAgency = agencies.find((a) => a.id === agencyId) ?? agencies[0]
   const currentDMC = dmcs.find((d) => d.id === dmcId) ?? dmcs[0]
 
-  const currentEntityLine: Record<Persona, string> = {
+  const entityFor: Record<Persona, string> = {
     wholesaler: `张经理 · ${getLocalized(wholesaler.displayName, locale)}`,
     agency:     `${getLocalized(currentAgency.contactName, locale)} · ${getLocalized(currentAgency.name, locale)}`,
-    dmc:        `${currentDMC.name}`,
-    platform:   "Travel Leap",
+    dmc:        currentDMC.name,
+    platform:   "Safasoft",
   }
 
   const Icon = personaMeta[persona].icon
 
+  const triggerClass =
+    variant === "floating"
+      ? "group flex items-center gap-3 rounded-lg border border-border-default bg-bg-raised/90 px-4 py-3 shadow-lg backdrop-blur transition-all hover:border-accent-border"
+      : "group flex w-full items-center gap-3 rounded-md border border-border-subtle bg-bg-sunken/40 px-3 py-2.5 text-left transition-colors hover:border-border-default hover:bg-bg-sunken/70"
+
+  const wrapperClass =
+    variant === "floating"
+      ? cn("fixed bottom-6 right-6 z-50", className)
+      : cn("w-full", className)
+
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className={wrapperClass}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <button
             type="button"
-            className="group flex items-center gap-3 rounded-lg border border-border-default bg-bg-raised/90 px-4 py-3 shadow-lg backdrop-blur transition-all hover:border-accent-border"
+            className={triggerClass}
             aria-label={t("nav.settings")}
           >
-            <Icon className="size-4 text-accent" />
-            <div className="flex flex-col items-start text-left">
+            <Icon className="size-4 shrink-0 text-accent" />
+            <div className="flex min-w-0 flex-1 flex-col items-start text-left">
               <span className="text-[10px] uppercase tracking-[0.16em] text-ink-tertiary">
                 {t(personaMeta[persona].labelKey)}
               </span>
-              <span className="text-caption text-ink-primary">
-                {currentEntityLine[persona]}
+              <span className="truncate text-caption text-ink-primary max-w-full">
+                {entityFor[persona]}
               </span>
             </div>
-            <ChevronUp className="size-4 text-ink-tertiary transition-transform group-data-[state=open]:rotate-180" />
+            <ChevronsUpDown className="size-3.5 shrink-0 text-ink-tertiary" />
           </button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" side="top" className="min-w-[260px]">
+        <DropdownMenuContent
+          align={variant === "sidebar" ? "start" : "end"}
+          side={variant === "sidebar" ? "right" : "top"}
+          className="min-w-[260px]"
+        >
           {(Object.keys(personaMeta) as Persona[]).map((p) => {
             const M = personaMeta[p].icon
             const active = p === persona
@@ -88,7 +113,7 @@ export function PersonaSwitcher() {
                     {p === "wholesaler" && `张经理 · ${getLocalized(wholesaler.displayName, locale)}`}
                     {p === "agency"     && `${getLocalized(currentAgency.contactName, locale)} · ${getLocalized(currentAgency.name, locale)}`}
                     {p === "dmc"        && currentDMC.name}
-                    {p === "platform"   && "Travel Leap"}
+                    {p === "platform"   && "Safasoft"}
                   </span>
                 </div>
                 {active ? <Check className="size-4 text-accent" /> : null}

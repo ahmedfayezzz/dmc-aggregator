@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import { Fraunces, Geist, Geist_Mono, Noto_Sans_SC, Noto_Serif_SC } from "next/font/google"
 import { Toaster } from "sonner"
 import { LocaleProvider } from "@/lib/i18n/provider"
-import { PersonaSwitcher } from "@/components/shared/persona-switcher"
 import { cn } from "@/lib/utils"
 import "./globals.css"
 
@@ -63,7 +62,6 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-bg-base text-ink-primary">
         <LocaleProvider>
           {children}
-          <PersonaSwitcher />
           <Toaster
             position="bottom-left"
             theme="dark"

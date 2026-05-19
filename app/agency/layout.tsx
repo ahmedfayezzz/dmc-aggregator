@@ -32,7 +32,7 @@ export default function AgencyLayout({ children }: { children: React.ReactNode }
 
   return (
     <AppShell
-      tenant="tianxing"
+      tenant="ubtrip"
       portalLabelKey="agency.portal_label"
       brandText={getLocalized(wholesaler.displayName, locale)}
       brandHref="/agency/browse"

@@ -195,6 +195,7 @@ export const zhCN = {
   "field.terms": "账期",
   "field.markup": "加价",
   "field.environment": "环境",
+  "field.subdomain": "子域名",
   "common.production": "生产环境",
   "common.draft_label": "草稿",
   "common.published_label": "已发布",
@@ -314,8 +315,8 @@ export const zhCN = {
   "departure.status.cancelled": "已取消",
 
   // ─── TENANT BRAND ─────────────────────────────────────────
-  "brand.tianxing.short": "天行",
-  "brand.tianxing.full": "天行国旅",
+  "brand.ubtrip.short": "UB Trip",
+  "brand.ubtrip.full": "UB Trip 国际旅行社",
 
   // ─── WHOLESALER PORTAL ────────────────────────────────────
   "wholesaler.portal_label": "批发商门户",

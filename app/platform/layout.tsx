@@ -39,7 +39,7 @@ export default function PlatformLayout({ children }: { children: React.ReactNode
   return (
     <AppShell
       portalLabelKey="platform.portal_label"
-      brandText="Travel Leap"
+      brandText="Safasoft"
       brandHref="/platform/overview"
       navSections={sections}
     >

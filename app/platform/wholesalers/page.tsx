@@ -34,7 +34,7 @@ export default function PlatformWholesalersPage() {
             <TableHeader>
               <TableRow>
                 <TableHead>{t("field.name")}</TableHead>
-                <TableHead>{t("brand.tianxing.short").replace(/.*/, "Subdomain")}</TableHead>
+                <TableHead>{t("field.subdomain")}</TableHead>
                 <TableHead className="text-right">{t("nav.agencies")}</TableHead>
                 <TableHead className="text-right">{t("metric.gmv")}</TableHead>
                 <TableHead>{t("field.wallet_mode")}</TableHead>

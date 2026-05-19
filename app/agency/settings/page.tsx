@@ -38,7 +38,7 @@ export default function AgencySettingsPage() {
         </section>
 
         <section className="rounded-lg border border-border-subtle bg-bg-raised p-6 space-y-3">
-          <h3 className="text-subheading text-ink-primary">{t("brand.tianxing.full")}</h3>
+          <h3 className="text-subheading text-ink-primary">{t("brand.ubtrip.full")}</h3>
           <p className="text-caption text-ink-tertiary">
             {t("wholesaler.portal_label")} · {getLocalized(wholesaler.legalName, locale)}
           </p>

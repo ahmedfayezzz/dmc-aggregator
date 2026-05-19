@@ -197,6 +197,7 @@ export const en: Record<TranslationKey, string> = {
   "field.terms": "Terms",
   "field.markup": "Markup",
   "field.environment": "Environment",
+  "field.subdomain": "Subdomain",
   "common.production": "Production",
   "common.draft_label": "Draft",
   "common.published_label": "Published",
@@ -311,8 +312,8 @@ export const en: Record<TranslationKey, string> = {
   "departure.status.closed": "Closed",
   "departure.status.cancelled": "Cancelled",
 
-  "brand.tianxing.short": "Tianxing",
-  "brand.tianxing.full": "Tianxing Tours",
+  "brand.ubtrip.short": "UB Trip",
+  "brand.ubtrip.full": "UB Trip Travel",
 
   "wholesaler.portal_label": "Wholesaler",
   "wholesaler.dashboard.title": "Operations Dashboard",

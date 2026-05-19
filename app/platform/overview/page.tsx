@@ -26,7 +26,7 @@ export default function PlatformOverviewPage() {
   return (
     <div className="pb-24">
       <PageHeader
-        eyebrow="Travel Leap"
+        eyebrow="Safasoft"
         title={t("platform.overview.title")}
         subtitle={t("platform.overview.subtitle")}
       />

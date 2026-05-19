@@ -361,7 +361,7 @@ function MarginBreakdownCard({
   const [editing, setEditing] = useState(false)
 
   return (
-    <section className="sticky top-[80px] overflow-hidden rounded-lg border border-accent-border bg-bg-raised">
+    <section className="overflow-hidden rounded-lg border border-accent-border bg-bg-raised">
       <header className="bg-accent-soft px-5 py-4">
         <p className="text-label text-accent">
           {t("wholesaler.catalog.detail.margin_title")}

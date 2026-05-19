@@ -4,19 +4,19 @@ export const wholesalers: Wholesaler[] = [
   {
     id: "wh-001",
     legalName: {
-      "zh-CN": "天行国际旅行社有限公司",
-      en: "Tianxing International Travel Co., Ltd",
+      "zh-CN": "UB Trip 国际旅行社有限公司",
+      en: "UB Trip International Travel Co., Ltd",
     },
     displayName: {
-      "zh-CN": "天行国旅",
-      en: "Tianxing Tours",
+      "zh-CN": "UB Trip",
+      en: "UB Trip",
     },
-    subdomain: "tianxing",
+    subdomain: "ubtrip",
     brand: {
       primary: "#1E4D5C",
       accent: "#D4A65A",
-      logoUrl: "/brand/wholesaler-tianxing-logo.svg",
-      markUrl: "/brand/wholesaler-tianxing-mark.svg",
+      logoUrl: "/brand/wholesaler-ubtrip-logo.svg",
+      markUrl: "/brand/wholesaler-ubtrip-mark.svg",
     },
     contractStart: "2025-09-01",
     walletWithPlatform: {

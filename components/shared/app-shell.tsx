@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"
 import { Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { LocaleSwitcher } from "./locale-switcher"
+import { PersonaSwitcher } from "./persona-switcher"
 import { ThemeToggle } from "./theme-toggle"
 import { useTranslation } from "@/lib/i18n/provider"
 import { cn } from "@/lib/utils"
@@ -71,6 +72,10 @@ export function AppShell({
             />
           ))}
         </nav>
+
+        <div className="border-t border-border-subtle p-3">
+          <PersonaSwitcher variant="sidebar" />
+        </div>
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">

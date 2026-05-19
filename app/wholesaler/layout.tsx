@@ -36,7 +36,7 @@ export default function WholesalerLayout({ children }: { children: React.ReactNo
 
   return (
     <AppShell
-      tenant="tianxing"
+      tenant="ubtrip"
       portalLabelKey="wholesaler.portal_label"
       brandText={getLocalized(wholesaler.displayName, locale)}
       brandHref="/wholesaler/dashboard"
