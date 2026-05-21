@@ -3,6 +3,7 @@
 import {
   Bookmark,
   Compass,
+  Inbox,
   Settings,
   ShoppingBag,
   Wallet,
@@ -19,6 +20,7 @@ export default function AgencyLayout({ children }: { children: React.ReactNode }
     {
       items: [
         { href: "/agency/browse", labelKey: "nav.browse", icon: Compass },
+        { href: "/agency/requests", labelKey: "nav.requests", icon: Inbox },
         { href: "/agency/bookings", labelKey: "nav.my_bookings", icon: ShoppingBag },
         { href: "/agency/quotes", labelKey: "nav.quotes", icon: Bookmark },
         { href: "/agency/wallet", labelKey: "nav.wallet", icon: Wallet },

@@ -341,9 +341,21 @@ export default function AgencyItineraryDetailPage({
               ) : (
                 <div className="space-y-2">
                   <p className="text-label text-ink-tertiary">{t("agency.customize.dates")}</p>
-                  <div className="rounded-md border border-border-strong px-3 py-2 text-caption text-ink-tertiary">
-                    {t("actions.customize")} →
-                  </div>
+                  <Link
+                    href={
+                      itinerary.departureType === "RFQ_ONLY"
+                        ? `/agency/request/new?from=${itinerary.id}`
+                        : `/agency/customize/${itinerary.id}`
+                    }
+                    className="group/dates flex items-center justify-between rounded-md border border-border-default bg-bg-raised px-3 py-2 text-caption text-ink-secondary transition-colors hover:border-accent hover:bg-accent-soft hover:text-accent"
+                  >
+                    <span>
+                      {itinerary.departureType === "RFQ_ONLY"
+                        ? t("agency.detail.request_dates")
+                        : t("agency.detail.pick_dates")}
+                    </span>
+                    <ChevronRight className="size-3.5 transition-transform group-hover/dates:translate-x-0.5" />
+                  </Link>
                 </div>
               )}
 
@@ -373,14 +385,6 @@ export default function AgencyItineraryDetailPage({
                 </Button>
               </div>
 
-              {itinerary.departureType === "ON_DEMAND" ? (
-                <Link
-                  href={`/agency/customize/${itinerary.id}`}
-                  className="block rounded-md border border-accent-border bg-accent-soft px-3 py-2 text-center text-caption text-accent transition-colors hover:bg-bg-raised"
-                >
-                  {t("actions.customize")} →
-                </Link>
-              ) : null}
             </div>
           </section>
         </aside>

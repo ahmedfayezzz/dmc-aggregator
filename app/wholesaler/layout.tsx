@@ -4,10 +4,12 @@ import {
   BarChart3,
   Building2,
   CalendarRange,
+  Inbox,
   LayoutDashboard,
   Mailbox,
   PackageSearch,
   Settings,
+  SlidersHorizontal,
 } from "lucide-react"
 import { AppShell, type NavSection } from "@/components/shared/app-shell"
 import { useTranslation } from "@/lib/i18n/provider"
@@ -25,12 +27,16 @@ export default function WholesalerLayout({ children }: { children: React.ReactNo
         { href: "/wholesaler/catalog", labelKey: "nav.catalog", icon: PackageSearch },
         { href: "/wholesaler/bookings", labelKey: "nav.bookings", icon: CalendarRange },
         { href: "/wholesaler/rfqs", labelKey: "nav.rfqs", icon: Mailbox },
+        { href: "/wholesaler/requests", labelKey: "nav.requests", icon: Inbox },
         { href: "/wholesaler/reports", labelKey: "nav.reports", icon: BarChart3 },
       ],
     },
     {
       footer: true,
-      items: [{ href: "/wholesaler/settings", labelKey: "nav.settings", icon: Settings }],
+      items: [
+        { href: "/wholesaler/settings/rules", labelKey: "nav.rules", icon: SlidersHorizontal },
+        { href: "/wholesaler/settings", labelKey: "nav.settings", icon: Settings },
+      ],
     },
   ]
 

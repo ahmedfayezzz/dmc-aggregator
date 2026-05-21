@@ -81,7 +81,7 @@ export default function WholesalerBookingDetailPage({
     booking.confirmedAt
       ? {
           ts: booking.confirmedAt,
-          msg: { "zh-CN": "DMC 确认预订", en: "DMC confirmed booking" },
+          msg: { "zh-CN": "供应商确认预订", en: "Supplier confirmed booking" },
         }
       : null,
     booking.cancelledAt

@@ -3,42 +3,87 @@ import type { PhotoLibrary } from "@/lib/types"
 const u = (id: string, w = 1600) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`
 
-// Curated Unsplash photo IDs across Jordan, Morocco, Egypt.
-// Replace with Ahmed's hand-picked list for production demo.
+/**
+ * Curated Unsplash photo IDs across Jordan, Morocco, Egypt.
+ * Each photo ID has been verified to return HTTP 200 from the Unsplash CDN.
+ */
 export const photos: PhotoLibrary = {
   // ─── Jordan ─────────────────────────────────────────────
   petra: {
     hero: [
-      u("photo-1539020140153-e479b8c22e70"),
-      u("photo-1574236170880-faf57f4ce39c"),
-      u("photo-1568846501069-cce5f7e25f95"),
+      u("photo-1579606032821-4e6161c81bd3"),
+      u("photo-1615811648503-479d06197ff3"),
+      u("photo-1580834341580-8c17a3a630ca"),
     ],
     gallery: [
+      u("photo-1579606032821-4e6161c81bd3", 1200),
+      u("photo-1615811648503-479d06197ff3", 1200),
+      u("photo-1580834341580-8c17a3a630ca", 1200),
+      u("photo-1554357475-accb8a88a330", 1200),
+      u("photo-1548786811-dd6e453ccca7", 1200),
+      u("photo-1606210122158-eeb10e0823bf", 1200),
+      u("photo-1705628078563-966777473473", 1200),
+      u("photo-1558680480-868749f16212", 1200),
+      u("photo-1662747974831-28da0bc0968b", 1200),
       u("photo-1539020140153-e479b8c22e70", 1200),
-      u("photo-1574236170880-faf57f4ce39c", 1200),
-      u("photo-1568846501069-cce5f7e25f95", 1200),
-      u("photo-1565552645632-d725f8bfc19a", 1200),
     ],
   },
   wadiRum: {
     hero: [
-      u("photo-1518684079-3c830dcef090"),
+      u("photo-1673581209399-fab96b153c25"),
       u("photo-1583394838336-acd977736f90"),
-      u("photo-1547333101-bf3eb4f5d3ee"),
+      u("photo-1518684079-3c830dcef090"),
     ],
     gallery: [
-      u("photo-1518684079-3c830dcef090", 1200),
+      u("photo-1673581209399-fab96b153c25", 1200),
       u("photo-1583394838336-acd977736f90", 1200),
-      u("photo-1547333101-bf3eb4f5d3ee", 1200),
+      u("photo-1673581209466-e85a24597f48", 1200),
+      u("photo-1673581209552-476e37ad20e5", 1200),
+      u("photo-1518684079-3c830dcef090", 1200),
     ],
   },
   deadSea: {
-    hero: [u("photo-1551817958-d9d86fb29431")],
-    gallery: [u("photo-1551817958-d9d86fb29431", 1200)],
+    hero: [
+      u("photo-1743943932415-947f79353387"),
+      u("photo-1670324004351-7f064bb033b9"),
+      u("photo-1551817958-d9d86fb29431"),
+    ],
+    gallery: [
+      u("photo-1743943932415-947f79353387", 1200),
+      u("photo-1670324004351-7f064bb033b9", 1200),
+      u("photo-1551817958-d9d86fb29431", 1200),
+    ],
   },
   amman: {
-    hero: [u("photo-1547333101-bf3eb4f5d3ee")],
-    gallery: [u("photo-1547333101-bf3eb4f5d3ee", 1200)],
+    hero: [
+      u("photo-1715534221197-4d2827fed660"),
+      u("photo-1671209088974-1ae6f8c95c50"),
+      u("photo-1670523552952-e064de8936e2"),
+    ],
+    gallery: [
+      u("photo-1715534221197-4d2827fed660", 1200),
+      u("photo-1671209088974-1ae6f8c95c50", 1200),
+      u("photo-1670523552952-e064de8936e2", 1200),
+      u("photo-1627734383978-627095b4ac05", 1200),
+      u("photo-1627734633024-867b54f26e1f", 1200),
+      u("photo-1614772067419-1452cf9aeaa3", 1200),
+      u("photo-1671209088918-485caf34e3f1", 1200),
+    ],
+  },
+  aqaba: {
+    hero: [
+      u("photo-1557544779-e170636404c4"),
+      u("photo-1648812272958-95181f47c73e"),
+      u("photo-1672259949847-41f3bb1216bc"),
+    ],
+    gallery: [
+      u("photo-1557544779-e170636404c4", 1200),
+      u("photo-1648812272958-95181f47c73e", 1200),
+      u("photo-1648812272969-30de179fbecd", 1200),
+      u("photo-1672259949847-41f3bb1216bc", 1200),
+      u("photo-1672259949392-a0db9a90e175", 1200),
+      u("photo-1672259948994-cc685a7c5441", 1200),
+    ],
   },
 
   // ─── Morocco ────────────────────────────────────────────
@@ -52,7 +97,6 @@ export const photos: PhotoLibrary = {
       u("photo-1597211833712-5e41faa202ea", 1200),
       u("photo-1545167622-3a6ac756afa4", 1200),
       u("photo-1539020140153-e479b8c22e70", 1200),
-      u("photo-1568846501069-cce5f7e25f95", 1200),
     ],
   },
   fez: {
@@ -67,58 +111,164 @@ export const photos: PhotoLibrary = {
   },
   casablanca: {
     hero: [
-      u("photo-1518549223834-29ce97b8ff3a"),
-      u("photo-1583146908354-7d68d77eacbc"),
+      u("photo-1696259629194-5411989d6675"),
+      u("photo-1706203644187-a719449587bb"),
+      u("photo-1698083087402-886bd163b97e"),
     ],
     gallery: [
-      u("photo-1518549223834-29ce97b8ff3a", 1200),
-      u("photo-1583146908354-7d68d77eacbc", 1200),
+      u("photo-1696259629194-5411989d6675", 1200),
+      u("photo-1706203644187-a719449587bb", 1200),
+      u("photo-1698083087402-886bd163b97e", 1200),
+      u("photo-1649263913162-59bf8a9a43b9", 1200),
+      u("photo-1577131409241-799739dba4d9", 1200),
+      u("photo-1690298552540-e0caa713ebc1", 1200),
+      u("photo-1700624236855-ceae0843a73b", 1200),
+      u("photo-1538230575309-59dfc388ae36", 1200),
     ],
   },
   sahara: {
     hero: [
       u("photo-1489493585363-d69421e0edd3"),
+      u("photo-1728065446197-19452f76b991"),
       u("photo-1487412947147-5cebf100ffc2"),
-      u("photo-1518684079-3c830dcef090"),
     ],
     gallery: [
       u("photo-1489493585363-d69421e0edd3", 1200),
+      u("photo-1728065446197-19452f76b991", 1200),
       u("photo-1487412947147-5cebf100ffc2", 1200),
-      u("photo-1518684079-3c830dcef090", 1200),
-      u("photo-1583394838336-acd977736f90", 1200),
+      u("photo-1728065446168-c5aabff8d76b", 1200),
+      u("photo-1728065446205-02f62b18ed15", 1200),
+      u("photo-1593536151102-58c7d4b16de5", 1200),
     ],
   },
   chefchaouen: {
     hero: [
-      u("photo-1538652046123-2c8c7e21ec78"),
+      u("photo-1569383746724-6f1b882b8f46"),
+      u("photo-1707400015348-b0a5851ab163"),
+      u("photo-1564507004663-b6dfb3c824d5"),
     ],
     gallery: [
-      u("photo-1538652046123-2c8c7e21ec78", 1200),
+      u("photo-1569383746724-6f1b882b8f46", 1200),
+      u("photo-1707400015348-b0a5851ab163", 1200),
+      u("photo-1564507004663-b6dfb3c824d5", 1200),
+      u("photo-1538600838042-6a0c694ffab5", 1200),
+      u("photo-1553693611-679795ed7eb0", 1200),
+      u("photo-1707398344112-fbc2e62ca4ae", 1200),
+      u("photo-1522800881166-27d46467a77b", 1200),
+      u("photo-1685367292122-6e321640b7f4", 1200),
+      u("photo-1697549884080-eeb4a5e67c6e", 1200),
+      u("photo-1593350054764-2ea4054328ba", 1200),
+      u("photo-1730581822492-8a55ce0b7fde", 1200),
+    ],
+  },
+  rabat: {
+    hero: [
+      u("photo-1671471122995-b27ba131195b"),
+      u("photo-1704738795093-5d8f864f4330"),
+      u("photo-1598022124758-26d09adcb7b6"),
+    ],
+    gallery: [
+      u("photo-1671471122995-b27ba131195b", 1200),
+      u("photo-1704738795093-5d8f864f4330", 1200),
+      u("photo-1598022124758-26d09adcb7b6", 1200),
+      u("photo-1553523290-62cc96300906", 1200),
+      u("photo-1622924159221-c73e7245a2ea", 1200),
+      u("photo-1538230575309-59dfc388ae36", 1200),
+    ],
+  },
+  tangier: {
+    hero: [
+      u("photo-1582919534700-acf2374f10d3"),
+      u("photo-1515386474292-47555758ef2e"),
+      u("photo-1719319234327-1a1d472d348e"),
+    ],
+    gallery: [
+      u("photo-1582919534700-acf2374f10d3", 1200),
+      u("photo-1515386474292-47555758ef2e", 1200),
+      u("photo-1633264542743-c1acdb5eff0e", 1200),
+      u("photo-1589278173760-b2f426dc0903", 1200),
+      u("photo-1505868067580-817d09206bed", 1200),
+      u("photo-1671518283785-2e43588774b7", 1200),
+      u("photo-1719319234327-1a1d472d348e", 1200),
+    ],
+  },
+  volubilis: {
+    hero: [
+      u("photo-1597212618440-806262de4f6b"),
+      u("photo-1574864745093-5566c5be5855"),
+    ],
+    gallery: [
+      u("photo-1597212618440-806262de4f6b", 1200),
+      u("photo-1574864745093-5566c5be5855", 1200),
+    ],
+  },
+  meknes: {
+    hero: [
+      u("photo-1542361345-89e58247f2d5"),
+    ],
+    gallery: [
+      u("photo-1542361345-89e58247f2d5", 1200),
+    ],
+  },
+  ouarzazate: {
+    hero: [
+      u("photo-1603982626505-cf475dec1088"),
+      u("photo-1737927427538-9f9b4ea4ab02"),
+      u("photo-1722166909028-d6cde685e080"),
+    ],
+    gallery: [
+      u("photo-1603982626505-cf475dec1088", 1200),
+      u("photo-1737927427538-9f9b4ea4ab02", 1200),
+      u("photo-1722166909028-d6cde685e080", 1200),
+      u("photo-1730647731104-9f23c0a84d39", 1200),
+      u("photo-1569531955310-c02f71c2ddaf", 1200),
+      u("photo-1553522988-509e7645287d", 1200),
+    ],
+  },
+  ouzoud: {
+    hero: [
+      u("photo-1473773508845-188df298d2d1"),
+    ],
+    gallery: [
+      u("photo-1473773508845-188df298d2d1", 1200),
     ],
   },
 
   // ─── Egypt ──────────────────────────────────────────────
   cairo: {
     hero: [
-      u("photo-1572252009286-268acec5ca0a"),
       u("photo-1539768942893-daf53e448371"),
-      u("photo-1551867633-194f125bddfa"),
+      u("photo-1576904758219-499e790abe6c"),
+      u("photo-1597534397241-ab0ede0878df"),
     ],
     gallery: [
-      u("photo-1572252009286-268acec5ca0a", 1200),
       u("photo-1539768942893-daf53e448371", 1200),
-      u("photo-1551867633-194f125bddfa", 1200),
-      u("photo-1568322445389-f64ac2515020", 1200),
+      u("photo-1576904758219-499e790abe6c", 1200),
+      u("photo-1597534397241-ab0ede0878df", 1200),
+      u("photo-1572252009286-268acec5ca0a", 1200),
+      u("photo-1600520611035-84157ad4084d", 1200),
+      u("photo-1553913861-c0fddf2619ee", 1200),
+      u("photo-1503177119275-0aa32b3a9368", 1200),
+      u("photo-1667852976103-54718f19d453", 1200),
+      u("photo-1523510808004-1c4b59b5db2d", 1200),
+      u("photo-1692986172150-ec32dccfa5f0", 1200),
+      u("photo-1664909400713-9180afa696f8", 1200),
+      u("photo-1664909467086-3ecc8f2bbd08", 1200),
+      u("photo-1678584001079-0e4e49426c65", 1200),
     ],
   },
   luxor: {
     hero: [
+      u("photo-1716639154156-db53b75a22ad"),
+      u("photo-1722580262770-b85688a18b63"),
       u("photo-1568322445389-f64ac2515020"),
-      u("photo-1572252009286-268acec5ca0a"),
     ],
     gallery: [
+      u("photo-1716639154156-db53b75a22ad", 1200),
+      u("photo-1722580262770-b85688a18b63", 1200),
+      u("photo-1620966528923-fd41bcde8bc4", 1200),
+      u("photo-1716639227231-8770f88bbc69", 1200),
       u("photo-1568322445389-f64ac2515020", 1200),
-      u("photo-1572252009286-268acec5ca0a", 1200),
     ],
   },
   aswan: {
@@ -133,10 +283,27 @@ export const photos: PhotoLibrary = {
   },
   redSea: {
     hero: [
-      u("photo-1551817958-d9d86fb29431"),
+      u("photo-1609082565521-31707c9f0c79"),
+      u("photo-1618582240632-1937f4c91d7d"),
     ],
     gallery: [
-      u("photo-1551817958-d9d86fb29431", 1200),
+      u("photo-1609082565521-31707c9f0c79", 1200),
+      u("photo-1618582240632-1937f4c91d7d", 1200),
+      u("photo-1593194730732-9c46181db1af", 1200),
+    ],
+  },
+  hurghada: {
+    hero: [
+      u("photo-1722264221286-38b3f299fc01"),
+      u("photo-1722264221257-e7cd45779d5c"),
+      u("photo-1667852976264-880d2d6ff8e5"),
+    ],
+    gallery: [
+      u("photo-1722264221286-38b3f299fc01", 1200),
+      u("photo-1722264221257-e7cd45779d5c", 1200),
+      u("photo-1667852976264-880d2d6ff8e5", 1200),
+      u("photo-1609082565521-31707c9f0c79", 1200),
+      u("photo-1618582240632-1937f4c91d7d", 1200),
     ],
   },
 }

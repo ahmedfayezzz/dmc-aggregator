@@ -1,123 +1,561 @@
 import type { Itinerary } from "@/lib/types"
 import { photos } from "./photos"
 
+/**
+ * Six real travel packages from Tripon partners — supplied as source docx
+ * files and reformatted into the platform's bilingual itinerary structure.
+ * Pricing is illustrative for the demo; cancellation policy aligns with the
+ * cancellation tiers in the source documents.
+ */
 export const itineraries: Itinerary[] = [
-  // ─── it-001 · Jordan Classic 7D (flagship) ─────────────────
+  // ─── it-001 · Eid Al-Adha Jordan Discovery (4D) · dmc-001 ──────
   {
     id: "it-001",
     dmcId: "dmc-001",
     title: {
-      "zh-CN": "约旦经典7日深度游",
-      en: "Jordan Classic Heritage 7D",
+      "zh-CN": "约旦古迹·沙漠·红海 4 日游",
+      en: "Eid Al-Adha Jordan Discovery — Petra, Wadi Rum & Aqaba",
     },
     subtitle: {
-      "zh-CN": "佩特拉古城·瓦迪拉姆火星沙漠·死海漂浮·安曼罗马遗迹",
-      en: "Petra · Wadi Rum · Dead Sea · Amman Roman heritage",
+      "zh-CN": "玫瑰之城佩特拉 · 瓦迪拉姆星空营地 · 亚喀巴红海度假",
+      en: "Rose City of Petra · Wadi Rum starlit camp · Aqaba on the Red Sea",
     },
     departureType: "FIXED",
-    duration: { days: 7, nights: 6 },
+    duration: { days: 4, nights: 3 },
     countries: ["JO"],
-    cities: ["Amman", "Petra", "Wadi Rum", "Dead Sea"],
-    themes: ["cultural", "first-time", "adventure"],
+    cities: ["Amman", "Petra", "Wadi Rum", "Aqaba"],
+    themes: ["cultural", "first-time", "adventure", "family"],
     heroImage: photos.petra.hero[0],
-    gallery: [...photos.petra.gallery, ...photos.wadiRum.gallery.slice(0, 2)],
+    gallery: [
+      ...photos.petra.gallery.slice(0, 3),
+      ...photos.wadiRum.gallery.slice(0, 2),
+      ...photos.aqaba.gallery.slice(0, 2),
+    ],
     highlights: {
       "zh-CN": [
-        "世界七大奇迹之佩特拉古城两日深度",
-        "瓦迪拉姆火星沙漠贝都因营地住宿",
-        "死海泥浴漂浮体验,世界最低点",
-        "杰拉什罗马遗迹+安曼老城罗马剧场",
-        "全程中文导游,五星住宿",
+        "佩特拉古城 3 小时专业导游讲解",
+        "瓦迪拉姆贝都因营地住宿,沙漠星空晚餐(Zarb 地下烧烤)",
+        "亚喀巴红海休闲一日:中国村 / Shweikh Mall 购物 + 南滩游泳",
+        "可选项目:沙漠吉普探险、Prince Boat 游艇出海、潜水摄影",
+        "全程现代空调旅游巴士,公司随团领队",
       ],
       en: [
-        "Two-day deep tour of Petra, one of the Seven Wonders",
-        "Bedouin camp overnight in Wadi Rum's Mars-like desert",
-        "Dead Sea float and mud bath at the world's lowest point",
-        "Jerash Roman ruins + Amman old town & Roman theater",
-        "Mandarin-speaking guide; five-star accommodation",
+        "3-hour licensed-guide walking tour through the rose-red city of Petra",
+        "Overnight at a Bedouin camp in Wadi Rum with traditional Zarb dinner under the stars",
+        "Aqaba leisure day — Chinese Village / Shweikh Mall shopping + Southern Beach swim",
+        "Optional add-ons: jeep safari, Prince Boat yacht trip, diving with photography",
+        "Modern air-conditioned coach throughout, company tour leader on every departure",
       ],
     },
     days: [
       {
         day: 1,
-        title: { "zh-CN": "抵达安曼", en: "Arrival in Amman" },
+        title: { "zh-CN": "安曼 → 佩特拉 → 瓦迪拉姆", en: "Amman → Petra → Wadi Rum" },
         description: {
-          "zh-CN": "抵达阿利亚皇后国际机场,专车专导接机送至酒店休息。可自由探索拉巴特安曼老城与彩虹街。",
-          en: "Arrive at Queen Alia International. Private transfer and Mandarin-speaking guide to your hotel. Optional walk through Rainbow Street.",
+          "zh-CN":
+            "清晨 5:00 安曼集合,经沙漠公路 Al Qatranah 休息站(20 分钟),抵达玫瑰之城佩特拉,3 小时专业导游讲解(蛇道、卡兹尼神殿、皇家陵墓)。下午前往瓦迪拉姆贝都因营地,入住帐篷,可选吉普车日落探险与骆驼骑乘。傍晚贝都因风味自助晚餐(Zarb 地下烧烤),星空围炉夜话。",
+          en:
+            "5:00 AM gather in Amman, depart via the Desert Highway with a 20-minute break at Al Qatranah. Arrive Petra for a 3-hour guided walk (the Siq, the Treasury, the Royal Tombs). Afternoon transfer to Wadi Rum, check into Bedouin camp; optional jeep sunset tour and camel ride. Evening buffet dinner Bedouin-style (Zarb — underground cooking) with stargazing.",
         },
         activities: [
-          { type: "TRANSFER", name: { "zh-CN": "机场接机", en: "Airport pickup" } },
-          { type: "ACCOMMODATION", name: { "zh-CN": "安曼凯宾斯基酒店", en: "Kempinski Hotel Amman" } },
+          { type: "TRANSFER", name: { "zh-CN": "安曼集合出发", en: "Departure from Amman HQ" } },
+          { type: "GUIDE", name: { "zh-CN": "佩特拉 3 小时讲解", en: "Petra 3-hour guided tour" } },
+          { type: "ACCOMMODATION", name: { "zh-CN": "瓦迪拉姆贝都因营地", en: "Wadi Rum Bedouin camp tent" } },
+          { type: "MEAL", name: { "zh-CN": "Zarb 贝都因晚餐", en: "Zarb Bedouin dinner" } },
         ],
       },
       {
         day: 2,
-        title: { "zh-CN": "杰拉什+安曼", en: "Jerash + Amman" },
+        title: { "zh-CN": "瓦迪拉姆 → 亚喀巴", en: "Wadi Rum → Aqaba" },
         description: {
-          "zh-CN": "上午前往杰拉什罗马遗迹,被誉为「东方庞贝」。下午返回安曼游览老城堡山、罗马剧场与博物馆。",
-          en: "Morning at Jerash, the 'Pompeii of the East'. Afternoon back to Amman for Citadel Hill, Roman Theater and the Archaeological Museum.",
+          "zh-CN":
+            "7:00 营地早餐后前往亚喀巴,沿途参观中国村与 Shweikh Mall(购物区),抵达南滩自由游泳与拍照。入住亚喀巴酒店,自由活动。可选游艇出海(Prince Boat,含/不含午餐)。",
+          en:
+            "Camp breakfast at 7:00, transfer to Aqaba. En route stop at Chinese Village and Shweikh Mall shopping area, then Southern Beach for swimming and photos. Hotel check-in, free time. Optional Prince Boat / White Prince yacht (with or without lunch).",
         },
         activities: [
-          { type: "ENTRANCE", name: { "zh-CN": "杰拉什遗迹", en: "Jerash ruins" } },
-          { type: "ENTRANCE", name: { "zh-CN": "安曼城堡山", en: "Amman Citadel" } },
-          { type: "MEAL", name: { "zh-CN": "中式午餐", en: "Chinese lunch" } },
+          { type: "MEAL", name: { "zh-CN": "营地早餐", en: "Camp breakfast" } },
+          { type: "ENTRANCE", name: { "zh-CN": "中国村 / Shweikh Mall", en: "Chinese Village / Shweikh Mall" } },
+          { type: "ACTIVITY", name: { "zh-CN": "南滩游泳", en: "Southern Beach swim" } },
+          { type: "ACCOMMODATION", name: { "zh-CN": "亚喀巴酒店", en: "Selected Aqaba hotel" } },
         ],
       },
       {
         day: 3,
-        title: { "zh-CN": "马达巴+尼波山+前往佩特拉", en: "Madaba · Mt Nebo · to Petra" },
+        title: { "zh-CN": "亚喀巴自由日 / 自费项目", en: "Aqaba Free Day / Optional Activities" },
         description: {
-          "zh-CN": "经马达巴马赛克教堂、尼波山(摩西远望应许之地)抵达佩特拉。沿途经过国王公路。",
-          en: "Via the Madaba mosaic church and Mount Nebo (where Moses saw the Promised Land), down the King's Highway to Petra.",
+          "zh-CN":
+            "酒店自助早餐后自由活动 — 海边游泳、购物或自费项目:晨间沙漠探险、Eilat 日落沙漠 + 晚餐、潜水摄影、Prince Boat 游艇、潜水艇(含珊瑚保护区与观鱼)等。",
+          en:
+            "Buffet breakfast, then a free day for leisure swimming, shopping or optional excursions: morning desert safari, Eilat sunset safari with dinner, diving with photography, Prince Boat yacht, submarine ride with coral-reserve fish watching, and more.",
         },
         activities: [
-          { type: "ENTRANCE", name: { "zh-CN": "马达巴马赛克教堂", en: "Madaba mosaic church" } },
-          { type: "ENTRANCE", name: { "zh-CN": "尼波山", en: "Mount Nebo" } },
+          { type: "MEAL", name: { "zh-CN": "酒店自助早餐", en: "Hotel buffet breakfast" } },
+          { type: "ACTIVITY", name: { "zh-CN": "自由日 / 自费项目", en: "Leisure / optional add-ons" } },
         ],
       },
       {
         day: 4,
-        title: { "zh-CN": "佩特拉古城全日", en: "Petra Full Day" },
+        title: { "zh-CN": "亚喀巴 → 安曼", en: "Aqaba → Amman" },
         description: {
-          "zh-CN": "深度游览佩特拉:经峡谷蛇道,卡兹尼神殿、皇家陵墓、罗马剧场,徒步至修道院顶端俯瞰。",
-          en: "Full-day Petra: through the Siq to the Treasury, the Royal Tombs, the Roman Theater; hike to the Monastery for panoramic views.",
+          "zh-CN":
+            "酒店早餐后退房,返程安曼。注:若返程团满座不足,领队可改派 Jet 等其他客运公司座位。",
+          en:
+            "Hotel breakfast, check-out, return transfer to Amman. Note: if the return group is undersized, the tour leader may book seats on Jet or another transport company.",
         },
         activities: [
-          { type: "ENTRANCE", name: { "zh-CN": "佩特拉古城", en: "Petra archaeological park" } },
-          { type: "GUIDE", name: { "zh-CN": "中文导游全程", en: "Mandarin guide full day" } },
+          { type: "TRANSFER", name: { "zh-CN": "返程安曼", en: "Return to Amman" } },
+        ],
+      },
+    ],
+    inclusions: {
+      "zh-CN": [
+        "瓦迪拉姆营地住宿(含晚餐与早餐)",
+        "亚喀巴酒店住宿(按所选等级)",
+        "全程现代空调旅游巴士",
+        "营地与亚喀巴酒店餐食(早餐 + 营地晚餐)",
+        "中国村购物点参观",
+        "公司随团领队",
+      ],
+      en: [
+        "Wadi Rum camp tent stay incl. dinner & breakfast",
+        "Aqaba hotel night (per selected category)",
+        "All transfers by modern air-conditioned coach",
+        "Meals: camp dinner & breakfast + Aqaba hotel breakfast",
+        "Visit to Chinese Village shopping area",
+        "Company representative / tour leader throughout",
+      ],
+    },
+    exclusions: {
+      "zh-CN": [
+        "景点门票(佩特拉、瓦迪拉姆保护区) — 外籍约 50 JOD / 7 JOD",
+        "瓦迪拉姆吉普探险 7 JOD",
+        "Prince Boat 游艇 12 / 16 JOD,Eilat 日落 25 JOD,潜水摄影 30 JOD,佩特拉热气球 20 JOD",
+        "个人消费、小费、未列明项目",
+        "禁止在车内吸烟",
+      ],
+      en: [
+        "Site entry fees (Petra ~50 JOD foreign, Wadi Rum 7 JOD foreign)",
+        "Wadi Rum jeep safari 7 JOD",
+        "Prince Boat yacht 12 / 16 JOD · Eilat sunset 25 JOD · diving 30 JOD · Petra hot-air balloon 20 JOD",
+        "Personal expenses, tips, anything not listed",
+        "Smoking strictly prohibited inside the coach",
+      ],
+    },
+    pricing: {
+      sourceCurrency: "USD",
+      bands: [
+        { paxRange: "2-3", minPax: 2, maxPax: 3, perPaxUSD: 860 },
+        { paxRange: "4-7", minPax: 4, maxPax: 7, perPaxUSD: 720 },
+        { paxRange: "8-15", minPax: 8, maxPax: 15, perPaxUSD: 620 },
+        { paxRange: "16+", minPax: 16, maxPax: 40, perPaxUSD: 540 },
+      ],
+      singleSupplementUSD: 180,
+      seasons: [
+        { name: "regular", dateRange: "2026-04-01..2026-05-31", multiplier: 1.0 },
+        { name: "eid-peak", dateRange: "2026-06-01..2026-06-30", multiplier: 1.35 },
+        { name: "summer", dateRange: "2026-07-01..2026-08-31", multiplier: 0.95 },
+        { name: "autumn", dateRange: "2026-09-01..2026-11-30", multiplier: 1.15 },
+      ],
+    },
+    marginLayers: {
+      dmcNetPerPaxUSD: 620,
+      ourMarkupUSD: 80,
+      wholesalerSellUSD: 700,
+      wholesalerSuggestedMarkupUSD: 140,
+      agencyRetailUSD: 840,
+    },
+    cancellationPolicy: {
+      name: { "zh-CN": "约旦标准政策", en: "Jordan Standard Policy" },
+      tiers: [
+        { daysBefore: 30, penaltyPercent: 0 },
+        { daysBefore: 15, penaltyPercent: 25 },
+        { daysBefore: 7, penaltyPercent: 50 },
+        { daysBefore: 0, penaltyPercent: 100 },
+      ],
+    },
+    departures: [
+      { id: "dep-001", itineraryId: "it-001", date: "2026-06-04", capacity: 40, booked: 36, status: "GUARANTEED" },
+      { id: "dep-002", itineraryId: "it-001", date: "2026-06-06", capacity: 40, booked: 18, status: "OPEN" },
+      { id: "dep-003", itineraryId: "it-001", date: "2026-06-11", capacity: 40, booked: 12, status: "OPEN" },
+      { id: "dep-004", itineraryId: "it-001", date: "2026-07-09", capacity: 40, booked: 9, status: "OPEN" },
+      { id: "dep-005", itineraryId: "it-001", date: "2026-09-10", capacity: 40, booked: 22, status: "GUARANTEED" },
+      { id: "dep-006", itineraryId: "it-001", date: "2026-10-08", capacity: 40, booked: 14, status: "OPEN" },
+    ],
+    translations: {
+      "zh-CN": { reviewed: true, reviewedAt: "2026-04-12" },
+      en: { reviewed: true, reviewedAt: "2026-04-12" },
+    },
+    publishedToAgencies: ["ag-001", "ag-002", "ag-003", "ag-005", "ag-006", "ag-009", "ag-012"],
+  },
+
+  // ─── it-002 · Aqaba Eid Retreat (3D) · dmc-002 ───────────────
+  {
+    id: "it-002",
+    dmcId: "dmc-002",
+    title: {
+      "zh-CN": "亚喀巴红海 3 日度假",
+      en: "Aqaba Eid Retreat — Red Sea getaway",
+    },
+    subtitle: {
+      "zh-CN": "红海新娘 · 南滩游泳 · Prince Boat 游艇可选",
+      en: "Bride of the Red Sea · Southern Beach · optional Prince Boat yacht",
+    },
+    departureType: "FIXED",
+    duration: { days: 3, nights: 2 },
+    countries: ["JO"],
+    cities: ["Amman", "Aqaba"],
+    themes: ["family", "first-time"],
+    heroImage: photos.aqaba.hero[0],
+    gallery: photos.aqaba.gallery,
+    highlights: {
+      "zh-CN": [
+        "三个集合点出发:Irbid 4:00、Zarqa 4:45、Amman 5:30",
+        "Dragon Mall + Shweikh Mall + 中国村三大购物中心",
+        "南滩游泳 + 自由购物时间",
+        "可选最大游艇 Prince Boat / White Prince 出海",
+        "现代空调旅游巴士,公司随团领队",
+      ],
+      en: [
+        "Three pickup points — Irbid 4:00 AM, Zarqa 4:45 AM, Amman HQ 5:30 AM",
+        "Dragon Mall + Shweikh Mall + Chinese Village shopping circuit",
+        "Southern Beach swim + free shopping time",
+        "Optional sail on Aqaba's largest tourist yacht (Prince Boat / White Prince)",
+        "Modern air-conditioned coach, company tour leader",
+      ],
+    },
+    days: [
+      {
+        day: 1,
+        title: { "zh-CN": "安曼 / Zarqa / Irbid → 亚喀巴", en: "Amman / Zarqa / Irbid → Aqaba" },
+        description: {
+          "zh-CN":
+            "凌晨多点集合(Irbid 4:00、Zarqa Bali 药店附近 4:45、Amman 总部 5:30),经沙漠公路 Al Qatranah 休息 20 分钟,抵达亚喀巴。参观 Dragon Mall(1 小时),酒店入住,自由活动。",
+          en:
+            "Multi-point dawn pickups (Irbid 4:00, Zarqa near Bali Pharmacy 4:45, Amman HQ 5:30) via the Desert Highway with a 20-min rest at Al Qatranah. Arrive Aqaba, 1-hour stop at Dragon Mall, hotel check-in, free time.",
+        },
+        activities: [
+          { type: "TRANSFER", name: { "zh-CN": "凌晨集合发车", en: "Pre-dawn pickup & coach" } },
+          { type: "ENTRANCE", name: { "zh-CN": "Dragon Mall", en: "Dragon Mall" } },
+          { type: "ACCOMMODATION", name: { "zh-CN": "亚喀巴选定酒店", en: "Selected Aqaba hotel" } },
+        ],
+      },
+      {
+        day: 2,
+        title: { "zh-CN": "亚喀巴海滩 / 自费游艇", en: "Aqaba Beach / Optional Yacht" },
+        description: {
+          "zh-CN":
+            "酒店自助早餐后自由活动。集合前往南滩游泳,午餐自理。13:30 集合至 Al Thawra 广场,可选自费搭乘亚喀巴最大游艇出海。返回酒店住宿。",
+          en:
+            "Hotel buffet breakfast, morning at leisure. Group transfer to Southern Beach for swimming, lunch on own. 13:30 gather at Al Thawra Square for optional yacht trip on the largest tourist boat in Aqaba. Return to hotel.",
+        },
+        activities: [
+          { type: "MEAL", name: { "zh-CN": "酒店自助早餐", en: "Hotel buffet breakfast" } },
+          { type: "ACTIVITY", name: { "zh-CN": "南滩游泳", en: "Southern Beach swim" } },
+          { type: "ACTIVITY", name: { "zh-CN": "可选游艇出海", en: "Optional yacht trip" } },
+        ],
+      },
+      {
+        day: 3,
+        title: { "zh-CN": "亚喀巴 → 安曼", en: "Aqaba → Amman" },
+        description: {
+          "zh-CN":
+            "酒店自助早餐,退房后前往市场购物。参观 Shweikh Mall 与中国村(1 小时),集合返程安曼。4 日选项可加一晚自由日。",
+          en:
+            "Hotel buffet breakfast, check-out, shopping in the markets. Visit Shweikh Mall and Chinese Village (1 hour), gather for the return trip to Amman. The 4-day option adds one extra free night in Aqaba.",
+        },
+        activities: [
+          { type: "ENTRANCE", name: { "zh-CN": "Shweikh Mall / 中国村", en: "Shweikh Mall / Chinese Village" } },
+          { type: "TRANSFER", name: { "zh-CN": "返程安曼", en: "Return to Amman" } },
+        ],
+      },
+    ],
+    inclusions: {
+      "zh-CN": [
+        "亚喀巴选定酒店住宿",
+        "酒店自助早餐",
+        "现代空调旅游巴士",
+        "Dragon Mall / Shweikh Mall / 中国村 / 南滩参观",
+        "公司随团领队",
+      ],
+      en: [
+        "Selected Aqaba hotel accommodation",
+        "Hotel buffet breakfast daily",
+        "Modern air-conditioned coach throughout",
+        "Visits: Dragon Mall · Shweikh Mall · Chinese Village · Southern Beach",
+        "Company representative / tour leader",
+      ],
+    },
+    exclusions: {
+      "zh-CN": [
+        "午餐与晚餐",
+        "可选游艇:White Prince 含午餐 16 JOD / 不含 12 JOD",
+        "Eilat 游艇 2 小时 含午餐 20 / 不含 17 JOD",
+        "潜水艇 + 珊瑚保护区 含午餐 25 / 不含 20 JOD",
+        "景点门票、小费、个人消费",
+      ],
+      en: [
+        "Lunch and dinner not included",
+        "Optional White Prince yacht: 16 JOD with lunch / 12 JOD without",
+        "Eilat-based 2-hour boat: 20 / 17 JOD with/without lunch",
+        "Submarine + coral reserve fish watching: 25 / 20 JOD",
+        "Site entry fees, tips, personal expenses",
+      ],
+    },
+    pricing: {
+      sourceCurrency: "USD",
+      bands: [
+        { paxRange: "2-3", minPax: 2, maxPax: 3, perPaxUSD: 410 },
+        { paxRange: "4-7", minPax: 4, maxPax: 7, perPaxUSD: 340 },
+        { paxRange: "8-19", minPax: 8, maxPax: 19, perPaxUSD: 280 },
+        { paxRange: "20+", minPax: 20, maxPax: 45, perPaxUSD: 230 },
+      ],
+      singleSupplementUSD: 90,
+      seasons: [
+        { name: "regular", dateRange: "2026-04-01..2026-05-31", multiplier: 1.0 },
+        { name: "eid-peak", dateRange: "2026-06-01..2026-06-30", multiplier: 1.4 },
+        { name: "summer", dateRange: "2026-07-01..2026-08-31", multiplier: 0.9 },
+      ],
+    },
+    marginLayers: {
+      dmcNetPerPaxUSD: 280,
+      ourMarkupUSD: 40,
+      wholesalerSellUSD: 320,
+      wholesalerSuggestedMarkupUSD: 60,
+      agencyRetailUSD: 380,
+    },
+    cancellationPolicy: {
+      name: { "zh-CN": "亚喀巴节假日政策", en: "Aqaba Holiday Policy" },
+      tiers: [
+        { daysBefore: 15, penaltyPercent: 0 },
+        { daysBefore: 7, penaltyPercent: 35 },
+        { daysBefore: 0, penaltyPercent: 100 },
+      ],
+    },
+    departures: [
+      { id: "dep-101", itineraryId: "it-002", date: "2026-06-06", capacity: 45, booked: 42, status: "GUARANTEED" },
+      { id: "dep-102", itineraryId: "it-002", date: "2026-06-13", capacity: 45, booked: 28, status: "GUARANTEED" },
+      { id: "dep-103", itineraryId: "it-002", date: "2026-06-20", capacity: 45, booked: 16, status: "OPEN" },
+      { id: "dep-104", itineraryId: "it-002", date: "2026-07-04", capacity: 45, booked: 11, status: "OPEN" },
+      { id: "dep-105", itineraryId: "it-002", date: "2026-09-12", capacity: 45, booked: 6, status: "OPEN" },
+    ],
+    translations: {
+      "zh-CN": { reviewed: true, reviewedAt: "2026-04-15" },
+      en: { reviewed: true, reviewedAt: "2026-04-15" },
+    },
+    publishedToAgencies: ["ag-001", "ag-003", "ag-005", "ag-006", "ag-009", "ag-012", "ag-013"],
+  },
+
+  // ─── it-003 · Grand Morocco Tour (12D) · dmc-003 ───────────────
+  {
+    id: "it-003",
+    dmcId: "dmc-003",
+    title: {
+      "zh-CN": "摩洛哥大环线 12 日深度游",
+      en: "Grand Morocco Tour — 12 days, 11 nights",
+    },
+    subtitle: {
+      "zh-CN": "卡萨布兰卡·拉巴特·丹吉尔·舍夫沙万·非斯·撒哈拉·瓦尔扎扎特·马拉喀什",
+      en: "Casablanca · Rabat · Tangier · Chefchaouen · Fes · Sahara · Ouarzazate · Marrakech",
+    },
+    departureType: "FIXED",
+    duration: { days: 12, nights: 11 },
+    countries: ["MA"],
+    cities: [
+      "Casablanca",
+      "Rabat",
+      "Tangier",
+      "Chefchaouen",
+      "Fez",
+      "Merzouga",
+      "Ouarzazate",
+      "Marrakech",
+    ],
+    themes: ["cultural", "luxury", "first-time", "adventure"],
+    heroImage: photos.ouarzazate.hero[0],
+    gallery: [
+      ...photos.casablanca.gallery.slice(0, 2),
+      ...photos.chefchaouen.gallery.slice(0, 2),
+      ...photos.fez.gallery.slice(0, 1),
+      ...photos.sahara.gallery.slice(0, 3),
+      ...photos.ouarzazate.gallery.slice(0, 2),
+      ...photos.marrakech.gallery.slice(0, 2),
+    ],
+    highlights: {
+      "zh-CN": [
+        "覆盖摩洛哥四大皇城 + 蓝白小镇 + 撒哈拉沙漠豪华营地",
+        "梅尔祖卡 4×4 日出体验 + 篝火晚餐 + Gnawa 民俗表演",
+        "Aït Ben Haddou 联合国教科文世遗 + Atlas 电影城",
+        "非斯里亚德特色晚餐 + 千年皮革染坊",
+        "全程 4 星酒店住宿 + 持牌中阿翻译导游",
+      ],
+      en: [
+        "Four imperial cities + Chefchaouen blue town + luxury Sahara desert camp",
+        "Merzouga 4×4 sunrise experience + welcome dinner with Gnawa folklore show",
+        "Aït Ben Haddou UNESCO kasbah + Atlas Film Studios",
+        "Riad-style traditional dinner in Fes + thousand-year-old tanneries",
+        "4-star hotels throughout + licensed Mandarin/Arabic guide",
+      ],
+    },
+    days: [
+      {
+        day: 1,
+        title: { "zh-CN": "抵达卡萨布兰卡", en: "Arrival Casablanca" },
+        description: {
+          "zh-CN": "抵达穆罕默德五世国际机场,迎接服务,送往酒店办理入住。",
+          en: "Arrival at Mohammed V International Airport, meet & assist, transfer to hotel, check-in.",
+        },
+        activities: [
+          { type: "TRANSFER", name: { "zh-CN": "机场接机", en: "Airport pickup" } },
+          { type: "ACCOMMODATION", name: { "zh-CN": "卡萨布兰卡 4 星酒店", en: "4-star Casablanca hotel" } },
+        ],
+      },
+      {
+        day: 2,
+        title: { "zh-CN": "卡萨布兰卡 → 拉巴特", en: "Casablanca → Rabat" },
+        description: {
+          "zh-CN":
+            "上午游览哈桑二世大清真寺(世界最高宣礼塔),驱车前往首都拉巴特,游览 Chellah、Udayas 城堡、老麦地那、哈桑塔与穆罕默德五世陵墓。",
+          en:
+            "Morning historical tour of Hassan II Mosque (iconic landmark with the world's tallest minaret). Transfer to Rabat — Chellah, Kasbah of the Udayas, old medina, Hassan Tower, and the Mohammed V Mausoleum.",
+        },
+        activities: [
+          { type: "ENTRANCE", name: { "zh-CN": "哈桑二世大清真寺", en: "Hassan II Mosque" } },
+          { type: "ENTRANCE", name: { "zh-CN": "Udayas 城堡", en: "Kasbah of the Udayas" } },
+        ],
+      },
+      {
+        day: 3,
+        title: { "zh-CN": "拉巴特 → Asilah → 丹吉尔", en: "Rabat → Asilah → Tangier" },
+        description: {
+          "zh-CN":
+            "前往丹吉尔,中途短停 Asilah 艺术海港小镇。抵达后游览老麦地那、Cap Spartel(大西洋与地中海交汇)与海格力斯洞穴。",
+          en:
+            "Drive to Tangier with a short stop at the artistic seaside town of Asilah. Visit the old medina, Cap Spartel (where Atlantic meets Mediterranean), and Hercules Caves.",
+        },
+        activities: [
+          { type: "ENTRANCE", name: { "zh-CN": "海格力斯洞穴", en: "Hercules Caves" } },
+          { type: "ACCOMMODATION", name: { "zh-CN": "丹吉尔酒店", en: "Tangier hotel" } },
+        ],
+      },
+      {
+        day: 4,
+        title: { "zh-CN": "舍夫沙万蓝色小镇", en: "Chefchaouen — the Blue City" },
+        description: {
+          "zh-CN":
+            "驱车前往舍夫沙万。漫步蓝色街道,拍照打卡,游览 Outa Hamam 广场与 15 世纪 Kasbah 城堡。酒店入住。",
+          en:
+            "Transfer to Chefchaouen. Walk the famous blue streets, photo stops, Outa Hamam Square and the 15th-century Kasbah fortress. Hotel check-in.",
+        },
+        activities: [
+          { type: "GUIDE", name: { "zh-CN": "蓝城漫步", en: "Blue medina walk" } },
+          { type: "ENTRANCE", name: { "zh-CN": "Kasbah 城堡", en: "Chefchaouen Kasbah" } },
         ],
       },
       {
         day: 5,
-        title: { "zh-CN": "瓦迪拉姆沙漠营地", en: "Wadi Rum Bedouin Camp" },
+        title: { "zh-CN": "Volubilis → Meknes → 非斯", en: "Volubilis → Meknes → Fes" },
         description: {
-          "zh-CN": "前往瓦迪拉姆,4×4越野车沙漠探险,贝都因人家访,沙漠营地豪华帐篷住宿,星空晚餐。",
-          en: "Drive to Wadi Rum, 4×4 desert excursion, Bedouin family visit, luxury tented camp overnight, dinner under the stars.",
+          "zh-CN":
+            "参观 Volubilis 罗马遗迹(古城 Walili),继续前往 Meknes:老麦地那、Moulay Ismail 陵墓、Bab Mansour 凯旋门、El Hedim 广场。傍晚抵达非斯。",
+          en:
+            "Visit Volubilis (Roman ruins of Walili). Continue to Meknes — old medina, Moulay Ismail Mausoleum, Bab Mansour gate, El Hedim Square. Arrive Fes by evening.",
         },
         activities: [
-          { type: "ACTIVITY", name: { "zh-CN": "4×4 沙漠越野", en: "4WD desert excursion" } },
-          { type: "ACCOMMODATION", name: { "zh-CN": "瓦迪拉姆豪华营地", en: "Wadi Rum Luxury Camp" } },
-          { type: "MEAL", name: { "zh-CN": "贝都因星空晚餐", en: "Bedouin starlit dinner" } },
+          { type: "ENTRANCE", name: { "zh-CN": "Volubilis 罗马遗迹", en: "Volubilis Roman ruins" } },
+          { type: "ENTRANCE", name: { "zh-CN": "Bab Mansour 凯旋门", en: "Bab Mansour gate" } },
         ],
       },
       {
         day: 6,
-        title: { "zh-CN": "死海漂浮", en: "Dead Sea Float" },
+        title: { "zh-CN": "非斯老城深度游", en: "Fes Medina Deep Dive" },
         description: {
-          "zh-CN": "前往死海,在世界海拔最低处漂浮、泥浴疗养。入住死海五星度假酒店。",
-          en: "Transfer to the Dead Sea — float and mud bath at the lowest point on Earth. Five-star Dead Sea resort overnight.",
+          "zh-CN":
+            "全日游览 Fes el-Bali 老麦地那(联合国教科文世界遗产):Al Quaraouiyine 大学(世界最古老大学之一)、Nejjarine 喷泉、Bou Inania 神学院(13 世纪)、Batha 艺术博物馆。傍晚特色里亚德摩洛哥晚餐。",
+          en:
+            "Full day in Fes el-Bali (UNESCO World Heritage): Al Quaraouiyine University, Nejjarine Fountain, the 13th-century Bou Inania Madrasa, and Batha Palace Museum of Arts. Evening special dinner at a traditional Riad.",
         },
         activities: [
-          { type: "ACTIVITY", name: { "zh-CN": "死海漂浮+泥浴", en: "Dead Sea float + mud bath" } },
-          { type: "ACCOMMODATION", name: { "zh-CN": "死海凯宾斯基度假酒店", en: "Kempinski Ishtar Dead Sea" } },
+          { type: "GUIDE", name: { "zh-CN": "非斯老城讲解", en: "Fes medina guided" } },
+          { type: "ENTRANCE", name: { "zh-CN": "Bou Inania 神学院", en: "Bou Inania Madrasa" } },
+          { type: "MEAL", name: { "zh-CN": "里亚德特色晚餐", en: "Riad dinner experience" } },
         ],
       },
       {
         day: 7,
+        title: { "zh-CN": "非斯 → 梅尔祖卡撒哈拉", en: "Fes → Merzouga (Sahara)" },
+        description: {
+          "zh-CN":
+            "经 Ifrane 瑞士风小镇与 Errachidia 抵达梅尔祖卡,换乘 4×4 越野车进入沙漠豪华营地。摩洛哥式欢迎仪式,晚餐 + Gnawa 民俗表演。营地住宿。",
+          en:
+            "Across the Atlas via Swiss-style Ifrane and Errachidia to Merzouga. Switch to 4×4 vehicles to a luxury desert camp. Moroccan welcome ceremony, dinner with Gnawa folklore show. Overnight in the Sahara.",
+        },
+        activities: [
+          { type: "TRANSFER", name: { "zh-CN": "4×4 越野进沙漠", en: "4×4 desert transfer" } },
+          { type: "ACCOMMODATION", name: { "zh-CN": "梅尔祖卡豪华营地", en: "Merzouga luxury camp" } },
+          { type: "ACTIVITY", name: { "zh-CN": "Gnawa 民俗表演", en: "Gnawa folklore show" } },
+        ],
+      },
+      {
+        day: 8,
+        title: { "zh-CN": "梅尔祖卡 → Tinghir → 瓦尔扎扎特", en: "Merzouga → Tinghir → Ouarzazate" },
+        description: {
+          "zh-CN":
+            "清晨 4×4 沙丘日出体验,营地早餐后驱车 Tinghir,游览 Todgha 峡谷(摩洛哥最高最窄峡谷)。继续前往瓦尔扎扎特,晚餐 + 住宿。",
+          en:
+            "Early morning 4×4 sunrise over the dunes, camp breakfast, then drive to Tinghir — Todgha Gorges (the tallest and narrowest in Morocco). Continue to Ouarzazate; dinner and overnight.",
+        },
+        activities: [
+          { type: "ACTIVITY", name: { "zh-CN": "沙丘日出 4×4", en: "Sunrise 4×4 in dunes" } },
+          { type: "ENTRANCE", name: { "zh-CN": "Todgha 峡谷", en: "Todgha Gorges" } },
+        ],
+      },
+      {
+        day: 9,
+        title: { "zh-CN": "瓦尔扎扎特 → Aït Ben Haddou → 马拉喀什", en: "Ouarzazate → Aït Ben Haddou → Marrakech" },
+        description: {
+          "zh-CN":
+            "瓦尔扎扎特短游 + Atlas 电影城参观。途经 Aït Ben Haddou(联合国教科文世遗 Kasbah,《角斗士》取景地),继续前往红城马拉喀什入住。",
+          en:
+            "Short tour of Ouarzazate + Atlas Film Studios. En route stop at Aït Ben Haddou (UNESCO World Heritage kasbah, filming location for Gladiator). Continue to the Red City of Marrakech, hotel check-in.",
+        },
+        activities: [
+          { type: "ENTRANCE", name: { "zh-CN": "Atlas 电影城", en: "Atlas Film Studios" } },
+          { type: "ENTRANCE", name: { "zh-CN": "Aït Ben Haddou", en: "Aït Ben Haddou kasbah" } },
+        ],
+      },
+      {
+        day: 10,
+        title: { "zh-CN": "马拉喀什导游游览", en: "Marrakech Guided Tour" },
+        description: {
+          "zh-CN":
+            "马若雷勒花园(YSL 故居)、库图比亚清真寺、Ben Youssef 神学院、Bahia 宫、Badi 宫。马拉喀什麦地那马车游 + Jemaa el-Fnaa 不眠广场自由活动。",
+          en:
+            "Majorelle Garden (YSL's home), Koutoubia Mosque, Ben Youssef Madrasa, Bahia Palace, Badi Palace. Calèche horse-drawn carriage around the medina + free time at Jemaa el-Fnaa night square.",
+        },
+        activities: [
+          { type: "ENTRANCE", name: { "zh-CN": "马若雷勒花园", en: "Majorelle Garden" } },
+          { type: "ACTIVITY", name: { "zh-CN": "马车游麦地那", en: "Calèche tour" } },
+          { type: "MEAL", name: { "zh-CN": "不眠广场晚餐", en: "Jemaa el-Fnaa dinner" } },
+        ],
+      },
+      {
+        day: 11,
+        title: { "zh-CN": "马拉喀什自由日", en: "Marrakech Free Day" },
+        description: {
+          "zh-CN": "全日自由活动:可购物、SPA、Atlas 山区一日游、Agafay 沙漠日落等。",
+          en: "Full day for leisure — shopping, hammam spa, Atlas Mountains day trip, Agafay desert sunset, etc.",
+        },
+        activities: [
+          { type: "ACTIVITY", name: { "zh-CN": "自由日 / 自费", en: "Leisure / optional" } },
+        ],
+      },
+      {
+        day: 12,
         title: { "zh-CN": "返程", en: "Departure" },
         description: {
-          "zh-CN": "酒店早餐后自由活动,根据航班时间专车送至机场,结束旅程。",
-          en: "Hotel breakfast and leisure time, private transfer to airport per flight schedule.",
+          "zh-CN": "酒店早餐,根据航班送往马拉喀什或卡萨布兰卡机场。",
+          en: "Hotel breakfast, transfer to Marrakech or Casablanca airport per flight schedule.",
         },
         activities: [
           { type: "TRANSFER", name: { "zh-CN": "机场送机", en: "Airport drop-off" } },
@@ -126,62 +564,62 @@ export const itineraries: Itinerary[] = [
     ],
     inclusions: {
       "zh-CN": [
-        "6晚五星级酒店(含瓦迪拉姆豪华营地)",
-        "全程中文导游服务",
-        "专车接送及景点交通",
-        "12次正餐(早+部分午晚餐)",
-        "景点门票:佩特拉两日通票、瓦迪拉姆、杰拉什、马达巴",
-        "约旦电子签证",
-        "旅游意外险",
+        "舒适旅游车交通 + 持牌中阿/中英翻译导游全程",
+        "4 星酒店住宿(卡萨 1、拉巴特 1、丹吉尔 1、舍夫沙万 1、非斯 2、梅尔祖卡 1、瓦尔扎扎特 1、马拉喀什 3)",
+        "梅尔祖卡含晚餐 + 早餐 + Gnawa 民俗",
+        "非斯里亚德特色晚餐",
+        "Majorelle 花园 + Volubilis 门票 + 马拉喀什马车 + 梅尔祖卡 4×4 日出",
+        "机场接送 + 后勤服务",
       ],
       en: [
-        "6 nights 5-star hotels (incl. Wadi Rum luxury camp)",
-        "Full-trip Mandarin-speaking guide",
-        "Private vehicle for transfers and excursions",
-        "12 meals (breakfast + selected lunch/dinner)",
-        "Entrance: Petra 2-day pass, Wadi Rum, Jerash, Madaba",
-        "Jordan e-visa",
-        "Travel accident insurance",
+        "Comfortable touring vehicle + licensed Mandarin/Arabic guide throughout",
+        "4-star hotels — Casablanca 1, Rabat 1, Tangier 1, Chefchaouen 1, Fes 2, Merzouga camp 1, Ouarzazate 1, Marrakech 3",
+        "Merzouga: breakfast + dinner + Gnawa folklore",
+        "Special Riad dinner in Fes",
+        "Majorelle Garden + Volubilis tickets + Marrakech calèche + Merzouga 4×4 sunrise",
+        "Airport meet & assist + logistics",
       ],
     },
     exclusions: {
       "zh-CN": [
-        "国际机票(可代订)",
-        "酒店升级费用",
-        "个人消费及小费",
-        "行程外自费项目",
+        "国际机票",
+        "正餐与晚餐(除标注外)",
+        "自由日内城市内自费交通",
+        "个人消费",
+        "其他未列明项目",
       ],
       en: [
-        "International flights (booking assistance available)",
-        "Hotel upgrade fees",
-        "Personal expenses and gratuities",
-        "Optional excursions not listed",
+        "International flights",
+        "Lunch and dinner (except where stated)",
+        "Free-day in-city transfers for personal shopping",
+        "Personal expenses",
+        "Anything not mentioned in inclusions",
       ],
     },
     pricing: {
-      sourceCurrency: "USD",
+      sourceCurrency: "EUR",
       bands: [
-        { paxRange: "2-3", minPax: 2, maxPax: 3, perPaxUSD: 1980 },
-        { paxRange: "4-5", minPax: 4, maxPax: 5, perPaxUSD: 1680 },
-        { paxRange: "6-8", minPax: 6, maxPax: 8, perPaxUSD: 1480 },
-        { paxRange: "9+", minPax: 9, maxPax: 99, perPaxUSD: 1380 },
+        { paxRange: "2-3", minPax: 2, maxPax: 3, perPaxUSD: 2480 },
+        { paxRange: "4-5", minPax: 4, maxPax: 5, perPaxUSD: 2180 },
+        { paxRange: "6-9", minPax: 6, maxPax: 9, perPaxUSD: 1880 },
+        { paxRange: "10+", minPax: 10, maxPax: 24, perPaxUSD: 1680 },
       ],
-      singleSupplementUSD: 460,
+      singleSupplementUSD: 620,
       seasons: [
-        { name: "low", dateRange: "2026-06-01..2026-08-31", multiplier: 1.0 },
-        { name: "shoulder", dateRange: "2026-03-01..2026-05-31", multiplier: 1.2 },
-        { name: "peak", dateRange: "2026-09-01..2026-11-30", multiplier: 1.35 },
+        { name: "summer", dateRange: "2026-06-15..2026-08-31", multiplier: 1.0 },
+        { name: "shoulder", dateRange: "2026-03-01..2026-06-14", multiplier: 1.2 },
+        { name: "peak", dateRange: "2026-09-01..2026-11-30", multiplier: 1.4 },
       ],
     },
     marginLayers: {
-      dmcNetPerPaxUSD: 1480,
-      ourMarkupUSD: 200,
-      wholesalerSellUSD: 1680,
-      wholesalerSuggestedMarkupUSD: 320,
-      agencyRetailUSD: 2000,
+      dmcNetPerPaxUSD: 1880,
+      ourMarkupUSD: 260,
+      wholesalerSellUSD: 2140,
+      wholesalerSuggestedMarkupUSD: 420,
+      agencyRetailUSD: 2560,
     },
     cancellationPolicy: {
-      name: { "zh-CN": "标准约旦游政策", en: "Standard Jordan Tour" },
+      name: { "zh-CN": "摩洛哥标准政策", en: "Morocco Standard Policy" },
       tiers: [
         { daysBefore: 60, penaltyPercent: 0 },
         { daysBefore: 30, penaltyPercent: 25 },
@@ -191,270 +629,203 @@ export const itineraries: Itinerary[] = [
       ],
     },
     departures: [
-      { id: "dep-001", itineraryId: "it-001", date: "2026-06-04", capacity: 25, booked: 18, status: "GUARANTEED" },
-      { id: "dep-002", itineraryId: "it-001", date: "2026-06-11", capacity: 25, booked: 8, status: "OPEN" },
-      { id: "dep-003", itineraryId: "it-001", date: "2026-06-18", capacity: 25, booked: 22, status: "GUARANTEED" },
-      { id: "dep-004", itineraryId: "it-001", date: "2026-06-25", capacity: 25, booked: 12, status: "OPEN" },
-      { id: "dep-005", itineraryId: "it-001", date: "2026-07-02", capacity: 25, booked: 6, status: "OPEN" },
-      { id: "dep-006", itineraryId: "it-001", date: "2026-07-09", capacity: 25, booked: 25, status: "FULL" },
-      { id: "dep-007", itineraryId: "it-001", date: "2026-09-10", capacity: 25, booked: 14, status: "OPEN" },
-      { id: "dep-008", itineraryId: "it-001", date: "2026-10-08", capacity: 25, booked: 9, status: "OPEN" },
+      { id: "dep-201", itineraryId: "it-003", date: "2026-09-12", capacity: 18, booked: 14, status: "OPEN" },
+      { id: "dep-202", itineraryId: "it-003", date: "2026-10-03", capacity: 18, booked: 18, status: "FULL" },
+      { id: "dep-203", itineraryId: "it-003", date: "2026-10-24", capacity: 18, booked: 11, status: "OPEN" },
+      { id: "dep-204", itineraryId: "it-003", date: "2026-11-14", capacity: 18, booked: 16, status: "GUARANTEED" },
     ],
     translations: {
-      "zh-CN": { reviewed: true, reviewedAt: "2026-03-15" },
-      en: { reviewed: true, reviewedAt: "2026-03-15" },
+      "zh-CN": { reviewed: true, reviewedAt: "2026-04-18" },
+      en: { reviewed: true, reviewedAt: "2026-04-18" },
     },
-    publishedToAgencies: ["ag-001", "ag-002", "ag-003", "ag-005", "ag-006", "ag-009", "ag-012"],
+    publishedToAgencies: ["ag-001", "ag-002", "ag-003", "ag-005", "ag-006", "ag-009", "ag-012", "ag-013"],
   },
 
-  // ─── it-002 · Jordan + Dead Sea 5D ─────────────────────────
+  // ─── it-004 · North Morocco Discovery (8D) · dmc-005 ──────────
   {
-    id: "it-002",
-    dmcId: "dmc-002",
-    title: { "zh-CN": "约旦+死海休闲5日", en: "Jordan + Dead Sea Relax 5D" },
+    id: "it-004",
+    dmcId: "dmc-005",
+    title: {
+      "zh-CN": "摩洛哥北部精华 8 日",
+      en: "North Morocco Discovery — 8 days, 7 nights",
+    },
     subtitle: {
-      "zh-CN": "佩特拉精华一日·死海漂浮·安曼老城",
-      en: "Petra essentials · Dead Sea float · Amman old town",
-    },
-    departureType: "FIXED",
-    duration: { days: 5, nights: 4 },
-    countries: ["JO"],
-    cities: ["Amman", "Petra", "Dead Sea"],
-    themes: ["cultural", "first-time"],
-    heroImage: photos.petra.hero[1],
-    gallery: photos.petra.gallery.slice(0, 4),
-    highlights: {
-      "zh-CN": [
-        "短假期友好,5天体验约旦三大精华",
-        "佩特拉古城深度一日",
-        "死海五星度假酒店两晚",
-        "安曼老城与城堡山",
-      ],
-      en: [
-        "Short-getaway friendly — three top Jordan sights in 5 days",
-        "Full-day Petra deep dive",
-        "Two nights Dead Sea five-star resort",
-        "Amman Citadel and old town",
-      ],
-    },
-    days: [
-      { day: 1, title: { "zh-CN": "抵达安曼", en: "Arrival Amman" }, description: { "zh-CN": "接机入住酒店。", en: "Airport pickup, hotel check-in." }, activities: [{ type: "TRANSFER", name: { "zh-CN": "接机", en: "Pickup" } }] },
-      { day: 2, title: { "zh-CN": "前往佩特拉", en: "To Petra" }, description: { "zh-CN": "经死海西岸国王公路抵达佩特拉,入住佩特拉酒店。", en: "Via King's Highway with Dead Sea panorama to Petra, hotel check-in." }, activities: [{ type: "GUIDE", name: { "zh-CN": "中文导游", en: "Mandarin guide" } }] },
-      { day: 3, title: { "zh-CN": "佩特拉全日", en: "Petra Full Day" }, description: { "zh-CN": "佩特拉古城深度游览,蛇道、卡兹尼神殿、皇家陵墓。", en: "Full Petra: Siq, Treasury, Royal Tombs." }, activities: [{ type: "ENTRANCE", name: { "zh-CN": "佩特拉古城", en: "Petra" } }] },
-      { day: 4, title: { "zh-CN": "死海漂浮", en: "Dead Sea Float" }, description: { "zh-CN": "前往死海,漂浮+泥浴。入住死海五星酒店。", en: "To Dead Sea — float and mud bath. Five-star resort overnight." }, activities: [{ type: "ACTIVITY", name: { "zh-CN": "死海漂浮", en: "Dead Sea float" } }] },
-      { day: 5, title: { "zh-CN": "返程", en: "Departure" }, description: { "zh-CN": "送机。", en: "Airport drop-off." }, activities: [{ type: "TRANSFER", name: { "zh-CN": "送机", en: "Drop-off" } }] },
-    ],
-    inclusions: {
-      "zh-CN": ["4晚五星酒店", "中文导游", "专车", "早餐+部分晚餐", "佩特拉一日票", "约旦签证", "意外险"],
-      en: ["4 nights 5-star hotels", "Mandarin guide", "Private vehicle", "Breakfast + selected dinners", "Petra 1-day pass", "Jordan visa", "Travel insurance"],
-    },
-    exclusions: {
-      "zh-CN": ["国际机票", "酒店升级", "个人消费", "自费项目"],
-      en: ["International flights", "Hotel upgrades", "Personal expenses", "Optional add-ons"],
-    },
-    pricing: {
-      sourceCurrency: "USD",
-      bands: [
-        { paxRange: "2-3", minPax: 2, maxPax: 3, perPaxUSD: 1340 },
-        { paxRange: "4-5", minPax: 4, maxPax: 5, perPaxUSD: 1180 },
-        { paxRange: "6-8", minPax: 6, maxPax: 8, perPaxUSD: 1020 },
-        { paxRange: "9+", minPax: 9, maxPax: 99, perPaxUSD: 940 },
-      ],
-      singleSupplementUSD: 380,
-      seasons: [
-        { name: "low", dateRange: "2026-06-01..2026-08-31", multiplier: 1.0 },
-        { name: "shoulder", dateRange: "2026-03-01..2026-05-31", multiplier: 1.15 },
-        { name: "peak", dateRange: "2026-09-01..2026-11-30", multiplier: 1.3 },
-      ],
-    },
-    marginLayers: {
-      dmcNetPerPaxUSD: 1020,
-      ourMarkupUSD: 160,
-      wholesalerSellUSD: 1180,
-      wholesalerSuggestedMarkupUSD: 220,
-      agencyRetailUSD: 1400,
-    },
-    cancellationPolicy: {
-      name: { "zh-CN": "标准约旦游政策", en: "Standard Jordan Tour" },
-      tiers: [
-        { daysBefore: 60, penaltyPercent: 0 },
-        { daysBefore: 30, penaltyPercent: 25 },
-        { daysBefore: 15, penaltyPercent: 50 },
-        { daysBefore: 7, penaltyPercent: 75 },
-        { daysBefore: 0, penaltyPercent: 100 },
-      ],
-    },
-    departures: [
-      { id: "dep-101", itineraryId: "it-002", date: "2026-06-10", capacity: 20, booked: 12, status: "OPEN" },
-      { id: "dep-102", itineraryId: "it-002", date: "2026-06-24", capacity: 20, booked: 16, status: "GUARANTEED" },
-      { id: "dep-103", itineraryId: "it-002", date: "2026-07-08", capacity: 20, booked: 5, status: "OPEN" },
-      { id: "dep-104", itineraryId: "it-002", date: "2026-09-09", capacity: 20, booked: 3, status: "OPEN" },
-      { id: "dep-105", itineraryId: "it-002", date: "2026-10-14", capacity: 20, booked: 11, status: "OPEN" },
-    ],
-    translations: { "zh-CN": { reviewed: true, reviewedAt: "2026-03-20" }, en: { reviewed: true, reviewedAt: "2026-03-20" } },
-    publishedToAgencies: ["ag-001", "ag-002", "ag-003", "ag-006", "ag-009", "ag-013"],
-  },
-
-  // ─── it-003 · Morocco Royal Cities 8D (flagship Morocco) ──
-  {
-    id: "it-003",
-    dmcId: "dmc-003",
-    title: { "zh-CN": "摩洛哥皇城蓝白8日精华游", en: "Morocco Royal Cities 8D" },
-    subtitle: {
-      "zh-CN": "卡萨布兰卡·非斯·马拉喀什·舍夫沙万蓝色小镇",
-      en: "Casablanca · Fez · Marrakech · Chefchaouen blue pearl",
+      "zh-CN": "卡萨布兰卡 · 拉巴特 · 丹吉尔 · 蓝白小镇 · Akchour 瀑布 · Volubilis",
+      en: "Casablanca · Rabat · Tangier · Chefchaouen · Akchour Falls · Volubilis",
     },
     departureType: "FIXED",
     duration: { days: 8, nights: 7 },
     countries: ["MA"],
-    cities: ["Casablanca", "Fez", "Marrakech", "Chefchaouen", "Rabat"],
-    themes: ["cultural", "first-time", "luxury"],
-    heroImage: photos.marrakech.hero[0],
-    gallery: [...photos.marrakech.gallery.slice(0, 3), ...photos.chefchaouen.gallery, ...photos.fez.gallery],
+    cities: ["Casablanca", "Rabat", "Tangier", "Tetouan", "Chefchaouen", "Meknes"],
+    themes: ["cultural", "adventure", "first-time"],
+    heroImage: photos.chefchaouen.hero[0],
+    gallery: [
+      ...photos.chefchaouen.gallery.slice(0, 3),
+      ...photos.casablanca.gallery.slice(0, 2),
+      ...photos.tangier.gallery,
+      ...photos.volubilis.gallery,
+    ],
     highlights: {
       "zh-CN": [
-        "四大皇城一次走完,听阿拉伯故事千年沉淀",
-        "舍夫沙万蓝色山城,Instagram 网红打卡",
-        "非斯老城世界最大老城区,千年皮革染坊",
-        "马拉喀什不眠广场Jemaa el-Fnaa 夜市体验",
-        "里亚德传统庭院酒店住宿(部分晚)",
+        "聚焦摩洛哥北部最美城市与自然景观",
+        "蓝白山城舍夫沙万 2 晚住宿,深度漫游",
+        "Akchour 瀑布徒步自然体验",
+        "Volubilis 罗马遗迹联合国教科文世遗",
+        "丹吉尔 Cap Spartel 大西洋与地中海分界点",
       ],
       en: [
-        "Four imperial cities in one trip — 1000 years of Arab history",
-        "Chefchaouen blue mountain town — Instagram-famous",
-        "Fez medina, world's largest old quarter, ancient tanneries",
-        "Marrakech Jemaa el-Fnaa night market experience",
-        "Traditional riad courtyard hotels (selected nights)",
+        "Focused circuit of northern Morocco's most beautiful cities and nature",
+        "Two nights in the blue mountain town of Chefchaouen for deeper exploration",
+        "Hiking experience at Akchour Falls",
+        "Volubilis Roman ruins UNESCO World Heritage",
+        "Cap Spartel in Tangier — where Atlantic meets Mediterranean",
       ],
     },
     days: [
-      { day: 1, title: { "zh-CN": "抵达卡萨布兰卡", en: "Arrival Casablanca" }, description: { "zh-CN": "抵达穆罕默德五世机场,接机入住。傍晚可自由参观哈桑二世清真寺外景。", en: "Arrive Mohammed V Airport, transfer to hotel. Evening optional Hassan II Mosque exterior visit." }, activities: [{ type: "TRANSFER", name: { "zh-CN": "接机", en: "Pickup" } }] },
-      { day: 2, title: { "zh-CN": "卡萨布兰卡+拉巴特", en: "Casablanca + Rabat" }, description: { "zh-CN": "上午游览哈桑二世大清真寺(全球最大之一),下午前往首都拉巴特,游览哈桑塔与穆罕默德五世陵墓。", en: "Morning Hassan II Mosque (one of world's largest). Afternoon to Rabat — Hassan Tower & Mohammed V Mausoleum." }, activities: [{ type: "ENTRANCE", name: { "zh-CN": "哈桑二世大清真寺", en: "Hassan II Mosque" } }] },
-      { day: 3, title: { "zh-CN": "舍夫沙万蓝色小镇", en: "Chefchaouen Blue Town" }, description: { "zh-CN": "全天舍夫沙万自由探索蓝色山城,集市采购、咖啡馆、摄影。", en: "Full-day Chefchaouen — explore the blue medina, souks, cafés, photo spots." }, activities: [{ type: "GUIDE", name: { "zh-CN": "中文导览", en: "Mandarin guide" } }] },
-      { day: 4, title: { "zh-CN": "前往非斯", en: "To Fez" }, description: { "zh-CN": "前往非斯,入住老城里亚德。傍晚漫步老城。", en: "Drive to Fez, riad check-in inside the medina. Evening medina stroll." }, activities: [{ type: "ACCOMMODATION", name: { "zh-CN": "非斯老城里亚德", en: "Fez medina riad" } }] },
-      { day: 5, title: { "zh-CN": "非斯老城深度", en: "Fez Medina Deep Dive" }, description: { "zh-CN": "深入非斯老城:皮革染坊、卡拉鲁因清真寺、布伊纳尼亚神学院。下午陶器工坊参观。", en: "Deep into Fez medina: tanneries, Al-Qarawiyyin Mosque, Bou Inania madrasa. Afternoon pottery workshop." }, activities: [{ type: "ENTRANCE", name: { "zh-CN": "非斯皮革染坊", en: "Fez tanneries" } }] },
-      { day: 6, title: { "zh-CN": "穿越中阿特拉斯前往马拉喀什", en: "Across Atlas to Marrakech" }, description: { "zh-CN": "穿越中阿特拉斯山脉,沿途松林雪山,经伊夫兰瑞士风小镇到达马拉喀什。", en: "Across the Middle Atlas — pine forests, snow-capped peaks, Swiss-style Ifrane — to Marrakech." }, activities: [{ type: "TRANSFER", name: { "zh-CN": "山地穿越", en: "Mountain crossing" } }] },
-      { day: 7, title: { "zh-CN": "马拉喀什红城", en: "Marrakech Red City" }, description: { "zh-CN": "游览库图比亚清真寺、巴希亚宫、马若雷勒花园(YSL故居)。傍晚不眠广场夜市晚餐。", en: "Koutoubia Mosque, Bahia Palace, Majorelle Garden (YSL's home). Evening dinner at Jemaa el-Fnaa night market." }, activities: [{ type: "ENTRANCE", name: { "zh-CN": "马若雷勒花园", en: "Majorelle Garden" } }, { type: "MEAL", name: { "zh-CN": "不眠广场晚餐", en: "Jemaa el-Fnaa dinner" } }] },
-      { day: 8, title: { "zh-CN": "返程", en: "Departure" }, description: { "zh-CN": "送机返程。", en: "Airport drop-off." }, activities: [{ type: "TRANSFER", name: { "zh-CN": "送机", en: "Drop-off" } }] },
+      {
+        day: 1,
+        title: { "zh-CN": "抵达卡萨布兰卡", en: "Arrival Casablanca" },
+        description: {
+          "zh-CN": "抵达穆罕默德五世国际机场,迎接送往酒店入住。",
+          en: "Arrival at Mohammed V Airport, meet & assist transfer to hotel.",
+        },
+        activities: [
+          { type: "TRANSFER", name: { "zh-CN": "机场接机", en: "Airport pickup" } },
+          { type: "ACCOMMODATION", name: { "zh-CN": "卡萨布兰卡 4 星酒店", en: "4-star Casablanca hotel" } },
+        ],
+      },
+      {
+        day: 2,
+        title: { "zh-CN": "卡萨布兰卡 → 拉巴特", en: "Casablanca → Rabat" },
+        description: {
+          "zh-CN": "哈桑二世大清真寺外观参观,前往首都拉巴特城市游览,夜宿拉巴特。",
+          en: "Visit Hassan II Mosque exterior, then transfer to the capital Rabat for a city tour, overnight in Rabat.",
+        },
+        activities: [
+          { type: "ENTRANCE", name: { "zh-CN": "哈桑二世大清真寺", en: "Hassan II Mosque" } },
+        ],
+      },
+      {
+        day: 3,
+        title: { "zh-CN": "Asilah → 丹吉尔", en: "Asilah → Tangier" },
+        description: {
+          "zh-CN": "经 Asilah 短停,抵达丹吉尔游览老麦地那、Cap Spartel、海格力斯洞穴,夜宿丹吉尔。",
+          en: "Stop in Asilah, then Tangier — old medina, Cap Spartel, Hercules Caves. Overnight Tangier.",
+        },
+        activities: [
+          { type: "ENTRANCE", name: { "zh-CN": "海格力斯洞穴", en: "Hercules Caves" } },
+        ],
+      },
+      {
+        day: 4,
+        title: { "zh-CN": "Tetouan 自由日", en: "Tetouan Free Day" },
+        description: {
+          "zh-CN":
+            "前往 Tetouan,这座白色山城被列为联合国教科文世遗。自由探索老城与艺术博物馆。",
+          en:
+            "Transfer to Tetouan, a UNESCO-listed white mountain town. Free time to explore the old medina and art museum.",
+        },
+        activities: [
+          { type: "ACCOMMODATION", name: { "zh-CN": "Tetouan 酒店", en: "Tetouan hotel" } },
+        ],
+      },
+      {
+        day: 5,
+        title: { "zh-CN": "舍夫沙万蓝白小镇", en: "Chefchaouen Blue Town" },
+        description: {
+          "zh-CN":
+            "驱车前往舍夫沙万,导游带领游览蓝色街道、Outa Hamam 广场、Kasbah 城堡。",
+          en:
+            "Drive to Chefchaouen. Guided tour of the blue streets, Outa Hamam Square, and the Kasbah fortress.",
+        },
+        activities: [
+          { type: "GUIDE", name: { "zh-CN": "蓝城讲解", en: "Blue town guided tour" } },
+          { type: "ENTRANCE", name: { "zh-CN": "Kasbah 城堡", en: "Chefchaouen Kasbah" } },
+        ],
+      },
+      {
+        day: 6,
+        title: { "zh-CN": "Akchour 瀑布徒步", en: "Akchour Falls Hike" },
+        description: {
+          "zh-CN":
+            "前往 Akchour 瀑布(Rif 山脉中),进行轻松徒步与自然体验。傍晚返回舍夫沙万。",
+          en:
+            "Day excursion to Akchour Falls in the Rif Mountains for an easy hike and nature experience. Return to Chefchaouen by evening.",
+        },
+        activities: [
+          { type: "ACTIVITY", name: { "zh-CN": "Akchour 瀑布徒步", en: "Akchour Falls hike" } },
+        ],
+      },
+      {
+        day: 7,
+        title: { "zh-CN": "Volubilis → Meknes", en: "Volubilis → Meknes" },
+        description: {
+          "zh-CN":
+            "参观 Volubilis 罗马遗迹 → Meknes 麦地那:Moulay Ismail 陵墓 + Bab Mansour 凯旋门。夜宿 Meknes。",
+          en:
+            "Volubilis Roman ruins → Meknes: Moulay Ismail Mausoleum + Bab Mansour gate. Overnight in Meknes.",
+        },
+        activities: [
+          { type: "ENTRANCE", name: { "zh-CN": "Volubilis", en: "Volubilis Roman ruins" } },
+          { type: "ENTRANCE", name: { "zh-CN": "Bab Mansour", en: "Bab Mansour" } },
+        ],
+      },
+      {
+        day: 8,
+        title: { "zh-CN": "返程卡萨布兰卡", en: "Depart from Casablanca" },
+        description: {
+          "zh-CN": "酒店早餐,送往卡萨布兰卡机场。",
+          en: "Hotel breakfast, transfer to Casablanca airport for departure.",
+        },
+        activities: [
+          { type: "TRANSFER", name: { "zh-CN": "机场送机", en: "Airport drop-off" } },
+        ],
+      },
     ],
     inclusions: {
-      "zh-CN": ["7晚住宿(含3晚里亚德)", "全程中文导游", "豪华旅游车", "早餐+5次正餐", "所有景点门票", "摩洛哥签证(免签)", "意外险"],
-      en: ["7 nights (incl. 3 nights riad)", "Mandarin guide throughout", "Luxury coach", "Breakfast + 5 meals", "All entrance fees", "Morocco visa (visa-free)", "Insurance"],
+      "zh-CN": [
+        "舒适旅游车交通",
+        "持牌导游",
+        "机场接送服务",
+        "4 星酒店住宿(含早餐)",
+        "Volubilis 门票",
+      ],
+      en: [
+        "Comfortable touring vehicle",
+        "Licensed guide",
+        "Meet & assist airport transfers",
+        "4-star hotels with breakfast",
+        "Entry fee to Volubilis",
+      ],
     },
     exclusions: {
-      "zh-CN": ["国际机票", "酒店升级", "个人采购", "小费"],
-      en: ["International flights", "Hotel upgrades", "Personal shopping", "Tips"],
+      "zh-CN": ["午餐与晚餐", "自费活动", "个人消费"],
+      en: ["Lunch and dinner", "Optional activities", "Personal expenses"],
     },
     pricing: {
       sourceCurrency: "EUR",
       bands: [
-        { paxRange: "2-3", minPax: 2, maxPax: 3, perPaxUSD: 2280 },
-        { paxRange: "4-5", minPax: 4, maxPax: 5, perPaxUSD: 1980 },
-        { paxRange: "6-8", minPax: 6, maxPax: 8, perPaxUSD: 1680 },
-        { paxRange: "9+", minPax: 9, maxPax: 99, perPaxUSD: 1520 },
+        { paxRange: "2-3", minPax: 2, maxPax: 3, perPaxUSD: 1680 },
+        { paxRange: "4-7", minPax: 4, maxPax: 7, perPaxUSD: 1420 },
+        { paxRange: "8-15", minPax: 8, maxPax: 15, perPaxUSD: 1220 },
+        { paxRange: "16+", minPax: 16, maxPax: 28, perPaxUSD: 1080 },
       ],
-      singleSupplementUSD: 580,
+      singleSupplementUSD: 420,
       seasons: [
-        { name: "low", dateRange: "2026-06-15..2026-08-31", multiplier: 1.0 },
+        { name: "summer", dateRange: "2026-06-15..2026-08-31", multiplier: 1.0 },
         { name: "shoulder", dateRange: "2026-03-01..2026-06-14", multiplier: 1.2 },
         { name: "peak", dateRange: "2026-09-01..2026-11-30", multiplier: 1.35 },
       ],
     },
     marginLayers: {
-      dmcNetPerPaxUSD: 1680,
-      ourMarkupUSD: 240,
-      wholesalerSellUSD: 1920,
-      wholesalerSuggestedMarkupUSD: 380,
-      agencyRetailUSD: 2300,
+      dmcNetPerPaxUSD: 1220,
+      ourMarkupUSD: 180,
+      wholesalerSellUSD: 1400,
+      wholesalerSuggestedMarkupUSD: 280,
+      agencyRetailUSD: 1680,
     },
     cancellationPolicy: {
-      name: { "zh-CN": "标准摩洛哥游政策", en: "Standard Morocco Tour" },
-      tiers: [
-        { daysBefore: 60, penaltyPercent: 0 },
-        { daysBefore: 30, penaltyPercent: 25 },
-        { daysBefore: 15, penaltyPercent: 50 },
-        { daysBefore: 7, penaltyPercent: 75 },
-        { daysBefore: 0, penaltyPercent: 100 },
-      ],
-    },
-    departures: [
-      { id: "dep-201", itineraryId: "it-003", date: "2026-09-12", capacity: 18, booked: 12, status: "OPEN" },
-      { id: "dep-202", itineraryId: "it-003", date: "2026-10-03", capacity: 18, booked: 18, status: "FULL" },
-      { id: "dep-203", itineraryId: "it-003", date: "2026-10-24", capacity: 18, booked: 9, status: "OPEN" },
-      { id: "dep-204", itineraryId: "it-003", date: "2026-11-14", capacity: 18, booked: 15, status: "GUARANTEED" },
-    ],
-    translations: { "zh-CN": { reviewed: true, reviewedAt: "2026-03-12" }, en: { reviewed: true, reviewedAt: "2026-03-12" } },
-    publishedToAgencies: ["ag-001", "ag-002", "ag-003", "ag-005", "ag-006", "ag-009", "ag-012", "ag-013"],
-  },
-
-  // ─── it-004 · Morocco Sahara Adventure 6D ──────────────────
-  {
-    id: "it-004",
-    dmcId: "dmc-004",
-    title: { "zh-CN": "摩洛哥撒哈拉沙漠探险6日", en: "Morocco Sahara Adventure 6D" },
-    subtitle: {
-      "zh-CN": "梅尔祖卡沙漠营地·骆驼日落·星空夜",
-      en: "Merzouga camp · camel sunset · starlit nights",
-    },
-    departureType: "FIXED",
-    duration: { days: 6, nights: 5 },
-    countries: ["MA"],
-    cities: ["Marrakech", "Merzouga", "Ouarzazate"],
-    themes: ["adventure", "cultural"],
-    heroImage: photos.sahara.hero[0],
-    gallery: photos.sahara.gallery,
-    highlights: {
-      "zh-CN": [
-        "撒哈拉沙漠豪华营地两晚住宿",
-        "骑骆驼穿越红色沙丘看日落",
-        "穿越阿特拉斯山脉雪山线",
-        "瓦尔扎扎特「非洲好莱坞」电影城",
-        "柏柏尔人家访体验",
-      ],
-      en: [
-        "Two nights luxury Sahara camp at Merzouga",
-        "Sunset camel ride across the red dunes",
-        "Atlas Mountains snow-line crossing",
-        "Ouarzazate — 'Hollywood of Africa' film studios",
-        "Berber family home visit",
-      ],
-    },
-    days: [
-      { day: 1, title: { "zh-CN": "抵达马拉喀什", en: "Arrival Marrakech" }, description: { "zh-CN": "接机入住,自由活动。", en: "Pickup and check-in, free time." }, activities: [{ type: "TRANSFER", name: { "zh-CN": "接机", en: "Pickup" } }] },
-      { day: 2, title: { "zh-CN": "穿越阿特拉斯", en: "Atlas Crossing" }, description: { "zh-CN": "穿越阿特拉斯山脉,经Tizi n'Tichka 山口(2260米)抵达瓦尔扎扎特。", en: "Cross the Atlas via Tizi n'Tichka pass (2260m) to Ouarzazate." }, activities: [{ type: "ENTRANCE", name: { "zh-CN": "Ait Ben Haddou 古城", en: "Aït Benhaddou kasbah" } }] },
-      { day: 3, title: { "zh-CN": "前往撒哈拉", en: "To the Sahara" }, description: { "zh-CN": "经达戴斯峡谷与托德拉峡谷,抵达梅尔祖卡。骑骆驼进入沙丘,豪华营地住宿。", en: "Via Dades & Todra gorges to Merzouga. Camel into the dunes, luxury camp overnight." }, activities: [{ type: "ACTIVITY", name: { "zh-CN": "骆驼穿越沙丘", en: "Camel into the dunes" } }, { type: "ACCOMMODATION", name: { "zh-CN": "撒哈拉豪华营地", en: "Sahara Luxury Camp" } }] },
-      { day: 4, title: { "zh-CN": "沙漠日出+柏柏尔人家访", en: "Desert Sunrise + Berber Visit" }, description: { "zh-CN": "清晨沙丘看日出。前往柏柏尔人家访,午餐塔吉锅。再返沙漠营地。", en: "Dune sunrise. Visit a Berber family, tagine lunch. Back to camp." }, activities: [{ type: "MEAL", name: { "zh-CN": "柏柏尔塔吉锅", en: "Berber tagine lunch" } }] },
-      { day: 5, title: { "zh-CN": "返回马拉喀什", en: "Back to Marrakech" }, description: { "zh-CN": "经原路返回马拉喀什,傍晚不眠广场。", en: "Return via the Atlas to Marrakech, evening at Jemaa el-Fnaa." }, activities: [{ type: "MEAL", name: { "zh-CN": "不眠广场晚餐", en: "Jemaa el-Fnaa dinner" } }] },
-      { day: 6, title: { "zh-CN": "返程", en: "Departure" }, description: { "zh-CN": "送机。", en: "Airport drop-off." }, activities: [{ type: "TRANSFER", name: { "zh-CN": "送机", en: "Drop-off" } }] },
-    ],
-    inclusions: {
-      "zh-CN": ["5晚住宿(含2晚沙漠营地)", "中文导游", "4×4沙漠越野车", "早餐+部分晚餐", "所有门票", "意外险"],
-      en: ["5 nights (incl. 2 nights desert camp)", "Mandarin guide", "4×4 desert vehicle", "Breakfast + select dinners", "All entrances", "Insurance"],
-    },
-    exclusions: { "zh-CN": ["国际机票", "午餐", "个人消费"], en: ["International flights", "Lunch", "Personal expenses"] },
-    pricing: {
-      sourceCurrency: "EUR",
-      bands: [
-        { paxRange: "2-3", minPax: 2, maxPax: 3, perPaxUSD: 1880 },
-        { paxRange: "4-6", minPax: 4, maxPax: 6, perPaxUSD: 1580 },
-        { paxRange: "7-10", minPax: 7, maxPax: 10, perPaxUSD: 1380 },
-      ],
-      singleSupplementUSD: 480,
-      seasons: [
-        { name: "low", dateRange: "2026-06-15..2026-08-31", multiplier: 1.0 },
-        { name: "shoulder", dateRange: "2026-03-01..2026-06-14", multiplier: 1.2 },
-        { name: "peak", dateRange: "2026-09-01..2026-11-30", multiplier: 1.35 },
-      ],
-    },
-    marginLayers: {
-      dmcNetPerPaxUSD: 1380,
-      ourMarkupUSD: 200,
-      wholesalerSellUSD: 1580,
-      wholesalerSuggestedMarkupUSD: 300,
-      agencyRetailUSD: 1880,
-    },
-    cancellationPolicy: {
-      name: { "zh-CN": "沙漠探险政策", en: "Sahara Adventure Policy" },
+      name: { "zh-CN": "摩洛哥标准政策", en: "Morocco Standard Policy" },
       tiers: [
         { daysBefore: 45, penaltyPercent: 0 },
         { daysBefore: 21, penaltyPercent: 30 },
@@ -463,568 +834,495 @@ export const itineraries: Itinerary[] = [
       ],
     },
     departures: [
-      { id: "dep-301", itineraryId: "it-004", date: "2026-09-15", capacity: 16, booked: 8, status: "OPEN" },
-      { id: "dep-302", itineraryId: "it-004", date: "2026-10-13", capacity: 16, booked: 13, status: "GUARANTEED" },
-      { id: "dep-303", itineraryId: "it-004", date: "2026-11-10", capacity: 16, booked: 6, status: "OPEN" },
+      { id: "dep-301", itineraryId: "it-004", date: "2026-09-15", capacity: 22, booked: 14, status: "OPEN" },
+      { id: "dep-302", itineraryId: "it-004", date: "2026-10-13", capacity: 22, booked: 18, status: "GUARANTEED" },
+      { id: "dep-303", itineraryId: "it-004", date: "2026-11-10", capacity: 22, booked: 8, status: "OPEN" },
     ],
-    translations: { "zh-CN": { reviewed: true, reviewedAt: "2026-04-01" }, en: { reviewed: false } },
-    publishedToAgencies: ["ag-002", "ag-003", "ag-005", "ag-006", "ag-009", "ag-013"],
+    translations: {
+      "zh-CN": { reviewed: true, reviewedAt: "2026-04-22" },
+      en: { reviewed: true, reviewedAt: "2026-04-22" },
+    },
+    publishedToAgencies: ["ag-001", "ag-003", "ag-006", "ag-009", "ag-013"],
   },
 
-  // ─── it-005 · Morocco Luxury Honeymoon 10D ──────────────────
+  // ─── it-005 · Heart of Morocco (9D · ON_DEMAND FIT) · dmc-004 ──
   {
     id: "it-005",
-    dmcId: "dmc-005",
-    title: { "zh-CN": "摩洛哥蜜月奢华定制10日", en: "Morocco Luxury Honeymoon 10D" },
+    dmcId: "dmc-004",
+    title: {
+      "zh-CN": "摩洛哥心脏地带 9 日 · 私家定制",
+      en: "Heart of Morocco — 9 days, 8 nights (private FIT)",
+    },
     subtitle: {
-      "zh-CN": "马拉喀什·埃萨乌伊拉海滨·撒哈拉星空·全程豪华里亚德",
-      en: "Marrakech · Essaouira coast · Sahara stars · luxury riads throughout",
+      "zh-CN": "马拉喀什 · Ouzoud 瀑布 · 卡萨 · 拉巴特 · Meknes · Volubilis · 非斯",
+      en: "Marrakech · Ouzoud Falls · Casablanca · Rabat · Meknes · Volubilis · Fes",
     },
     departureType: "ON_DEMAND",
-    duration: { days: 10, nights: 9 },
+    duration: { days: 9, nights: 8 },
     countries: ["MA"],
-    cities: ["Marrakech", "Essaouira", "Merzouga"],
-    themes: ["luxury", "adventure"],
-    heroImage: photos.marrakech.hero[2],
-    gallery: [...photos.marrakech.gallery.slice(0, 3), ...photos.sahara.gallery.slice(0, 2)],
+    cities: ["Marrakech", "Beni Mellal", "Casablanca", "Rabat", "Meknes", "Fez"],
+    themes: ["cultural", "family", "first-time"],
+    heroImage: photos.marrakech.hero[0],
+    gallery: [
+      ...photos.marrakech.gallery.slice(0, 2),
+      ...photos.ouzoud.gallery,
+      ...photos.casablanca.gallery.slice(0, 1),
+      ...photos.fez.gallery,
+      ...photos.volubilis.gallery,
+    ],
     highlights: {
       "zh-CN": [
-        "全程豪华里亚德或五星海景酒店",
-        "马拉喀什 La Mamounia 殿堂级酒店两晚",
-        "私人摄影师全程跟拍",
-        "撒哈拉沙漠豪华泡泡帐篷一晚",
-        "埃萨乌伊拉海滨马背SPA",
+        "穿越摩洛哥中部 — 瀑布、皇城与深度文化遗产",
+        "马拉喀什深度:Majorelle 花园 + Koutoubia + Ben Youssef + Bahia + Badi 宫 + 马车",
+        "Ouzoud 瀑布 + Bin El Ouidane 湖泊游船",
+        "非斯老城里亚德特色晚餐",
+        "Volubilis 罗马遗迹联合国教科文世遗",
       ],
       en: [
-        "Luxury riads + five-star sea-view resorts throughout",
-        "Two nights at La Mamounia, Marrakech's legendary palace hotel",
-        "Private photographer throughout",
-        "One night Sahara luxury bubble tent",
-        "Essaouira coastal horseback ride & spa",
+        "A journey through central Morocco — waterfalls, imperial cities, and deep heritage",
+        "Marrakech deep dive — Majorelle Garden + Koutoubia + Ben Youssef + Bahia + Badi + calèche",
+        "Ouzoud Falls + boat ride on Bin El Ouidane Lake",
+        "Special Riad dinner in Fes old medina",
+        "Volubilis Roman ruins UNESCO World Heritage",
       ],
     },
-    days: Array.from({ length: 10 }, (_, i) => ({
-      day: i + 1,
-      title: { "zh-CN": `第${i + 1}天行程`, en: `Day ${i + 1}` },
-      description: { "zh-CN": "蜜月主题定制,详见预订确认单。", en: "Honeymoon tailored, see booking confirmation." },
-      activities: [{ type: "ACTIVITY" as const, name: { "zh-CN": "蜜月体验", en: "Honeymoon experience" } }],
-    })),
-    inclusions: { "zh-CN": ["9晚奢华住宿", "私人中文导游+司机", "私人摄影师", "米其林餐饮(部分)", "豪华接送", "蜜月套餐礼遇"], en: ["9 nights luxury accommodation", "Private Mandarin guide + driver", "Private photographer", "Michelin dining (select)", "Luxury transfers", "Honeymoon package amenities"] },
-    exclusions: { "zh-CN": ["国际机票", "婚纱礼服", "亲属费用"], en: ["International flights", "Wedding attire", "Family member fees"] },
+    days: [
+      {
+        day: 1,
+        title: { "zh-CN": "抵达马拉喀什", en: "Arrival Marrakech" },
+        description: {
+          "zh-CN": "抵达马拉喀什机场,送往酒店入住,自由活动。",
+          en: "Arrive Marrakech airport, transfer to hotel, leisure time.",
+        },
+        activities: [
+          { type: "TRANSFER", name: { "zh-CN": "机场接机", en: "Airport pickup" } },
+          { type: "ACCOMMODATION", name: { "zh-CN": "马拉喀什 4 星酒店", en: "4-star Marrakech hotel" } },
+        ],
+      },
+      {
+        day: 2,
+        title: { "zh-CN": "马拉喀什全日导游", en: "Marrakech Full-Day Guided" },
+        description: {
+          "zh-CN":
+            "马若雷勒花园 → Koutoubia 清真寺 → Ben Youssef 神学院 → Bahia 宫 → Badi 宫 → 马车游麦地那 → Jemaa el-Fnaa 不眠广场。",
+          en:
+            "Majorelle Garden → Koutoubia Mosque → Ben Youssef Madrasa → Bahia Palace → Badi Palace → calèche tour around the medina → Jemaa el-Fnaa night square.",
+        },
+        activities: [
+          { type: "ENTRANCE", name: { "zh-CN": "马若雷勒花园", en: "Majorelle Garden" } },
+          { type: "ENTRANCE", name: { "zh-CN": "Bahia 宫", en: "Bahia Palace" } },
+          { type: "ACTIVITY", name: { "zh-CN": "马车游麦地那", en: "Calèche medina tour" } },
+        ],
+      },
+      {
+        day: 3,
+        title: { "zh-CN": "Ouzoud 瀑布 → Bin El Ouidane → Beni Mellal", en: "Ouzoud Falls → Bin El Ouidane → Beni Mellal" },
+        description: {
+          "zh-CN":
+            "前往 Ouzoud 瀑布(摩洛哥最高瀑布之一)→ Bin El Ouidane 湖泊游船 → Beni Mellal 入住。",
+          en:
+            "Drive to Ouzoud Falls (one of Morocco's tallest) → boat ride on Bin El Ouidane Lake → overnight Beni Mellal.",
+        },
+        activities: [
+          { type: "ENTRANCE", name: { "zh-CN": "Ouzoud 瀑布", en: "Ouzoud Falls" } },
+          { type: "ACTIVITY", name: { "zh-CN": "Bin El Ouidane 游船", en: "Bin El Ouidane boat ride" } },
+        ],
+      },
+      {
+        day: 4,
+        title: { "zh-CN": "Beni Mellal → 卡萨布兰卡", en: "Beni Mellal → Casablanca" },
+        description: {
+          "zh-CN":
+            "前往卡萨布兰卡,Morocco Mall 购物 + Corniche 海滨自由活动。",
+          en:
+            "Transfer to Casablanca, free time at Morocco Mall and the Corniche seafront.",
+        },
+        activities: [
+          { type: "ENTRANCE", name: { "zh-CN": "Morocco Mall", en: "Morocco Mall" } },
+        ],
+      },
+      {
+        day: 5,
+        title: { "zh-CN": "卡萨布兰卡 → 拉巴特", en: "Casablanca → Rabat" },
+        description: {
+          "zh-CN":
+            "上午哈桑二世大清真寺(地标),下午拉巴特 — Chellah、Kasbah of the Udayas、哈桑塔。",
+          en:
+            "Morning Hassan II Mosque, then Rabat — Chellah, Kasbah of the Udayas, Hassan Tower.",
+        },
+        activities: [
+          { type: "ENTRANCE", name: { "zh-CN": "哈桑二世大清真寺", en: "Hassan II Mosque" } },
+          { type: "ENTRANCE", name: { "zh-CN": "Chellah", en: "Chellah" } },
+        ],
+      },
+      {
+        day: 6,
+        title: { "zh-CN": "Meknes → Volubilis → 非斯", en: "Meknes → Volubilis → Fes" },
+        description: {
+          "zh-CN":
+            "Meknes:Moulay Ismail 陵墓、Bab Mansour;Volubilis 罗马遗迹;傍晚抵达非斯。",
+          en:
+            "Meknes: Moulay Ismail Mausoleum, Bab Mansour; Volubilis Roman ruins; arrive Fes by evening.",
+        },
+        activities: [
+          { type: "ENTRANCE", name: { "zh-CN": "Volubilis", en: "Volubilis Roman ruins" } },
+        ],
+      },
+      {
+        day: 7,
+        title: { "zh-CN": "非斯导游游览", en: "Fes Guided Tour" },
+        description: {
+          "zh-CN":
+            "非斯麦地那:Bou Inania 神学院、Nejjarine 喷泉、皮革染坊。傍晚里亚德特色摩洛哥晚餐。",
+          en:
+            "Fes medina: Bou Inania Madrasa, Nejjarine Fountain, leather tanneries. Evening Riad special dinner.",
+        },
+        activities: [
+          { type: "GUIDE", name: { "zh-CN": "非斯老城导游", en: "Fes medina guided" } },
+          { type: "MEAL", name: { "zh-CN": "里亚德特色晚餐", en: "Riad special dinner" } },
+        ],
+      },
+      {
+        day: 8,
+        title: { "zh-CN": "非斯自由日", en: "Fes Free Day" },
+        description: {
+          "zh-CN": "全日自由活动 — 购物、SPA、陶器作坊或自费深度游。",
+          en: "Free day — shopping, hammam spa, pottery workshop, or optional deep-dive tours.",
+        },
+        activities: [
+          { type: "ACTIVITY", name: { "zh-CN": "自由日", en: "Leisure day" } },
+        ],
+      },
+      {
+        day: 9,
+        title: { "zh-CN": "返程", en: "Departure" },
+        description: {
+          "zh-CN": "送往非斯或卡萨布兰卡机场。",
+          en: "Transfer to Fes or Casablanca airport.",
+        },
+        activities: [
+          { type: "TRANSFER", name: { "zh-CN": "机场送机", en: "Airport drop-off" } },
+        ],
+      },
+    ],
+    inclusions: {
+      "zh-CN": [
+        "4 星酒店住宿(含早餐)",
+        "舒适旅游车交通",
+        "持牌导游",
+        "Majorelle 花园 + Volubilis 门票",
+        "马拉喀什马车游",
+        "非斯里亚德特色晚餐",
+      ],
+      en: [
+        "4-star hotels with breakfast",
+        "Comfortable touring vehicle",
+        "Licensed guide",
+        "Majorelle Garden + Volubilis tickets",
+        "Marrakech calèche ride",
+        "Special Riad dinner in Fes",
+      ],
+    },
+    exclusions: {
+      "zh-CN": ["午餐与晚餐(除标注外)", "自费项目", "个人消费"],
+      en: ["Lunch and dinner (except where stated)", "Optional tours", "Personal expenses"],
+    },
     pricing: {
       sourceCurrency: "EUR",
-      bands: [{ paxRange: "2", minPax: 2, maxPax: 2, perPaxUSD: 6800 }, { paxRange: "3-4", minPax: 3, maxPax: 4, perPaxUSD: 5400 }],
-      singleSupplementUSD: 1600,
+      bands: [
+        { paxRange: "2-3", minPax: 2, maxPax: 3, perPaxUSD: 1980 },
+        { paxRange: "4-7", minPax: 4, maxPax: 7, perPaxUSD: 1680 },
+        { paxRange: "8-15", minPax: 8, maxPax: 15, perPaxUSD: 1450 },
+        { paxRange: "16+", minPax: 16, maxPax: 28, perPaxUSD: 1280 },
+      ],
+      singleSupplementUSD: 480,
       seasons: [
-        { name: "low", dateRange: "2026-06-15..2026-08-31", multiplier: 1.0 },
-        { name: "peak", dateRange: "2026-09-01..2026-04-30", multiplier: 1.4 },
+        { name: "summer", dateRange: "2026-06-15..2026-08-31", multiplier: 1.0 },
+        { name: "shoulder", dateRange: "2026-03-01..2026-06-14", multiplier: 1.2 },
+        { name: "peak", dateRange: "2026-09-01..2026-11-30", multiplier: 1.35 },
       ],
     },
     marginLayers: {
-      dmcNetPerPaxUSD: 5400,
-      ourMarkupUSD: 800,
-      wholesalerSellUSD: 6200,
-      wholesalerSuggestedMarkupUSD: 1200,
-      agencyRetailUSD: 7400,
+      dmcNetPerPaxUSD: 1450,
+      ourMarkupUSD: 200,
+      wholesalerSellUSD: 1650,
+      wholesalerSuggestedMarkupUSD: 320,
+      agencyRetailUSD: 1970,
     },
     cancellationPolicy: {
-      name: { "zh-CN": "蜜月策划政策", en: "Honeymoon Bespoke Policy" },
-      tiers: [{ daysBefore: 90, penaltyPercent: 20 }, { daysBefore: 60, penaltyPercent: 50 }, { daysBefore: 30, penaltyPercent: 100 }],
+      name: { "zh-CN": "摩洛哥标准政策", en: "Morocco Standard Policy" },
+      tiers: [
+        { daysBefore: 60, penaltyPercent: 0 },
+        { daysBefore: 30, penaltyPercent: 25 },
+        { daysBefore: 15, penaltyPercent: 50 },
+        { daysBefore: 7, penaltyPercent: 75 },
+        { daysBefore: 0, penaltyPercent: 100 },
+      ],
     },
+    // ON_DEMAND: no fixed departures; weekly rolling capacity managed in allotments.
     departures: [],
-    translations: { "zh-CN": { reviewed: true, reviewedAt: "2026-02-28" }, en: { reviewed: true, reviewedAt: "2026-02-28" } },
-    publishedToAgencies: ["ag-002", "ag-003", "ag-009", "ag-013"],
+    translations: {
+      "zh-CN": { reviewed: true, reviewedAt: "2026-04-20" },
+      en: { reviewed: true, reviewedAt: "2026-04-20" },
+    },
+    publishedToAgencies: ["ag-001", "ag-002", "ag-003", "ag-005", "ag-006", "ag-009", "ag-012", "ag-013", "ag-015"],
   },
 
-  // ─── it-006 · Egypt Pyramids + Nile 8D (flagship Egypt) ────
+  // ─── it-006 · Gems of Egypt (10D · RFQ_ONLY premium) · dmc-006 ──
   {
     id: "it-006",
     dmcId: "dmc-006",
-    title: { "zh-CN": "埃及金字塔+尼罗河8日精华", en: "Egypt Pyramids + Nile 8D" },
-    subtitle: {
-      "zh-CN": "吉萨金字塔·开罗博物馆·尼罗河5星游轮3晚·卢克索·阿斯旺",
-      en: "Giza Pyramids · Cairo Museum · 5-star Nile cruise 3N · Luxor · Aswan",
+    title: {
+      "zh-CN": "埃及精华 10 日 · 高端定制(尼罗河游轮 + 红海)",
+      en: "Gems of Egypt — 10 days, 9 nights (premium RFQ)",
     },
-    departureType: "FIXED",
-    duration: { days: 8, nights: 7 },
+    subtitle: {
+      "zh-CN": "开罗 · 吉萨金字塔 · 卢克索 · 5 星尼罗河游轮 · 阿斯旺 · 红海度假",
+      en: "Cairo · Giza Pyramids · Luxor · 5★ Nile cruise · Aswan · Red Sea leisure",
+    },
+    departureType: "RFQ_ONLY",
+    duration: { days: 10, nights: 9 },
     countries: ["EG"],
-    cities: ["Cairo", "Luxor", "Aswan"],
-    themes: ["cultural", "first-time"],
+    cities: ["Cairo", "Giza", "Luxor", "Aswan", "Hurghada"],
+    themes: ["cultural", "luxury", "first-time", "family"],
     heroImage: photos.cairo.hero[0],
-    gallery: [...photos.cairo.gallery, ...photos.luxor.gallery, ...photos.aswan.gallery],
+    gallery: [
+      ...photos.cairo.gallery.slice(0, 3),
+      ...photos.luxor.gallery.slice(0, 3),
+      ...photos.aswan.gallery,
+      ...photos.hurghada.gallery.slice(0, 2),
+    ],
     highlights: {
       "zh-CN": [
-        "吉萨金字塔狮身人面像深度参观",
-        "开罗埃及博物馆+图坦卡蒙黄金面具",
-        "尼罗河五星游轮3晚:卢克索→阿斯旺",
-        "卡尔纳克神庙·帝王谷·哈特谢普苏特神殿",
-        "阿布辛贝勒神庙(可选)",
+        "吉萨金字塔 + 狮身人面像 + Saqqara + Memphis 全日游",
+        "大埃及博物馆(GEM 新馆)+ Khan El Khalili 老市集",
+        "5 星尼罗河游轮 4 晚(全餐) — 卢克索至阿斯旺",
+        "国王谷 + 哈特谢普苏特女王神庙 + Edfu + Kom Ombo + Philae 神庙",
+        "红海洪加达度假酒店休闲 2 晚(可选浮潜、潜水、沙漠探险)",
       ],
       en: [
-        "Deep tour of Giza Pyramids and the Sphinx",
-        "Cairo Museum with Tutankhamun's golden mask",
-        "5-star Nile cruise 3 nights Luxor → Aswan",
-        "Karnak · Valley of the Kings · Hatshepsut Temple",
-        "Abu Simbel optional add-on",
+        "Full day Giza Pyramids + Sphinx + Saqqara + Memphis",
+        "Grand Egyptian Museum (GEM) + Khan El Khalili bazaar",
+        "4-night 5-star Nile cruise full-board — Luxor to Aswan",
+        "Valley of the Kings + Hatshepsut Temple + Edfu + Kom Ombo + Philae",
+        "Two nights Red Sea Hurghada resort — optional snorkeling, diving, desert safari",
       ],
     },
     days: [
-      { day: 1, title: { "zh-CN": "抵达开罗", en: "Arrival Cairo" }, description: { "zh-CN": "接机入住开罗五星酒店。", en: "Airport pickup, Cairo 5-star hotel check-in." }, activities: [{ type: "TRANSFER", name: { "zh-CN": "接机", en: "Pickup" } }] },
-      { day: 2, title: { "zh-CN": "吉萨金字塔+博物馆", en: "Giza + Museum" }, description: { "zh-CN": "全天吉萨金字塔群、狮身人面像、开罗埃及博物馆,黄金面具镇馆之宝。", en: "Full day Giza Pyramids, Sphinx, Cairo Museum with the golden mask." }, activities: [{ type: "ENTRANCE", name: { "zh-CN": "吉萨金字塔群", en: "Giza Pyramids" } }, { type: "ENTRANCE", name: { "zh-CN": "埃及博物馆", en: "Cairo Museum" } }] },
-      { day: 3, title: { "zh-CN": "飞卢克索登游轮", en: "Fly to Luxor + Cruise Embark" }, description: { "zh-CN": "国内段飞往卢克索,登上尼罗河五星游轮。下午参观卡尔纳克神庙、卢克索神庙。", en: "Domestic flight to Luxor, board 5-star Nile cruise. Afternoon Karnak & Luxor Temples." }, activities: [{ type: "ENTRANCE", name: { "zh-CN": "卡尔纳克神庙", en: "Karnak Temple" } }, { type: "ACCOMMODATION", name: { "zh-CN": "尼罗河五星游轮", en: "Nile 5-star cruise" } }] },
-      { day: 4, title: { "zh-CN": "帝王谷+哈特谢普苏特神殿", en: "Valley of the Kings + Hatshepsut" }, description: { "zh-CN": "西岸帝王谷参观图坦卡蒙、拉美西斯六世等法老陵墓。哈特谢普苏特女王神殿。", en: "West Bank: Valley of the Kings — Tutankhamun, Ramesses VI tombs. Hatshepsut Mortuary Temple." }, activities: [{ type: "ENTRANCE", name: { "zh-CN": "帝王谷", en: "Valley of the Kings" } }] },
-      { day: 5, title: { "zh-CN": "埃德富+康翁波神庙", en: "Edfu + Kom Ombo" }, description: { "zh-CN": "游轮航行至埃德富,参观荷鲁斯神庙。下午康翁波双神神庙。", en: "Cruise to Edfu, visit the Horus Temple. Afternoon Kom Ombo Temple." }, activities: [{ type: "ENTRANCE", name: { "zh-CN": "荷鲁斯神庙", en: "Horus Temple" } }] },
-      { day: 6, title: { "zh-CN": "阿斯旺+阿布辛贝勒(可选)", en: "Aswan + Abu Simbel option" }, description: { "zh-CN": "抵达阿斯旺,游览阿斯旺大坝、菲莱神庙。可选清晨阿布辛贝勒一日往返。", en: "Arrive Aswan — Aswan High Dam, Philae Temple. Optional early Abu Simbel day trip." }, activities: [{ type: "ENTRANCE", name: { "zh-CN": "菲莱神庙", en: "Philae Temple" } }] },
-      { day: 7, title: { "zh-CN": "飞回开罗+老城", en: "Fly Cairo + Old Cairo" }, description: { "zh-CN": "飞回开罗,下午老开罗:汗哈利利市场、悬空教堂。", en: "Fly back to Cairo. Afternoon Old Cairo — Khan el-Khalili bazaar, Hanging Church." }, activities: [{ type: "ENTRANCE", name: { "zh-CN": "汗哈利利市场", en: "Khan el-Khalili" } }] },
-      { day: 8, title: { "zh-CN": "返程", en: "Departure" }, description: { "zh-CN": "送机。", en: "Drop-off." }, activities: [{ type: "TRANSFER", name: { "zh-CN": "送机", en: "Drop-off" } }] },
+      {
+        day: 1,
+        title: { "zh-CN": "抵达开罗", en: "Arrival Cairo" },
+        description: {
+          "zh-CN": "抵达开罗国际机场,迎接服务,豪华空调车送往酒店入住。",
+          en: "Arrival at Cairo International, meet & assist, deluxe air-conditioned transfer to hotel.",
+        },
+        activities: [
+          { type: "TRANSFER", name: { "zh-CN": "机场接机", en: "Airport pickup" } },
+          { type: "ACCOMMODATION", name: { "zh-CN": "开罗 5 星酒店", en: "5-star Cairo hotel" } },
+        ],
+      },
+      {
+        day: 2,
+        title: { "zh-CN": "开罗 / 吉萨全日游", en: "Cairo / Giza Full Day" },
+        description: {
+          "zh-CN":
+            "吉萨金字塔(胡夫、哈夫拉、孟卡拉)+ 狮身人面像 + Saqqara 阶梯金字塔 + Memphis + 大埃及博物馆(GEM)+ Khan El Khalili 老市集。中餐当地餐厅,夜晚可选金字塔声光秀。",
+          en:
+            "Great Pyramids of Giza (Khufu, Khafre, Menkaure) + Sphinx + Saqqara + Memphis + Grand Egyptian Museum + Khan El Khalili Bazaar. Lunch at a local restaurant. Optional evening Sound & Light show at the Pyramids.",
+        },
+        activities: [
+          { type: "ENTRANCE", name: { "zh-CN": "吉萨金字塔 + 狮身人面像", en: "Giza Pyramids + Sphinx" } },
+          { type: "ENTRANCE", name: { "zh-CN": "大埃及博物馆", en: "Grand Egyptian Museum" } },
+          { type: "MEAL", name: { "zh-CN": "当地餐厅午餐", en: "Local restaurant lunch" } },
+        ],
+      },
+      {
+        day: 3,
+        title: { "zh-CN": "开罗 → 卢克索", en: "Cairo → Luxor" },
+        description: {
+          "zh-CN":
+            "国内航班飞卢克索,游览 Karnak 神庙(全球最大宗教建筑群之一)与 Luxor 神庙。傍晚登 5 星尼罗河游轮,含午晚餐。",
+          en:
+            "Domestic flight to Luxor. Visit Karnak Temple (among the largest religious complexes in the world) and Luxor Temple. Embark 5-star Nile cruise, lunch and dinner onboard.",
+        },
+        activities: [
+          { type: "TRANSFER", name: { "zh-CN": "卢克索国内航班", en: "Domestic flight to Luxor" } },
+          { type: "ENTRANCE", name: { "zh-CN": "Karnak 神庙", en: "Karnak Temple" } },
+          { type: "ACCOMMODATION", name: { "zh-CN": "5 星尼罗河游轮", en: "5-star Nile cruise" } },
+        ],
+      },
+      {
+        day: 4,
+        title: { "zh-CN": "卢克索西岸", en: "Luxor West Bank" },
+        description: {
+          "zh-CN":
+            "游船早餐,国王谷 + 哈特谢普苏特女王神庙 + Memnon 巨像。游船午餐,启航前往 Esna / Edfu,船上晚餐。",
+          en:
+            "Onboard breakfast. Valley of the Kings + Temple of Queen Hatshepsut + Colossi of Memnon. Lunch onboard, sail toward Esna / Edfu, dinner onboard.",
+        },
+        activities: [
+          { type: "ENTRANCE", name: { "zh-CN": "国王谷", en: "Valley of the Kings" } },
+          { type: "ENTRANCE", name: { "zh-CN": "哈特谢普苏特女王神庙", en: "Hatshepsut Temple" } },
+        ],
+      },
+      {
+        day: 5,
+        title: { "zh-CN": "Edfu → Kom Ombo → 阿斯旺", en: "Edfu → Kom Ombo → Aswan" },
+        description: {
+          "zh-CN":
+            "Edfu 神庙(乘马车前往),启航 Kom Ombo,游览双神殿,继续启航至阿斯旺。游船全餐。",
+          en:
+            "Edfu Temple by horse carriage, sail to Kom Ombo for the double temple, continue sailing to Aswan. Full board onboard.",
+        },
+        activities: [
+          { type: "ENTRANCE", name: { "zh-CN": "Edfu 神庙", en: "Edfu Temple" } },
+          { type: "ENTRANCE", name: { "zh-CN": "Kom Ombo 神庙", en: "Kom Ombo Temple" } },
+        ],
+      },
+      {
+        day: 6,
+        title: { "zh-CN": "阿斯旺", en: "Aswan" },
+        description: {
+          "zh-CN":
+            "游览 Philae 神庙、阿斯旺高坝、未完成方尖碑。可选 Abu Simbel 远征(自费)。游船全餐,阿斯旺入住游船。",
+          en:
+            "Philae Temple, High Dam, Unfinished Obelisk. Optional Abu Simbel excursion (own expense). Full board onboard, overnight in Aswan.",
+        },
+        activities: [
+          { type: "ENTRANCE", name: { "zh-CN": "Philae 神庙", en: "Philae Temple" } },
+          { type: "ENTRANCE", name: { "zh-CN": "阿斯旺高坝", en: "Aswan High Dam" } },
+        ],
+      },
+      {
+        day: 7,
+        title: { "zh-CN": "阿斯旺 → 洪加达", en: "Aswan → Hurghada" },
+        description: {
+          "zh-CN":
+            "酒店早餐,陆路转场前往洪加达 Red Sea 度假酒店入住。自由休闲。",
+          en:
+            "Breakfast, overland transfer to Hurghada Red Sea resort, check-in, leisure time.",
+        },
+        activities: [
+          { type: "TRANSFER", name: { "zh-CN": "洪加达陆运", en: "Overland to Hurghada" } },
+          { type: "ACCOMMODATION", name: { "zh-CN": "洪加达红海度假酒店", en: "Hurghada Red Sea resort" } },
+        ],
+      },
+      {
+        day: 8,
+        title: { "zh-CN": "洪加达休闲日", en: "Hurghada Leisure Day" },
+        description: {
+          "zh-CN":
+            "全日自由活动 — 浮潜、潜水、水上运动、Quad ATV 沙漠探险、玻璃底船等(自费安排)。",
+          en:
+            "Free day for leisure — snorkeling, diving, water sports, quad ATV desert safari, glass-bottom boat (optional add-ons).",
+        },
+        activities: [
+          { type: "ACTIVITY", name: { "zh-CN": "自由日 / 自费水上活动", en: "Leisure / optional water activities" } },
+        ],
+      },
+      {
+        day: 9,
+        title: { "zh-CN": "洪加达 → 开罗", en: "Hurghada → Cairo" },
+        description: {
+          "zh-CN": "返回开罗,自由购物或可选岛城自费游。",
+          en: "Transfer back to Cairo, free time for shopping or optional tours.",
+        },
+        activities: [
+          { type: "TRANSFER", name: { "zh-CN": "返回开罗", en: "Return to Cairo" } },
+        ],
+      },
+      {
+        day: 10,
+        title: { "zh-CN": "返程", en: "Final Departure" },
+        description: {
+          "zh-CN": "酒店早餐后送往开罗国际机场。",
+          en: "Hotel breakfast, transfer to Cairo International Airport for final departure.",
+        },
+        activities: [
+          { type: "TRANSFER", name: { "zh-CN": "机场送机", en: "Airport drop-off" } },
+        ],
+      },
     ],
     inclusions: {
-      "zh-CN": ["7晚住宿(含尼罗河游轮3晚)", "国内段机票", "中文导游+埃及导游", "早午晚餐(游轮含)", "所有景点门票", "埃及签证", "意外险"],
-      en: ["7 nights (incl. Nile cruise 3N)", "Domestic flights", "Mandarin guide + Egyptian guide", "B/L/D included (cruise full board)", "All entrances", "Egypt visa", "Insurance"],
+      "zh-CN": [
+        "机场接送服务",
+        "开罗 5 星酒店住宿",
+        "5 星尼罗河游轮(全餐 4 晚)",
+        "洪加达红海度假酒店 2 晚",
+        "全程每日早餐 + 行程标注午晚餐",
+        "行程标注景点门票",
+        "专业埃及考古学家导游全程",
+        "全程豪华空调车接送",
+        "国内航班(开罗 → 卢克索)",
+      ],
+      en: [
+        "Meet & assist on arrival and departure",
+        "Cairo 5-star hotel accommodation",
+        "5-star Nile cruise full board (4 nights)",
+        "Hurghada Red Sea resort 2 nights",
+        "Daily breakfast + listed lunches & dinners",
+        "All listed entrance fees",
+        "Professional Egyptologist tour guide throughout",
+        "All transfers by deluxe air-conditioned vehicles",
+        "Domestic flights as per itinerary (Cairo → Luxor)",
+      ],
     },
-    exclusions: { "zh-CN": ["国际机票", "阿布辛贝勒可选项", "个人消费"], en: ["International flights", "Optional Abu Simbel", "Personal expenses"] },
+    exclusions: {
+      "zh-CN": [
+        "国际机票",
+        "埃及签证(可代办)",
+        "Abu Simbel 远征自费",
+        "金字塔声光秀自费",
+        "洪加达水上活动 / 沙漠安排",
+        "个人消费与小费",
+      ],
+      en: [
+        "International flights",
+        "Egypt visa (assistance available)",
+        "Optional Abu Simbel excursion",
+        "Pyramids Sound & Light show",
+        "Hurghada water sports / desert add-ons",
+        "Personal expenses and tips",
+      ],
+    },
     pricing: {
       sourceCurrency: "USD",
       bands: [
-        { paxRange: "2-3", minPax: 2, maxPax: 3, perPaxUSD: 2380 },
-        { paxRange: "4-6", minPax: 4, maxPax: 6, perPaxUSD: 1980 },
-        { paxRange: "7-10", minPax: 7, maxPax: 10, perPaxUSD: 1780 },
+        { paxRange: "2-3", minPax: 2, maxPax: 3, perPaxUSD: 2780 },
+        { paxRange: "4-7", minPax: 4, maxPax: 7, perPaxUSD: 2380 },
+        { paxRange: "8-15", minPax: 8, maxPax: 15, perPaxUSD: 2080 },
+        { paxRange: "16+", minPax: 16, maxPax: 30, perPaxUSD: 1880 },
       ],
-      singleSupplementUSD: 580,
+      singleSupplementUSD: 720,
       seasons: [
-        { name: "low", dateRange: "2026-05-01..2026-09-30", multiplier: 1.0 },
-        { name: "peak", dateRange: "2026-10-01..2026-04-30", multiplier: 1.3 },
+        { name: "low", dateRange: "2026-06-01..2026-08-31", multiplier: 0.9 },
+        { name: "shoulder", dateRange: "2026-03-01..2026-05-31", multiplier: 1.15 },
+        { name: "peak", dateRange: "2026-09-01..2026-12-15", multiplier: 1.4 },
       ],
     },
     marginLayers: {
-      dmcNetPerPaxUSD: 1780,
-      ourMarkupUSD: 240,
-      wholesalerSellUSD: 2020,
-      wholesalerSuggestedMarkupUSD: 380,
-      agencyRetailUSD: 2400,
+      dmcNetPerPaxUSD: 2080,
+      ourMarkupUSD: 280,
+      wholesalerSellUSD: 2360,
+      wholesalerSuggestedMarkupUSD: 460,
+      agencyRetailUSD: 2820,
     },
     cancellationPolicy: {
-      name: { "zh-CN": "尼罗河游轮政策", en: "Nile Cruise Policy" },
+      name: { "zh-CN": "埃及尼罗河政策", en: "Egypt Nile Cruise Policy" },
       tiers: [
         { daysBefore: 60, penaltyPercent: 0 },
         { daysBefore: 30, penaltyPercent: 30 },
-        { daysBefore: 14, penaltyPercent: 60 },
+        { daysBefore: 15, penaltyPercent: 60 },
+        { daysBefore: 7, penaltyPercent: 85 },
         { daysBefore: 0, penaltyPercent: 100 },
       ],
     },
-    departures: [
-      { id: "dep-601", itineraryId: "it-006", date: "2026-09-15", capacity: 20, booked: 13, status: "OPEN" },
-      { id: "dep-602", itineraryId: "it-006", date: "2026-10-20", capacity: 20, booked: 18, status: "GUARANTEED" },
-      { id: "dep-603", itineraryId: "it-006", date: "2026-11-17", capacity: 20, booked: 9, status: "OPEN" },
-      { id: "dep-604", itineraryId: "it-006", date: "2026-12-15", capacity: 20, booked: 11, status: "OPEN" },
-    ],
-    translations: { "zh-CN": { reviewed: true, reviewedAt: "2026-03-18" }, en: { reviewed: true, reviewedAt: "2026-03-18" } },
-    publishedToAgencies: ["ag-001", "ag-002", "ag-003", "ag-005", "ag-006", "ag-009", "ag-012", "ag-013"],
-  },
-
-  // ─── it-007 · Egypt Red Sea Relax 6D ──────────────────────
-  {
-    id: "it-007",
-    dmcId: "dmc-007",
-    title: { "zh-CN": "埃及红海洪加达休闲6日", en: "Egypt Red Sea Hurghada Relax 6D" },
-    subtitle: {
-      "zh-CN": "红海五星全包度假村·浮潜潜水·开罗1日联游",
-      en: "Red Sea 5-star all-inclusive · snorkel + dive · 1-day Cairo connector",
-    },
-    departureType: "FIXED",
-    duration: { days: 6, nights: 5 },
-    countries: ["EG"],
-    cities: ["Hurghada", "Cairo"],
-    themes: ["family", "first-time"],
-    heroImage: photos.redSea.hero[0],
-    gallery: [...photos.redSea.gallery, ...photos.cairo.gallery.slice(0, 2)],
-    highlights: {
-      "zh-CN": [
-        "红海洪加达五星全包度假村4晚",
-        "浮潜+潜水(初学者友好)",
-        "玻璃船海底世界观光",
-        "开罗1天连游金字塔+博物馆",
-        "全程含三餐+饮品",
-      ],
-      en: [
-        "4 nights Hurghada 5-star all-inclusive resort",
-        "Snorkel + intro dive (beginner-friendly)",
-        "Glass-bottom boat coral tour",
-        "1-day Cairo connector — Pyramids + Museum",
-        "Full board + drinks included",
-      ],
-    },
-    days: [
-      { day: 1, title: { "zh-CN": "抵达洪加达", en: "Arrival Hurghada" }, description: { "zh-CN": "接机入住全包度假村。", en: "Pickup, all-inclusive resort check-in." }, activities: [{ type: "ACCOMMODATION", name: { "zh-CN": "红海五星度假村", en: "Red Sea 5-star resort" } }] },
-      { day: 2, title: { "zh-CN": "浮潜出海", en: "Snorkel Boat Trip" }, description: { "zh-CN": "全天出海浮潜,珊瑚礁观赏,船上自助午餐。", en: "Full-day boat trip — coral reef snorkeling, lunch onboard." }, activities: [{ type: "ACTIVITY", name: { "zh-CN": "浮潜出海", en: "Snorkel boat trip" } }] },
-      { day: 3, title: { "zh-CN": "潜水体验", en: "Intro Dive" }, description: { "zh-CN": "初学者潜水体验或玻璃船海底观光。", en: "Beginner dive or glass-bottom boat for non-divers." }, activities: [{ type: "ACTIVITY", name: { "zh-CN": "初学者潜水", en: "Intro dive" } }] },
-      { day: 4, title: { "zh-CN": "开罗1日连游", en: "Cairo Day Connector" }, description: { "zh-CN": "国内段飞开罗一日游金字塔+博物馆,返回洪加达。", en: "Domestic flight to Cairo — Pyramids + Museum, back to Hurghada." }, activities: [{ type: "ENTRANCE", name: { "zh-CN": "金字塔+博物馆", en: "Pyramids + Museum" } }] },
-      { day: 5, title: { "zh-CN": "自由活动", en: "Free Day" }, description: { "zh-CN": "度假村自由活动,可选SPA、骑骆驼或贝都因BBQ。", en: "Resort free day — optional spa, camel ride, or Bedouin BBQ." }, activities: [{ type: "ACTIVITY", name: { "zh-CN": "度假村休闲", en: "Resort relax" } }] },
-      { day: 6, title: { "zh-CN": "返程", en: "Departure" }, description: { "zh-CN": "送机。", en: "Drop-off." }, activities: [{ type: "TRANSFER", name: { "zh-CN": "送机", en: "Drop-off" } }] },
-    ],
-    inclusions: {
-      "zh-CN": ["5晚(度假村4晚+开罗1晚)", "全包餐饮+饮品", "国内段机票", "中文导游(开罗段)", "浮潜+潜水器材", "埃及签证"],
-      en: ["5 nights (resort 4N + Cairo 1N)", "All-inclusive F&B + drinks", "Domestic flights", "Mandarin guide (Cairo leg)", "Snorkel + dive equipment", "Egypt visa"],
-    },
-    exclusions: { "zh-CN": ["国际机票", "高级潜水课程", "个人消费"], en: ["International flights", "Advanced dive courses", "Personal expenses"] },
-    pricing: {
-      sourceCurrency: "USD",
-      bands: [
-        { paxRange: "2-3", minPax: 2, maxPax: 3, perPaxUSD: 1480 },
-        { paxRange: "4-6", minPax: 4, maxPax: 6, perPaxUSD: 1280 },
-        { paxRange: "7-10", minPax: 7, maxPax: 10, perPaxUSD: 1180 },
-      ],
-      singleSupplementUSD: 380,
-      seasons: [
-        { name: "low", dateRange: "2026-05-01..2026-09-30", multiplier: 1.0 },
-        { name: "school-holiday", dateRange: "2026-07-15..2026-08-31", multiplier: 1.2 },
-        { name: "peak", dateRange: "2026-10-01..2026-04-30", multiplier: 1.3 },
-      ],
-    },
-    marginLayers: {
-      dmcNetPerPaxUSD: 1180,
-      ourMarkupUSD: 160,
-      wholesalerSellUSD: 1340,
-      wholesalerSuggestedMarkupUSD: 240,
-      agencyRetailUSD: 1580,
-    },
-    cancellationPolicy: {
-      name: { "zh-CN": "度假村政策", en: "Resort Policy" },
-      tiers: [
-        { daysBefore: 30, penaltyPercent: 0 },
-        { daysBefore: 14, penaltyPercent: 30 },
-        { daysBefore: 7, penaltyPercent: 60 },
-        { daysBefore: 0, penaltyPercent: 100 },
-      ],
-    },
-    departures: [
-      { id: "dep-701", itineraryId: "it-007", date: "2026-07-15", capacity: 20, booked: 16, status: "GUARANTEED" },
-      { id: "dep-702", itineraryId: "it-007", date: "2026-07-29", capacity: 20, booked: 12, status: "OPEN" },
-      { id: "dep-703", itineraryId: "it-007", date: "2026-08-12", capacity: 20, booked: 8, status: "OPEN" },
-    ],
-    translations: { "zh-CN": { reviewed: true, reviewedAt: "2026-03-22" }, en: { reviewed: true, reviewedAt: "2026-03-22" } },
-    publishedToAgencies: ["ag-001", "ag-003", "ag-004", "ag-007", "ag-010", "ag-013", "ag-015"],
-  },
-
-  // ─── it-008 · Egypt Deep Culture 10D (RFQ) ─────────────────
-  {
-    id: "it-008",
-    dmcId: "dmc-006",
-    title: { "zh-CN": "埃及深度文化10日高端定制", en: "Egypt Deep Culture 10D Bespoke" },
-    subtitle: {
-      "zh-CN": "亚历山大·开罗·卢克索·阿斯旺·阿布辛贝勒,私人考古学家陪同",
-      en: "Alexandria · Cairo · Luxor · Aswan · Abu Simbel, private Egyptologist guide",
-    },
-    departureType: "RFQ_ONLY",
-    duration: { days: 10, nights: 9 },
-    countries: ["EG"],
-    cities: ["Alexandria", "Cairo", "Luxor", "Aswan"],
-    themes: ["cultural", "luxury"],
-    heroImage: photos.luxor.hero[0],
-    gallery: [...photos.cairo.gallery, ...photos.luxor.gallery, ...photos.aswan.gallery],
-    highlights: {
-      "zh-CN": [
-        "全程私人考古学家陪同讲解(英中互译)",
-        "亚历山大图书馆·庞贝柱·凯特拜城堡",
-        "阿布辛贝勒+菲莱神庙深度",
-        "尼罗河 Sanctuary Sun Boat 顶级游轮",
-        "开罗 Mena House 金字塔脚下传奇酒店",
-      ],
-      en: [
-        "Private Egyptologist guide throughout (English-Chinese)",
-        "Alexandria Library, Pompey's Pillar, Citadel of Qaitbay",
-        "Abu Simbel + Philae Temple deep tour",
-        "Sanctuary Sun Boat — top-tier Nile cruise",
-        "Mena House Cairo — legendary hotel at the foot of Giza",
-      ],
-    },
-    days: Array.from({ length: 10 }, (_, i) => ({
-      day: i + 1,
-      title: { "zh-CN": `第${i + 1}天行程`, en: `Day ${i + 1}` },
-      description: { "zh-CN": "高端定制行程,根据客户偏好确认。", en: "Bespoke itinerary, confirmed to client brief." },
-      activities: [{ type: "GUIDE" as const, name: { "zh-CN": "私人考古学家", en: "Private Egyptologist" } }],
-    })),
-    inclusions: { "zh-CN": ["9晚顶级酒店与游轮", "私人考古学家中英文讲解", "国内段头等舱", "全餐", "VIP机场服务", "签证"], en: ["9 nights top-tier hotels + cruise", "Private Egyptologist EN-CN", "Domestic flights business class", "All meals", "VIP airport service", "Visa"] },
-    exclusions: { "zh-CN": ["国际机票", "个人采购"], en: ["International flights", "Personal shopping"] },
-    pricing: {
-      sourceCurrency: "USD",
-      bands: [{ paxRange: "2-3", minPax: 2, maxPax: 3, perPaxUSD: 6800 }, { paxRange: "4-6", minPax: 4, maxPax: 6, perPaxUSD: 5400 }],
-      singleSupplementUSD: 1800,
-      seasons: [{ name: "year-round", dateRange: "2026-01-01..2026-12-31", multiplier: 1.0 }],
-    },
-    marginLayers: {
-      dmcNetPerPaxUSD: 5400,
-      ourMarkupUSD: 800,
-      wholesalerSellUSD: 6200,
-      wholesalerSuggestedMarkupUSD: 1100,
-      agencyRetailUSD: 7300,
-    },
-    cancellationPolicy: { name: { "zh-CN": "RFQ商务政策", en: "RFQ Bespoke Policy" }, tiers: [{ daysBefore: 90, penaltyPercent: 25 }, { daysBefore: 60, penaltyPercent: 50 }, { daysBefore: 30, penaltyPercent: 100 }] },
+    // RFQ_ONLY: no published departures; each booking starts as a custom quote request.
     departures: [],
-    translations: { "zh-CN": { reviewed: true, reviewedAt: "2026-02-10" }, en: { reviewed: true, reviewedAt: "2026-02-10" } },
-    publishedToAgencies: ["ag-002", "ag-003"],
-  },
-
-  // ─── it-009 · North Africa & MEA Grand Tour 15D (multi) ────
-  {
-    id: "it-009",
-    dmcId: "dmc-001",
-    title: { "zh-CN": "北非中东大环线15日", en: "North Africa & MEA Grand Tour 15D" },
-    subtitle: {
-      "zh-CN": "约旦+摩洛哥+埃及三国完整体验",
-      en: "Jordan + Morocco + Egypt three-country epic",
+    translations: {
+      "zh-CN": { reviewed: true, reviewedAt: "2026-04-25" },
+      en: { reviewed: true, reviewedAt: "2026-04-25" },
     },
-    departureType: "FIXED",
-    duration: { days: 15, nights: 14 },
-    countries: ["JO", "MA", "EG"],
-    cities: ["Amman", "Petra", "Wadi Rum", "Marrakech", "Sahara", "Cairo", "Luxor"],
-    themes: ["luxury", "cultural", "first-time"],
-    heroImage: photos.petra.hero[2],
-    gallery: [...photos.petra.gallery.slice(0, 2), ...photos.marrakech.gallery.slice(0, 2), ...photos.cairo.gallery.slice(0, 2)],
-    highlights: {
-      "zh-CN": [
-        "三国一次走完,签证全办",
-        "约旦4天:佩特拉+瓦迪拉姆+死海",
-        "摩洛哥5天:皇城+撒哈拉沙漠营地",
-        "埃及4天:金字塔+尼罗河游轮+卢克索",
-        "全程五星酒店+国际段衔接",
-      ],
-      en: [
-        "Three countries one trip, all visas handled",
-        "Jordan 4D: Petra + Wadi Rum + Dead Sea",
-        "Morocco 5D: imperial cities + Sahara camp",
-        "Egypt 4D: Pyramids + Nile cruise + Luxor",
-        "Five-star throughout + international leg coordination",
-      ],
-    },
-    days: Array.from({ length: 15 }, (_, i) => ({
-      day: i + 1,
-      title: { "zh-CN": `第${i + 1}天行程`, en: `Day ${i + 1}` },
-      description: { "zh-CN": "三国精华大环线,详见预订确认单。", en: "Three-country grand tour, see booking confirmation." },
-      activities: [{ type: "ACTIVITY" as const, name: { "zh-CN": "导游服务", en: "Guide service" } }],
-    })),
-    inclusions: { "zh-CN": ["14晚五星酒店", "全程中文导游", "国际+国内交通", "三国签证", "早晚餐"], en: ["14 nights 5-star hotels", "Mandarin guide throughout", "International + domestic transfers", "All three visas", "Breakfast + dinner"] },
-    exclusions: { "zh-CN": ["国际机票", "午餐", "个人消费"], en: ["International flights", "Lunch", "Personal expenses"] },
-    pricing: {
-      sourceCurrency: "USD",
-      bands: [{ paxRange: "4-6", minPax: 4, maxPax: 6, perPaxUSD: 4280 }, { paxRange: "7-10", minPax: 7, maxPax: 10, perPaxUSD: 3680 }],
-      singleSupplementUSD: 1080,
-      seasons: [
-        { name: "low", dateRange: "2026-05-01..2026-09-30", multiplier: 1.0 },
-        { name: "peak", dateRange: "2026-10-01..2026-04-30", multiplier: 1.3 },
-      ],
-    },
-    marginLayers: {
-      dmcNetPerPaxUSD: 3680,
-      ourMarkupUSD: 480,
-      wholesalerSellUSD: 4160,
-      wholesalerSuggestedMarkupUSD: 720,
-      agencyRetailUSD: 4880,
-    },
-    cancellationPolicy: { name: { "zh-CN": "多国游政策", en: "Multi-Country Tour Policy" }, tiers: [{ daysBefore: 90, penaltyPercent: 0 }, { daysBefore: 60, penaltyPercent: 20 }, { daysBefore: 30, penaltyPercent: 50 }, { daysBefore: 14, penaltyPercent: 80 }, { daysBefore: 0, penaltyPercent: 100 }] },
-    departures: [
-      { id: "dep-501", itineraryId: "it-009", date: "2026-09-20", capacity: 16, booked: 7, status: "OPEN" },
-      { id: "dep-502", itineraryId: "it-009", date: "2026-10-25", capacity: 16, booked: 11, status: "OPEN" },
-      { id: "dep-503", itineraryId: "it-009", date: "2026-11-22", capacity: 16, booked: 14, status: "GUARANTEED" },
-    ],
-    translations: { "zh-CN": { reviewed: true, reviewedAt: "2026-03-30" }, en: { reviewed: true, reviewedAt: "2026-03-30" } },
-    publishedToAgencies: ["ag-001", "ag-002", "ag-003", "ag-005", "ag-009"],
-  },
-
-  // ─── it-010 · Egypt + Jordan Twin Country 10D (multi) ──────
-  {
-    id: "it-010",
-    dmcId: "dmc-006",
-    title: { "zh-CN": "埃及+约旦双国精华10日", en: "Egypt + Jordan Twin Country 10D" },
-    subtitle: {
-      "zh-CN": "金字塔+尼罗河+佩特拉+死海双国连游",
-      en: "Pyramids + Nile + Petra + Dead Sea twin-country",
-    },
-    departureType: "FIXED",
-    duration: { days: 10, nights: 9 },
-    countries: ["EG", "JO"],
-    cities: ["Cairo", "Luxor", "Amman", "Petra"],
-    themes: ["cultural", "first-time"],
-    heroImage: photos.cairo.hero[1],
-    gallery: [...photos.cairo.gallery.slice(0, 3), ...photos.petra.gallery.slice(0, 2)],
-    highlights: {
-      "zh-CN": [
-        "金字塔+尼罗河+佩特拉,两国精华一次满足",
-        "亚喀巴-埃拉特陆地过境无缝衔接",
-        "全程中文导游",
-        "五星酒店+游轮",
-      ],
-      en: [
-        "Pyramids + Nile + Petra in a single trip",
-        "Aqaba-Eilat seamless land border crossing",
-        "Mandarin guide throughout",
-        "Five-star hotels + Nile cruise",
-      ],
-    },
-    days: Array.from({ length: 10 }, (_, i) => ({
-      day: i + 1,
-      title: { "zh-CN": `第${i + 1}天行程`, en: `Day ${i + 1}` },
-      description: { "zh-CN": "埃及+约旦双国行程,详见预订确认单。", en: "Egypt + Jordan combined, see booking confirmation." },
-      activities: [{ type: "ACTIVITY" as const, name: { "zh-CN": "导游服务", en: "Guide service" } }],
-    })),
-    inclusions: { "zh-CN": ["9晚住宿(含游轮3晚)", "国内段+陆地过境", "中文导游", "B/L/D", "两国签证"], en: ["9 nights (incl. cruise 3N)", "Domestic flights + land crossing", "Mandarin guide", "B/L/D", "Both visas"] },
-    exclusions: { "zh-CN": ["国际机票", "个人消费"], en: ["International flights", "Personal expenses"] },
-    pricing: {
-      sourceCurrency: "USD",
-      bands: [{ paxRange: "4-6", minPax: 4, maxPax: 6, perPaxUSD: 2780 }, { paxRange: "7-10", minPax: 7, maxPax: 10, perPaxUSD: 2380 }],
-      singleSupplementUSD: 780,
-      seasons: [
-        { name: "low", dateRange: "2026-05-01..2026-09-30", multiplier: 1.0 },
-        { name: "peak", dateRange: "2026-10-01..2026-04-30", multiplier: 1.3 },
-      ],
-    },
-    marginLayers: {
-      dmcNetPerPaxUSD: 2380,
-      ourMarkupUSD: 320,
-      wholesalerSellUSD: 2700,
-      wholesalerSuggestedMarkupUSD: 480,
-      agencyRetailUSD: 3180,
-    },
-    cancellationPolicy: { name: { "zh-CN": "多国游政策", en: "Multi-Country Tour Policy" }, tiers: [{ daysBefore: 60, penaltyPercent: 0 }, { daysBefore: 30, penaltyPercent: 30 }, { daysBefore: 14, penaltyPercent: 60 }, { daysBefore: 0, penaltyPercent: 100 }] },
-    departures: [
-      { id: "dep-1001", itineraryId: "it-010", date: "2026-09-25", capacity: 18, booked: 11, status: "OPEN" },
-      { id: "dep-1002", itineraryId: "it-010", date: "2026-10-30", capacity: 18, booked: 16, status: "GUARANTEED" },
-      { id: "dep-1003", itineraryId: "it-010", date: "2026-11-25", capacity: 18, booked: 8, status: "OPEN" },
-    ],
-    translations: { "zh-CN": { reviewed: true, reviewedAt: "2026-04-01" }, en: { reviewed: true, reviewedAt: "2026-04-01" } },
-    publishedToAgencies: ["ag-001", "ag-002", "ag-003", "ag-005", "ag-006", "ag-009", "ag-012"],
-  },
-
-  // ─── it-011 · Morocco Family Tour 5D ──────────────────────
-  {
-    id: "it-011",
-    dmcId: "dmc-005",
-    title: { "zh-CN": "摩洛哥家庭亲子5日", en: "Morocco Family Tour 5D" },
-    subtitle: {
-      "zh-CN": "马拉喀什·骆驼日落·骑马·儿童友好里亚德",
-      en: "Marrakech · camel sunset · horse ride · family-friendly riads",
-    },
-    departureType: "FIXED",
-    duration: { days: 5, nights: 4 },
-    countries: ["MA"],
-    cities: ["Marrakech", "Atlas"],
-    themes: ["family"],
-    heroImage: photos.marrakech.hero[1],
-    gallery: photos.marrakech.gallery,
-    highlights: {
-      "zh-CN": [
-        "亲子友好行程,儿童特别活动安排",
-        "马拉喀什不眠广场儿童文化体验",
-        "Agafay 沙漠骆驼日落",
-        "阿特拉斯山骑马一日",
-        "儿童特价里亚德住宿",
-      ],
-      en: [
-        "Family-friendly with dedicated kids' activities",
-        "Marrakech Jemaa el-Fnaa cultural visit for kids",
-        "Agafay Desert camel sunset",
-        "Atlas Mountains horse-ride day",
-        "Kids' rates at family-style riads",
-      ],
-    },
-    days: Array.from({ length: 5 }, (_, i) => ({
-      day: i + 1,
-      title: { "zh-CN": `第${i + 1}天行程`, en: `Day ${i + 1}` },
-      description: { "zh-CN": "亲子主题行程,每日含儿童活动。", en: "Family-themed, daily kid activities." },
-      activities: [{ type: "ACTIVITY" as const, name: { "zh-CN": "亲子活动", en: "Family activity" } }],
-    })),
-    inclusions: { "zh-CN": ["4晚家庭里亚德", "亲子活动门票", "中文导游", "专车", "早餐+部分晚餐"], en: ["4 nights family riads", "Kids' activity tickets", "Mandarin guide", "Private vehicle", "Breakfast + select dinners"] },
-    exclusions: { "zh-CN": ["国际机票", "午餐", "个人消费"], en: ["International flights", "Lunch", "Personal expenses"] },
-    pricing: {
-      sourceCurrency: "EUR",
-      bands: [
-        { paxRange: "2+1", minPax: 3, maxPax: 3, perPaxUSD: 1480 },
-        { paxRange: "2+2", minPax: 4, maxPax: 4, perPaxUSD: 1280 },
-        { paxRange: "5+", minPax: 5, maxPax: 8, perPaxUSD: 1180 },
-      ],
-      singleSupplementUSD: 360,
-      seasons: [
-        { name: "low", dateRange: "2026-06-15..2026-08-31", multiplier: 1.0 },
-        { name: "school-holiday", dateRange: "2026-07-15..2026-08-31", multiplier: 1.2 },
-        { name: "peak", dateRange: "2026-09-01..2026-11-30", multiplier: 1.3 },
-      ],
-    },
-    marginLayers: {
-      dmcNetPerPaxUSD: 1180,
-      ourMarkupUSD: 100,
-      wholesalerSellUSD: 1280,
-      wholesalerSuggestedMarkupUSD: 200,
-      agencyRetailUSD: 1480,
-    },
-    cancellationPolicy: {
-      name: { "zh-CN": "亲子游政策", en: "Family Tour Policy" },
-      tiers: [{ daysBefore: 45, penaltyPercent: 0 }, { daysBefore: 21, penaltyPercent: 30 }, { daysBefore: 7, penaltyPercent: 70 }, { daysBefore: 0, penaltyPercent: 100 }],
-    },
-    departures: [
-      { id: "dep-1101", itineraryId: "it-011", date: "2026-07-20", capacity: 20, booked: 16, status: "GUARANTEED" },
-      { id: "dep-1102", itineraryId: "it-011", date: "2026-08-05", capacity: 20, booked: 12, status: "OPEN" },
-      { id: "dep-1103", itineraryId: "it-011", date: "2026-10-15", capacity: 20, booked: 8, status: "OPEN" },
-    ],
-    translations: { "zh-CN": { reviewed: true, reviewedAt: "2026-03-22" }, en: { reviewed: true, reviewedAt: "2026-03-22" } },
-    publishedToAgencies: ["ag-001", "ag-003", "ag-004", "ag-007", "ag-010", "ag-013", "ag-015"],
-  },
-
-  // ─── it-012 · Jordan Business Mission 7D (RFQ) ─────────────
-  {
-    id: "it-012",
-    dmcId: "dmc-002",
-    title: { "zh-CN": "约旦高端商务考察7日", en: "Jordan Business Mission 7D" },
-    subtitle: {
-      "zh-CN": "安曼商会对接·亚喀巴自贸区参观·文化外交礼遇",
-      en: "Amman Chamber intros · Aqaba Free Zone tour · cultural diplomacy",
-    },
-    departureType: "RFQ_ONLY",
-    duration: { days: 7, nights: 6 },
-    countries: ["JO"],
-    cities: ["Amman", "Aqaba", "Petra"],
-    themes: ["cultural"],
-    heroImage: photos.amman.hero[0],
-    gallery: photos.amman.gallery,
-    highlights: {
-      "zh-CN": [
-        "约旦工商会高级对接",
-        "亚喀巴经济特区参观",
-        "皇室级文化外交礼遇",
-        "中阿翻译全程",
-        "佩特拉文化访问(休闲安排)",
-      ],
-      en: [
-        "Jordan Chamber of Commerce introductions at senior level",
-        "Aqaba Special Economic Zone visit",
-        "Royal-level cultural diplomacy reception",
-        "Chinese-Arabic interpreter throughout",
-        "Petra cultural visit (leisure)",
-      ],
-    },
-    days: Array.from({ length: 7 }, (_, i) => ({
-      day: i + 1,
-      title: { "zh-CN": `第${i + 1}天行程`, en: `Day ${i + 1}` },
-      description: { "zh-CN": "商务+文化定制,具体安排根据客户需求确认。", en: "Business + cultural, schedule confirmed per client brief." },
-      activities: [{ type: "GUIDE" as const, name: { "zh-CN": "中阿翻译", en: "Chinese-Arabic interpreter" } }],
-    })),
-    inclusions: { "zh-CN": ["6晚商务酒店", "中阿翻译", "专车", "B/L/D", "商务接洽安排", "约旦商务签"], en: ["6 nights business hotel", "Chinese-Arabic interpreter", "Private vehicle", "B/L/D", "Business introductions", "Jordan business visa"] },
-    exclusions: { "zh-CN": ["国际机票", "礼品", "个人消费"], en: ["International flights", "Gifts", "Personal expenses"] },
-    pricing: {
-      sourceCurrency: "USD",
-      bands: [{ paxRange: "3-5", minPax: 3, maxPax: 5, perPaxUSD: 5800 }, { paxRange: "6-10", minPax: 6, maxPax: 10, perPaxUSD: 4800 }],
-      singleSupplementUSD: 1200,
-      seasons: [{ name: "year-round", dateRange: "2026-01-01..2026-12-31", multiplier: 1.0 }],
-    },
-    marginLayers: {
-      dmcNetPerPaxUSD: 4800,
-      ourMarkupUSD: 700,
-      wholesalerSellUSD: 5500,
-      wholesalerSuggestedMarkupUSD: 900,
-      agencyRetailUSD: 6400,
-    },
-    cancellationPolicy: { name: { "zh-CN": "RFQ商务政策", en: "RFQ Business Policy" }, tiers: [{ daysBefore: 60, penaltyPercent: 50 }, { daysBefore: 30, penaltyPercent: 100 }] },
-    departures: [],
-    translations: { "zh-CN": { reviewed: true, reviewedAt: "2026-04-05" }, en: { reviewed: false } },
-    publishedToAgencies: ["ag-002", "ag-009"],
+    publishedToAgencies: ["ag-001", "ag-002", "ag-003", "ag-005", "ag-006", "ag-009", "ag-012", "ag-013", "ag-015"],
   },
 ]

@@ -4,9 +4,11 @@ import { useEffect } from "react"
 import {
   Building2,
   Compass,
+  Inbox,
   LayoutDashboard,
   PackageSearch,
   Settings,
+  SlidersHorizontal,
 } from "lucide-react"
 import { AppShell, type NavSection } from "@/components/shared/app-shell"
 import { useTranslation } from "@/lib/i18n/provider"
@@ -28,18 +30,22 @@ export default function PlatformLayout({ children }: { children: React.ReactNode
         { href: "/platform/wholesalers", labelKey: "nav.wholesalers", icon: Building2 },
         { href: "/platform/dmcs", labelKey: "nav.dmcs", icon: Compass },
         { href: "/platform/supply", labelKey: "nav.supply", icon: PackageSearch },
+        { href: "/platform/rfqs", labelKey: "nav.requests", icon: Inbox },
       ],
     },
     {
       footer: true,
-      items: [{ href: "/platform/settings", labelKey: "nav.settings", icon: Settings }],
+      items: [
+        { href: "/platform/settings/rules", labelKey: "nav.rules", icon: SlidersHorizontal },
+        { href: "/platform/settings", labelKey: "nav.settings", icon: Settings },
+      ],
     },
   ]
 
   return (
     <AppShell
       portalLabelKey="platform.portal_label"
-      brandText="Safasoft"
+      brandText="Safasoft DMC"
       brandHref="/platform/overview"
       navSections={sections}
     >

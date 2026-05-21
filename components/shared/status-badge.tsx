@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge"
-import type { BookingState } from "@/lib/types"
+import type { BookingState, RequestState } from "@/lib/types"
 import { useTranslation } from "@/lib/i18n/provider"
 
 type Variant = "success" | "warning" | "danger" | "info" | "neutral" | "accent"
@@ -82,4 +82,27 @@ export function DepartureStatusBadge({
     CANCELLED: "departure.status.cancelled",
   }
   return <Badge variant={map[status]}>{t(labelKey[status] as Parameters<typeof t>[0])}</Badge>
+}
+
+const requestStateVariant: Record<RequestState, Variant> = {
+  DRAFT: "neutral",
+  AWAITING_WHOLESALER_REVIEW: "info",
+  AWAITING_PLATFORM_REVIEW: "info",
+  AWAITING_DMC_QUOTE: "warning",
+  PLATFORM_APPLYING_MARKUP: "accent",
+  WHOLESALER_APPLYING_MARKUP: "accent",
+  QUOTED_TO_AGENCY: "success",
+  ACCEPTED: "success",
+  DECLINED: "danger",
+  EXPIRED: "neutral",
+  AWAITING_AGENCY_CLARIFICATION: "warning",
+}
+
+export function RequestStatusBadge({ state }: { state: RequestState }) {
+  const { t } = useTranslation()
+  return (
+    <Badge variant={requestStateVariant[state]}>
+      {t(`rfq.state.${state}` as Parameters<typeof t>[0])}
+    </Badge>
+  )
 }

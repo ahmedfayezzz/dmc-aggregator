@@ -7,6 +7,8 @@ export * from "./rfqs"
 export * from "./wallet"
 export * from "./departures"
 export * from "./photos"
+export * from "./custom-requests"
+export * from "./markup-rules"
 
 // Convenience lookups
 import { itineraries } from "./itineraries"

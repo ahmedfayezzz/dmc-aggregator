@@ -203,6 +203,133 @@ export type RFQ = {
   quotedAmountUSD?: number
 }
 
+// ─── Custom RFQ pipeline ──────────────────────────────────────
+
+export type RequestType = "MODIFY_EXISTING" | "FROM_SCRATCH"
+
+export type RequestState =
+  | "DRAFT"
+  | "AWAITING_WHOLESALER_REVIEW"
+  | "AWAITING_PLATFORM_REVIEW"
+  | "AWAITING_DMC_QUOTE"
+  | "PLATFORM_APPLYING_MARKUP"
+  | "WHOLESALER_APPLYING_MARKUP"
+  | "QUOTED_TO_AGENCY"
+  | "ACCEPTED"
+  | "DECLINED"
+  | "EXPIRED"
+  | "AWAITING_AGENCY_CLARIFICATION"
+
+export type HotelTier = "3" | "4" | "5" | "5+" | "mixed"
+export type BudgetBand = "standard" | "premium" | "luxury" | "unlimited"
+export type AgencyTier = "standard" | "gold" | "vip"
+
+export type RequestActor = "agency" | "wholesaler" | "platform" | "dmc" | "system"
+export type RequestDirection = "forward" | "backward"
+
+export type RequestEvent = {
+  ts: string
+  actor: RequestActor
+  actorName?: string
+  action:
+    | "submitted"
+    | "forwarded"
+    | "declined"
+    | "quoted"
+    | "markup_applied"
+    | "accepted"
+    | "expired"
+    | "clarification_requested"
+    | "clarification_provided"
+  note?: string
+  matchedRuleId?: string
+  amountUSD?: number
+}
+
+export type CustomRequest = {
+  id: string
+  type: RequestType
+  state: RequestState
+  agencyId: string
+  wholesalerId: string
+  baseItineraryId?: string
+  payload: {
+    destinations: CountryCode[]
+    cities?: string[]
+    travelWindow: { from: string; to: string }
+    durationDays: number
+    pax: { adults: number; children: number; infants: number }
+    themes: ItineraryTheme[]
+    hotelTier: HotelTier
+    budgetPerPaxUSD?: number
+    budgetBand?: BudgetBand
+    activitiesRequested?: Localized
+    specialNeeds?: Localized
+    notes?: Localized
+    dayModifications?: Array<{
+      day: number
+      action: "ADD" | "REMOVE" | "REPLACE"
+      description: Localized
+    }>
+  }
+  routing: {
+    assignedDmcId?: string
+    currentHolder: RequestActor
+    direction: RequestDirection
+  }
+  pricing: {
+    dmcNetTotalUSD?: number
+    dmcNetPerPaxUSD?: number
+    platformMarkupUSD?: number
+    platformMarkupRuleId?: string
+    wholesalerMarkupUSD?: number
+    wholesalerMarkupRuleId?: string
+    agencyRetailUSD?: number
+  }
+  events: RequestEvent[]
+  expiresAt?: string
+  createdAt: string
+  updatedAt: string
+}
+
+// ─── Markup rules engine ──────────────────────────────────────
+
+export type RuleScope = "platform" | "wholesaler"
+
+export type MarkupFormula = "percentage" | "fixed_per_pax" | "fixed_total" | "tiered_percentage"
+
+export type MarkupRule = {
+  id: string
+  scope: RuleScope
+  wholesalerId?: string
+  priority: number
+  name: string
+  enabled: boolean
+  matchers: {
+    countries?: CountryCode[]
+    dmcIds?: string[]
+    themes?: ItineraryTheme[]
+    minPaxNetUSD?: number
+    maxPaxNetUSD?: number
+    minTotalNetUSD?: number
+    maxTotalNetUSD?: number
+    agencyTier?: AgencyTier[]
+    requestType?: RequestType[]
+    hotelTier?: HotelTier[]
+  }
+  markup: {
+    formula: MarkupFormula
+    value: number
+    minMarkupUSD?: number
+    maxMarkupUSD?: number
+    tiers?: Array<{ uptoNetUSD: number; percent: number }>
+  }
+  autoApply: boolean
+  autoForward?: boolean
+  createdAt: string
+  updatedAt: string
+}
+
 // ─── Wallet ───────────────────────────────────────────────────
 
 export type WalletTransactionType =
@@ -230,15 +357,23 @@ export type DestinationKey =
   | "wadiRum"
   | "deadSea"
   | "amman"
+  | "aqaba"
   | "marrakech"
   | "fez"
   | "casablanca"
   | "sahara"
   | "chefchaouen"
+  | "rabat"
+  | "tangier"
+  | "volubilis"
+  | "meknes"
+  | "ouarzazate"
+  | "ouzoud"
   | "cairo"
   | "luxor"
   | "aswan"
   | "redSea"
+  | "hurghada"
 
 export type PhotoLibrary = Record<DestinationKey, { hero: string[]; gallery: string[] }>
 

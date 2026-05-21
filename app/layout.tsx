@@ -39,7 +39,7 @@ const notoSerifSC = Noto_Serif_SC({
 })
 
 export const metadata: Metadata = {
-  title: "DMC Aggregator",
+  title: "Safasoft",
   description: "B2B Middle East travel distribution platform",
 }
 

@@ -1,7 +1,8 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import { Filter, Sparkles } from "lucide-react"
+import Link from "next/link"
+import { ArrowRight, Filter, Lightbulb, Sparkles } from "lucide-react"
 import { PageHeader } from "@/components/shared/page-header"
 import { ItineraryCard } from "@/components/shared/itinerary-card"
 import { itineraries } from "@/lib/mock/itineraries"
@@ -163,6 +164,27 @@ export default function AgencyBrowsePage() {
               </p>
             ) : null}
           </section>
+
+          {/* Beyond the catalog CTA */}
+          <Link
+            href="/agency/request/new"
+            className="group/cta flex items-center justify-between gap-6 rounded-lg border border-dashed border-accent-border bg-accent-soft/30 px-6 py-5 transition-colors hover:border-accent hover:bg-accent-soft"
+          >
+            <div className="flex items-start gap-4">
+              <span className="grid size-10 shrink-0 place-items-center rounded-md bg-accent-soft text-accent">
+                <Lightbulb className="size-5" />
+              </span>
+              <div>
+                <h3 className="text-subheading text-ink-primary">
+                  {t("agency.browse.beyond_catalog")}
+                </h3>
+                <p className="mt-1 text-caption text-ink-secondary">
+                  {t("agency.browse.beyond_catalog_sub")}
+                </p>
+              </div>
+            </div>
+            <ArrowRight className="size-5 text-accent transition-transform group-hover/cta:translate-x-1" />
+          </Link>
         </div>
       </div>
     </div>

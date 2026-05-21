@@ -22,7 +22,7 @@ export default function PlatformDMCsPage() {
       <PageHeader
         eyebrow={t("platform.portal_label")}
         title={t("platform.dmcs.title")}
-        subtitle={`${dmcs.length} DMCs across MEA`}
+        subtitle={`${dmcs.length} suppliers across MEA`}
       />
 
       <div className="px-8 pt-8">

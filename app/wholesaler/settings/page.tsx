@@ -1,16 +1,19 @@
 "use client"
 
-import { Save } from "lucide-react"
+import Link from "next/link"
+import { ArrowRight, Save, SlidersHorizontal } from "lucide-react"
 import { toast } from "sonner"
 import { PageHeader } from "@/components/shared/page-header"
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useTranslation } from "@/lib/i18n/provider"
 import { getLocalized } from "@/lib/i18n/get-localized"
 import { wholesaler } from "@/lib/mock/wholesalers"
+import { useDemoState } from "@/lib/demo-state"
 
 export default function WholesalerSettingsPage() {
   const { t, locale } = useTranslation()
+  const { wholesalerRules } = useDemoState()
+  const ruleCount = (wholesalerRules[wholesaler.id] ?? []).length
 
   return (
     <div className="pb-24">
@@ -53,14 +56,26 @@ export default function WholesalerSettingsPage() {
           </div>
         </SettingsCard>
 
-        <SettingsCard title={t("wholesaler.settings.markup_section")}>
-          <div className="grid grid-cols-2 gap-4">
-            <Field label={`${t("pricing.season.low")} %`} value="15" />
-            <Field label={`${t("pricing.season.shoulder")} %`} value="20" />
-            <Field label={`${t("pricing.season.peak")} %`} value="25" />
-            <Field label={`${t("itinerary.theme.luxury")} %`} value="18" />
+        <Link
+          href="/wholesaler/settings/rules"
+          className="group/rules flex flex-col rounded-lg border border-accent-border bg-accent-soft/30 transition-colors hover:border-accent hover:bg-accent-soft"
+        >
+          <header className="flex items-center gap-3 border-b border-accent-border/60 px-5 py-4">
+            <span className="grid size-8 place-items-center rounded-md bg-accent text-white">
+              <SlidersHorizontal className="size-4" />
+            </span>
+            <h2 className="flex-1 text-subheading text-ink-primary">
+              {t("rules.page.title.wholesaler")}
+            </h2>
+            <ArrowRight className="size-4 text-accent transition-transform group-hover/rules:translate-x-1" />
+          </header>
+          <div className="p-5 text-caption text-ink-secondary">
+            <p>{t("rules.page.subtitle.wholesaler", { count: ruleCount })}</p>
+            <p className="mt-3 text-ink-tertiary">
+              Open the rule editor to view, reorder, enable/disable, or test rules.
+            </p>
           </div>
-        </SettingsCard>
+        </Link>
 
         <SettingsCard title={t("wholesaler.settings.policy_section")}>
           <ul className="space-y-2 text-caption">
@@ -116,11 +131,3 @@ function SettingsCard({ title, children }: { title: string; children: React.Reac
   )
 }
 
-function Field({ label, value }: { label: string; value: string }) {
-  return (
-    <label className="flex flex-col gap-2">
-      <span className="text-caption text-ink-tertiary">{label}</span>
-      <Input defaultValue={value} className="h-9" />
-    </label>
-  )
-}

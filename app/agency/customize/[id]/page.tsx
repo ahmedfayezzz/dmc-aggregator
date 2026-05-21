@@ -4,7 +4,7 @@ import { use, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { notFound } from "next/navigation"
-import { ArrowLeft, Check, ChevronRight, Minus, Plus } from "lucide-react"
+import { ArrowLeft, Check, ChevronRight, Lightbulb, Minus, Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { PageHeader } from "@/components/shared/page-header"
@@ -148,6 +148,25 @@ export default function AgencyCustomizePage({
               ))}
             </div>
           </Section>
+
+          {/* Deeper customization escalation → custom RFQ pipeline */}
+          <Link
+            href={`/agency/request/new?from=${itinerary.id}`}
+            className="group/escalate flex items-start gap-4 rounded-lg border border-dashed border-accent-border bg-accent-soft/30 p-5 transition-colors hover:border-accent hover:bg-accent-soft"
+          >
+            <span className="grid size-10 shrink-0 place-items-center rounded-md bg-accent-soft text-accent">
+              <Lightbulb className="size-5" />
+            </span>
+            <div className="flex-1">
+              <h4 className="text-subheading text-ink-primary">
+                {t("agency.browse.beyond_catalog")}
+              </h4>
+              <p className="mt-1 text-caption text-ink-secondary">
+                {t("agency.browse.beyond_catalog_sub")}
+              </p>
+            </div>
+            <ChevronRight className="size-4 text-accent transition-transform group-hover/escalate:translate-x-1" />
+          </Link>
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-[80px] lg:self-start">

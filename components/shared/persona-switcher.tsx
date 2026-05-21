@@ -56,7 +56,7 @@ export function PersonaSwitcher({
     wholesaler: `张经理 · ${getLocalized(wholesaler.displayName, locale)}`,
     agency:     `${getLocalized(currentAgency.contactName, locale)} · ${getLocalized(currentAgency.name, locale)}`,
     dmc:        currentDMC.name,
-    platform:   "Safasoft",
+    platform:   "Safasoft DMC",
   }
 
   const Icon = personaMeta[persona].icon
@@ -113,7 +113,7 @@ export function PersonaSwitcher({
                     {p === "wholesaler" && `张经理 · ${getLocalized(wholesaler.displayName, locale)}`}
                     {p === "agency"     && `${getLocalized(currentAgency.contactName, locale)} · ${getLocalized(currentAgency.name, locale)}`}
                     {p === "dmc"        && currentDMC.name}
-                    {p === "platform"   && "Safasoft"}
+                    {p === "platform"   && "Safasoft DMC"}
                   </span>
                 </div>
                 {active ? <Check className="size-4 text-accent" /> : null}

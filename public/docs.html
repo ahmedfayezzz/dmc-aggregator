@@ -75,10 +75,10 @@
 
   .cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
-  @media (max-width: 880px) { .cards { grid-template-columns: 1fr; } }
+  @media (max-width: 720px) { .cards { grid-template-columns: 1fr; } }
 
   a.card {
     display: flex;
@@ -192,9 +192,9 @@
 
   <header class="hero">
     <div class="eyebrow">Safasoft · Demo docs</div>
-    <h1>Two documents, one demo</h1>
+    <h1>Three documents, one demo</h1>
     <p class="lead">
-      A short framing deck to play before the demo, a long-form guide to read once and reference during. Pick a card.
+      A short framing deck to play before the demo, a deep dive on the custom-request pipeline, and a long-form guide to read once and reference during. Pick a card.
     </p>
   </header>
 
@@ -210,8 +210,18 @@
       </div>
     </a>
 
+    <a class="card" href="/custom-requests.html">
+      <div class="num">02 · Custom flow</div>
+      <h2>Custom request pipeline</h2>
+      <p>Twelve slides on the four-stage RFQ pipeline — what it solves, the state machine, the auto-routing demo moment, how each of the four portals is impacted, the markup rules engine, and the margin transparency model.</p>
+      <div class="footer-row">
+        <span class="url">/custom-requests.html</span>
+        <span class="arrow">→</span>
+      </div>
+    </a>
+
     <a class="card" href="/demo-guide.html">
-      <div class="num">02 · Walk-through</div>
+      <div class="num">03 · Walk-through</div>
       <h2>Click-by-click demo guide</h2>
       <p>Setup checklist, the 12-minute stakeholder version, the 20-minute wholesaler version, what's intentionally faked, anticipated Q&amp;A. Read once, then keep open on a second screen during the demo.</p>
       <div class="footer-row">
@@ -221,7 +231,7 @@
     </a>
 
     <a class="card primary" href="/">
-      <div class="num">03 · The product</div>
+      <div class="num">04 · The product</div>
       <h2>Open the live demo</h2>
       <p>Lands on the persona switcher. Default state: Chinese language, dark mode. Switch personas via the floating control in the bottom-right of any page. Switch language via the globe icon in the topbar.</p>
       <div class="footer-row">
