@@ -878,7 +878,7 @@
   <div class="grid-3" style="margin-top: 32px;">
     <div class="card">
       <h3>Without a custom pipeline</h3>
-      <p style="font-size: 14px; margin: 8px 0 0;">Wholesaler picks up the phone, calls the supplier, negotiates outside the system. Margin gets squeezed, Safasoft DMC sees nothing, agency waits days.</p>
+      <p style="font-size: 14px; margin: 8px 0 0;">Wholesaler picks up the phone, calls the supplier, negotiates outside the system. Margin gets squeezed, DMC sees nothing, agency waits days.</p>
     </div>
     <div class="card">
       <h3>The single-hop alternative</h3>
@@ -886,7 +886,7 @@
     </div>
     <div class="card accent">
       <h3>The four-stage pipeline</h3>
-      <p style="font-size: 14px; margin: 8px 0 0;">Agency → wholesaler → Safasoft DMC → supplier, then the supplier quote returns with markups composed automatically at each layer. End-to-end inside the system.</p>
+      <p style="font-size: 14px; margin: 8px 0 0;">Agency → wholesaler → DMC → supplier, then the supplier quote returns with markups composed automatically at each layer. End-to-end inside the system.</p>
     </div>
   </div>
 
@@ -923,7 +923,7 @@
         <div class="pipe-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L22 7 L12 12 L2 7 L12 2z M2 17 L12 22 L22 17 M2 12 L12 17 L22 12"/></svg>
         </div>
-        <div class="pipe-role">Safasoft DMC</div>
+        <div class="pipe-role">DMC</div>
         <div class="pipe-name">Safasoft</div>
         <div class="pipe-desc">Picks the right supplier for the destination, forwards the brief</div>
       </div>
@@ -944,7 +944,7 @@
       </div>
       <div class="pipe-leg return">
         <span class="label">← Return leg · margin layered in</span>
-        Safasoft DMC applies its markup → wholesaler applies its markup → agency sees the final retail. Each markup can be manual, rule-suggested, or fully automatic.
+        DMC applies its markup → wholesaler applies its markup → agency sees the final retail. Each markup can be manual, rule-suggested, or fully automatic.
       </div>
     </div>
   </div>
@@ -1019,7 +1019,7 @@
   <div class="eyebrow accent">The demo moment</div>
   <h2>From agency submit to quote-in-inbox in under 90 seconds.</h2>
 
-  <p class="long">When both the wholesaler's matching rule and the Safasoft DMC matching rule have <code style="font-family: var(--font-mono); font-size: 13px; background: var(--bg-raised); padding: 2px 6px; border-radius: 3px; border: 1px solid var(--border-subtle);">auto_apply: true</code>, the only human touch is the supplier's net quote. Everything else happens in the audit log.</p>
+  <p class="long">When both the wholesaler's matching rule and the DMC matching rule have <code style="font-family: var(--font-mono); font-size: 13px; background: var(--bg-raised); padding: 2px 6px; border-radius: 3px; border: 1px solid var(--border-subtle);">auto_apply: true</code>, the only human touch is the supplier's net quote. Everything else happens in the audit log.</p>
 
   <div class="timeline">
     <div class="timeline-row">
@@ -1041,7 +1041,7 @@
     <div class="timeline-row">
       <div class="timeline-clock">T+01s</div>
       <div class="timeline-event">
-        <h4>Safasoft DMC stage skipped</h4>
+        <h4>DMC stage skipped</h4>
         <p>Matched rule pr-050 · "Mid-volume any country ($20k–$50k)" · 10% auto-forward. Lands in supplier inbox.</p>
       </div>
       <div class="timeline-actor auto">System · auto</div>
@@ -1057,7 +1057,7 @@
     <div class="timeline-row">
       <div class="timeline-clock long">T+15m</div>
       <div class="timeline-event">
-        <h4>Safasoft DMC markup auto-applied</h4>
+        <h4>DMC markup auto-applied</h4>
         <p>Same rule pr-050 evaluates with supplier quote present → 10% = $1,680. Audit-log entry made.</p>
       </div>
       <div class="timeline-actor auto">System · auto</div>
@@ -1066,7 +1066,7 @@
       <div class="timeline-clock long">T+15m</div>
       <div class="timeline-event">
         <h4>Wholesaler markup auto-applied</h4>
-        <p>Same rule wr-002 → 22% on the Safasoft-DMC-loaded amount = $4,070. Audit-log entry made.</p>
+        <p>Same rule wr-002 → 22% on the DMC-loaded amount = $4,070. Audit-log entry made.</p>
       </div>
       <div class="timeline-actor auto">System · auto</div>
     </div>
@@ -1107,7 +1107,7 @@
         </div>
         <div class="impact-card">
           <h4>Pipeline timeline</h4>
-          <p>The detail page shows the request's position in the pipeline live — "currently with Safasoft DMC", "supplier quote returning", etc.</p>
+          <p>The detail page shows the request's position in the pipeline live — "currently with DMC", "supplier quote returning", etc.</p>
         </div>
         <div class="impact-card">
           <h4>One accept button</h4>
@@ -1141,7 +1141,7 @@
         </div>
         <div class="impact-card">
           <h4>Apply markup</h4>
-          <p>At WHOLESALER_APPLYING_MARKUP: see supplier net + Safasoft DMC markup, enter own markup (rule-suggested when applicable), forward to agency.</p>
+          <p>At WHOLESALER_APPLYING_MARKUP: see supplier net + DMC markup, enter own markup (rule-suggested when applicable), forward to agency.</p>
         </div>
         <div class="impact-card">
           <h4>Margin governance</h4>
@@ -1155,16 +1155,16 @@
   <div class="slide-counter">07 / 12</div>
 </section>
 
-<!-- 8 · Safasoft DMC impact ─────────────────────────── -->
+<!-- 8 · DMC impact ─────────────────────────── -->
 <section class="slide" id="platform">
   <div class="eyebrow accent">Impact · 3 of 4</div>
-  <h2>Safasoft DMC — pick the right supplier, govern the network's margin floor.</h2>
+  <h2>DMC — pick the right supplier, govern the network's margin floor.</h2>
 
   <div class="role-panel">
     <div class="image img-ouarzazate"></div>
     <div class="content">
-      <div class="role-flag"><span class="role-flag-num">C</span> Safasoft DMC admin</div>
-      <p style="font-size: 16px; margin: 0;">Safasoft DMC is the only party with cross-tenant visibility. The admin inbox shows requests across all wholesalers and all suppliers — supply gaps surface here first. The rule editor at this layer is where the network's economic floor is set.</p>
+      <div class="role-flag"><span class="role-flag-num">C</span> DMC admin</div>
+      <p style="font-size: 16px; margin: 0;">DMC is the only party with cross-tenant visibility. The admin inbox shows requests across all wholesalers and all suppliers — supply gaps surface here first. The rule editor at this layer is where the network's economic floor is set.</p>
 
       <div class="impact-grid">
         <div class="impact-card">
@@ -1181,7 +1181,7 @@
         </div>
         <div class="impact-card">
           <h4>Supply-gap visibility</h4>
-          <p>When a request comes in for a route no supplier covers, Safasoft DMC sees it. The catalog grows based on real agency demand, not guesses.</p>
+          <p>When a request comes in for a route no supplier covers, DMC sees it. The catalog grows based on real agency demand, not guesses.</p>
         </div>
       </div>
     </div>
@@ -1211,7 +1211,7 @@
         </div>
         <div class="impact-card">
           <h4>Decline with reason</h4>
-          <p>If the brief is impossible (no capacity, off-season, special needs unmanageable), decline with a structured reason. Safasoft DMC re-assigns.</p>
+          <p>If the brief is impossible (no capacity, off-season, special needs unmanageable), decline with a structured reason. DMC re-assigns.</p>
         </div>
         <div class="impact-card">
           <h4>No retail visibility</h4>
@@ -1243,9 +1243,9 @@
       <span class="glyph">→</span>
     </div>
     <div class="margin-box">
-      <div class="label">+ Safasoft DMC markup</div>
+      <div class="label">+ DMC markup</div>
       <div class="price">$18,480</div>
-      <div class="price-sub">Safasoft 10%<br>rule pr-050</div>
+      <div class="price-sub">DMC 10%<br>rule pr-050</div>
     </div>
     <div class="arrow">
       <span class="markup">+ $4,070</span>
@@ -1274,11 +1274,11 @@
     </div>
     <div class="stat-block">
       <div class="num">$18,480</div>
-      <div class="sub"><strong>Safasoft DMC sees</strong> — supplier net + own markup</div>
+      <div class="sub"><strong>DMC sees</strong> — supplier net + own markup</div>
     </div>
     <div class="stat-block">
       <div class="num">$22,550</div>
-      <div class="sub"><strong>Wholesaler sees</strong> — supplier + Safasoft DMC + own markup</div>
+      <div class="sub"><strong>Wholesaler sees</strong> — supplier + DMC + own markup</div>
     </div>
     <div class="stat-block">
       <div class="num accent">$22,550</div>
@@ -1294,9 +1294,9 @@
   <div class="eyebrow">The rules engine</div>
   <h2>One record. Priority-ordered. First match wins.</h2>
 
-  <p>A markup rule is a single record with a scope (Safasoft DMC or wholesaler), a set of matchers (any of: country, theme, hotel tier, supplier net thresholds, agency tier, etc.), a markup formula, and two flags — <code style="font-family: var(--font-mono); font-size: 13px;">auto_apply</code> and <code style="font-family: var(--font-mono); font-size: 13px;">auto_forward</code>. Rules sort by priority; the evaluator returns the first match. No second match, no fallback chain.</p>
+  <p>A markup rule is a single record with a scope (DMC or wholesaler), a set of matchers (any of: country, theme, hotel tier, supplier net thresholds, agency tier, etc.), a markup formula, and two flags — <code style="font-family: var(--font-mono); font-size: 13px;">auto_apply</code> and <code style="font-family: var(--font-mono); font-size: 13px;">auto_forward</code>. Rules sort by priority; the evaluator returns the first match. No second match, no fallback chain.</p>
 
-  <h3 style="margin-top: 32px;">Example · Safasoft platform rule set</h3>
+  <h3 style="margin-top: 32px;">Example · DMC rule set</h3>
   <table class="table-rules">
     <thead>
       <tr><th>Priority</th><th>Name</th><th>Match</th><th>Markup</th><th>Auto-forward</th><th>Auto-apply</th></tr>

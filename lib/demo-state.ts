@@ -102,7 +102,7 @@ export type DemoState = {
   draftItineraries: DraftItinerary[]
   /** Custom RFQ pipeline — seeded from mock + new requests submitted at runtime */
   customRequests: CustomRequest[]
-  /** Platform-wide markup rules (Safasoft DMC scope) */
+  /** Platform-wide markup rules (DMC scope) */
   platformRules: MarkupRule[]
   /** Per-wholesaler markup rule sets, keyed by wholesalerId */
   wholesalerRules: Record<string, MarkupRule[]>

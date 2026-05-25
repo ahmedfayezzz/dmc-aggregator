@@ -14,7 +14,7 @@ export default function PlatformSettingsPage() {
   return (
     <div className="pb-24">
       <PageHeader
-        eyebrow="Safasoft DMC"
+        eyebrow="Safasoft"
         title={t("platform.settings.title")}
       />
 

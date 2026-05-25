@@ -12,7 +12,7 @@ export const zhCN = {
   "demo.enter_wholesaler": "进入批发商门户",
   "demo.enter_agency": "进入机构门户",
   "demo.enter_dmc": "供应商视图",
-  "demo.enter_platform": "Safasoft DMC 视图",
+  "demo.enter_platform": "DMC 视图",
 
   // ─── COMMON ACTIONS ───────────────────────────────────────
   "actions.book_now": "立即预订",
@@ -111,7 +111,7 @@ export const zhCN = {
   "itinerary.departures.available": "可选团期",
   "itinerary.departures.filled": "{booked}/{capacity} 已预订",
   "itinerary.margin.dmc_net": "供应商净价",
-  "itinerary.margin.our_markup": "Safasoft DMC 加价",
+  "itinerary.margin.our_markup": "DMC 加价",
   "itinerary.margin.your_markup": "您的加价",
   "itinerary.margin.agency_retail": "建议机构售价",
 
@@ -249,14 +249,14 @@ export const zhCN = {
   "dmc.schedule.add_dialog_subtitle": "为「{title}」新建一个出团日期",
   "dmc.schedule.field.date": "出团日期",
   "dmc.schedule.field.capacity": "容量(人数)",
-  "dmc.itinerary.draft_explainer": "草稿状态:批发商和机构看不到此行程。发布后,会进入 Safasoft DMC 审核流程,通过后对所有授权批发商可见。",
+  "dmc.itinerary.draft_explainer": "草稿状态:批发商和机构看不到此行程。发布后,会进入 DMC 审核流程,通过后对所有授权批发商可见。",
   "dmc.itinerary.published_explainer": "已发布:批发商可在目录中看到此行程。如需修改内容,可撤回到草稿状态。",
 
   // ─── DMC NEW ITINERARY PAGE ──────────────────────────────
   "dmc.new.title": "创建新行程",
   "dmc.new.subtitle": "填写基础信息后,继续编辑日程、价格与团期",
   "dmc.new.section.identity": "行程标识",
-  "dmc.new.section.identity_hint": "双语标题和副标题。中文给中国机构,英文供 Safasoft DMC 和外部使用。",
+  "dmc.new.section.identity_hint": "双语标题和副标题。中文给中国机构,英文供 DMC 和外部使用。",
   "dmc.new.field.title_zh": "标题(中文)",
   "dmc.new.field.title_en": "Title (English)",
   "dmc.new.field.subtitle_zh": "副标题(中文)",
@@ -289,13 +289,13 @@ export const zhCN = {
   "nav.requests": "定制请求",
   "nav.rules": "规则配置",
   "rfq.pipeline.title": "定制流转管线",
-  "rfq.pipeline.subtitle": "代理 → 批发商 → Safasoft DMC → 供应商,报价回程逐层加价",
+  "rfq.pipeline.subtitle": "代理 → 批发商 → DMC → 供应商,报价回程逐层加价",
 
   "rfq.state.DRAFT": "草稿",
   "rfq.state.AWAITING_WHOLESALER_REVIEW": "等待批发商审核",
-  "rfq.state.AWAITING_PLATFORM_REVIEW": "等待 Safasoft DMC 审核",
+  "rfq.state.AWAITING_PLATFORM_REVIEW": "等待 DMC 审核",
   "rfq.state.AWAITING_DMC_QUOTE": "等待供应商报价",
-  "rfq.state.PLATFORM_APPLYING_MARKUP": "Safasoft DMC 加价中",
+  "rfq.state.PLATFORM_APPLYING_MARKUP": "DMC 加价中",
   "rfq.state.WHOLESALER_APPLYING_MARKUP": "批发商加价中",
   "rfq.state.QUOTED_TO_AGENCY": "报价已到达",
   "rfq.state.ACCEPTED": "已接受",
@@ -305,7 +305,7 @@ export const zhCN = {
 
   "rfq.actor.agency": "代理",
   "rfq.actor.wholesaler": "批发商",
-  "rfq.actor.platform": "Safasoft DMC",
+  "rfq.actor.platform": "DMC",
   "rfq.actor.dmc": "供应商",
   "rfq.actor.system": "自动路由",
 
@@ -365,7 +365,7 @@ export const zhCN = {
   "agency.request.detail.original": "原始申请",
   "agency.request.detail.pricing": "报价明细",
   "agency.request.detail.dmc_net": "供应商净价",
-  "agency.request.detail.platform_markup": "Safasoft DMC 加价",
+  "agency.request.detail.platform_markup": "DMC 加价",
   "agency.request.detail.wholesaler_markup": "批发商加价",
   "agency.request.detail.agency_retail": "您的售价",
   "agency.request.detail.your_total": "应付合计",
@@ -386,11 +386,11 @@ export const zhCN = {
   "wholesaler.rfqs.markup_suggested": "建议加价(规则: {rule})",
   "wholesaler.rfqs.subtitle_custom": "{count} 项定制请求待您审核",
   "wholesaler.rfqs.markup.title": "应用您的加价",
-  "wholesaler.rfqs.markup.subtitle": "供应商净价 + Safasoft DMC 加价",
+  "wholesaler.rfqs.markup.subtitle": "供应商净价 + DMC 加价",
   "wholesaler.rfqs.markup.your_markup_usd": "您的加价 (USD)",
   "wholesaler.rfqs.markup.preview_retail": "代理看到的售价",
   "wholesaler.rfqs.forward.title": "转发至 Safasoft",
-  "wholesaler.rfqs.forward.subtitle": "Safasoft DMC 将选定供应商并收集净报价",
+  "wholesaler.rfqs.forward.subtitle": "DMC 将选定供应商并收集净报价",
   "wholesaler.rfqs.forward.note": "给 Safasoft 的备注(可选)",
   "wholesaler.rfqs.from_agency": "提交方",
 
@@ -398,7 +398,7 @@ export const zhCN = {
   "rules.page.title.wholesaler": "加价与路由规则",
   "rules.page.title.platform": "加价与路由规则",
   "rules.page.subtitle.wholesaler": "决定定制请求如何路由,以及您的加价如何计算。共 {count} 条规则,按优先级排序,首条匹配生效。",
-  "rules.page.subtitle.platform": "全网络路由与 Safasoft DMC 加价。共 {count} 条规则,按优先级排序,首条匹配生效。",
+  "rules.page.subtitle.platform": "全网络路由与 DMC 加价。共 {count} 条规则,按优先级排序,首条匹配生效。",
   "rules.action.add": "新增规则",
   "rules.action.reset": "恢复默认",
   "rules.action.test": "测试请求",
@@ -489,9 +489,9 @@ export const zhCN = {
   "platform.rfqs.no_dmc_assigned": "尚未指派供应商",
   "platform.rfqs.forward.title": "选择供应商",
   "platform.rfqs.forward.subtitle": "选择最匹配目的地与需求的供应商",
-  "platform.rfqs.markup.title": "应用 Safasoft DMC 加价",
+  "platform.rfqs.markup.title": "应用 DMC 加价",
   "platform.rfqs.markup.subtitle": "供应商净报价已到。请应用加价并转回批发商。",
-  "platform.rfqs.markup.your_markup_usd": "Safasoft DMC 加价 (USD)",
+  "platform.rfqs.markup.your_markup_usd": "DMC 加价 (USD)",
 
   // DMC-side
   "dmc.rfqs.title": "定制询价",
@@ -668,14 +668,14 @@ export const zhCN = {
   "dmc.settings.title": "Settings",
 
   // ─── PLATFORM PORTAL ──────────────────────────────────────
-  "platform.portal_label": "管理控制台",
-  "platform.overview.title": "Safasoft DMC 总览",
+  "platform.portal_label": "DMC",
+  "platform.overview.title": "DMC 总览",
   "platform.overview.subtitle": "跨租户运营表现",
   "platform.wholesalers.title": "批发商",
   "platform.dmcs.title": "供应商网络",
   "platform.supply.title": "聚合供应",
   "platform.supply.subtitle": "全供应商目录",
-  "platform.settings.title": "Safasoft DMC 设置",
+  "platform.settings.title": "DMC 设置",
 
   // ─── TRUST TIERS ──────────────────────────────────────────
   "trust.NEW": "新加入",

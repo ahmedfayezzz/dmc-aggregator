@@ -28,6 +28,15 @@ export default function AgencyBrowsePage() {
   const [themes, setThemes] = useState<Set<ItineraryTheme>>(new Set())
   const [duration, setDuration] = useState<"ALL" | "short" | "mid" | "long">("ALL")
 
+  // Only surface destinations that actually have at least one itinerary —
+  // avoids the "filter that returns 0 results" footgun. Preserves the
+  // original COUNTRY_LABEL order (JO, MA, EG, AE, SA, OM).
+  const activeCountries = useMemo<CountryCode[]>(() => {
+    const present = new Set<CountryCode>()
+    for (const it of itineraries) for (const c of it.countries) present.add(c)
+    return (Object.keys(COUNTRY_LABEL) as CountryCode[]).filter((c) => present.has(c))
+  }, [])
+
   const filtered = useMemo(() => {
     return itineraries.filter((i) => {
       if (country !== "ALL" && !i.countries.includes(country)) return false
@@ -60,7 +69,7 @@ export default function AgencyBrowsePage() {
                 onClick={() => setCountry("ALL")}
                 label={t("common.all")}
               />
-              {(Object.keys(COUNTRY_LABEL) as CountryCode[]).map((c) => (
+              {activeCountries.map((c) => (
                 <FilterButton
                   key={c}
                   active={country === c}

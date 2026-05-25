@@ -43,7 +43,7 @@ export default function PlatformRulesPage() {
                 <p className="font-medium text-ink-primary">First match wins</p>
                 <p className="mt-1">
                   Rules apply network-wide across all wholesalers and suppliers. Each wholesaler also has their
-                  own rule set that stacks on top of Safasoft DMC&apos;s. Reorder rules with the up/down arrows.
+                  own rule set that stacks on top of DMC&apos;s. Reorder rules with the up/down arrows.
                 </p>
               </div>
             </div>

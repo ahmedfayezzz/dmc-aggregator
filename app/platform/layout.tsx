@@ -45,7 +45,7 @@ export default function PlatformLayout({ children }: { children: React.ReactNode
   return (
     <AppShell
       portalLabelKey="platform.portal_label"
-      brandText="Safasoft DMC"
+      brandText="Safasoft"
       brandHref="/platform/overview"
       navSections={sections}
     >
