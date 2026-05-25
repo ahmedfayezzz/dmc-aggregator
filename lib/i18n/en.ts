@@ -733,4 +733,9 @@ export const en: Record<TranslationKey, string> = {
 
   "demo.choose_persona": "Choose a persona to enter the demo",
   "demo.persona_subtitle": "You can switch personas anytime via the bottom-right control",
+
+  "landing.persona.wholesaler.subtitle": "Multi-agency portal · catalog distribution · margin control",
+  "landing.persona.agency.subtitle": "Browse catalog · book · co-branded vouchers",
+  "landing.persona.dmc.subtitle": "Local operator · inventory · incoming bookings",
+  "landing.persona.platform.subtitle": "Aggregator console · cross-tenant · governance",
 } as const

@@ -17,11 +17,13 @@ import { useTranslation } from "@/lib/i18n/provider"
 import { getLocalized } from "@/lib/i18n/get-localized"
 import { cn } from "@/lib/utils"
 
+// Ordered to mirror the request flow:
+//   agency → wholesaler → DMC (platform) → supplier (dmc)
 const personaMeta: Record<Persona, { icon: typeof Building2; labelKey: "demo.enter_wholesaler" | "demo.enter_agency" | "demo.enter_dmc" | "demo.enter_platform" }> = {
-  wholesaler: { icon: Building2, labelKey: "demo.enter_wholesaler" },
-  agency:     { icon: Store,     labelKey: "demo.enter_agency" },
-  dmc:        { icon: Compass,   labelKey: "demo.enter_dmc" },
+  agency:     { icon: Store,       labelKey: "demo.enter_agency" },
+  wholesaler: { icon: Building2,   labelKey: "demo.enter_wholesaler" },
   platform:   { icon: ShieldCheck, labelKey: "demo.enter_platform" },
+  dmc:        { icon: Compass,     labelKey: "demo.enter_dmc" },
 }
 
 /**

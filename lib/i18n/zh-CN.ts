@@ -757,6 +757,11 @@ export const zhCN = {
   // ─── DEMO LANDING (extra) ────────────────────────────────
   "demo.choose_persona": "选择身份进入演示",
   "demo.persona_subtitle": "您可以随时通过右下角切换身份",
+
+  "landing.persona.wholesaler.subtitle": "多机构门户 · 目录分发 · 加价控制",
+  "landing.persona.agency.subtitle": "浏览目录 · 预订 · 联合品牌凭证",
+  "landing.persona.dmc.subtitle": "本地运营商 · 库存管理 · 收单处理",
+  "landing.persona.platform.subtitle": "聚合控制台 · 跨租户 · 网络治理",
 } as const
 
 export type TranslationKey = keyof typeof zhCN
