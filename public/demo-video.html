@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Safasoft — Custom Request Flow · Demo Reel</title>
+
+  <template id="__bundler_thumbnail">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+      <rect width="400" height="300" fill="#F4EFE4"/>
+      <rect x="60" y="50" width="280" height="200" rx="10" fill="#FFFFFF" stroke="#DDD5C5" stroke-width="1.5"/>
+      <circle cx="78" cy="68" r="5" fill="#FF5F57"/>
+      <circle cx="93" cy="68" r="5" fill="#FEBC2E"/>
+      <circle cx="108" cy="68" r="5" fill="#28C840"/>
+      <line x1="60" y1="86" x2="340" y2="86" stroke="#DDD5C5" stroke-width="1"/>
+      <text x="200" y="160" text-anchor="middle" font-family="Georgia, serif" font-size="28" font-weight="300" fill="#1A1612" font-style="italic">The full pipeline.</text>
+      <text x="200" y="200" text-anchor="middle" font-family="monospace" font-size="11" letter-spacing="2" fill="#B58A3F">SAFASOFT · DEMO REEL</text>
+    </svg>
+  </template>
+
+  <!-- Fonts — match production -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body, #root { margin: 0; padding: 0; height: 100%; }
+    body {
+      background: #0a0a0a;
+      font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #F5EFE0;
+      overflow: hidden;
+      font-feature-settings: "cv11", "ss01", "ss03";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    /* Scrollbar suppression inside the canvas */
+    ::-webkit-scrollbar { display: none; }
+
+    /* Cursor click ripple keyframes */
+    @keyframes cursorRipple {
+      0%   { width: 0;  height: 0;  opacity: 0.7; }
+      100% { width: 42px; height: 42px; margin-left: -21px; margin-top: -21px; opacity: 0; }
+    }
+
+    /* Spotlight glow pulse */
+    @keyframes spotlightPulse {
+      0%, 100% { box-shadow: 0 0 0 3px rgba(229, 201, 136, 0.40), 0 0 22px rgba(181, 138, 63, 0.20); }
+      50%      { box-shadow: 0 0 0 5px rgba(229, 201, 136, 0.55), 0 0 36px rgba(181, 138, 63, 0.32); }
+    }
+  </style>
+
+  <!-- React 18 -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- Order matters: animations engine first, then icons + ui kit, then scenes, then app -->
+  <script type="text/babel" src="demo-video/animations.jsx"></script>
+  <script type="text/babel" src="demo-video/icons.jsx"></script>
+  <script type="text/babel" src="demo-video/ui-kit.jsx"></script>
+  <script type="text/babel" src="demo-video/scenes-intro.jsx"></script>
+  <script type="text/babel" src="demo-video/scenes-form.jsx"></script>
+  <script type="text/babel" src="demo-video/scenes-routing.jsx"></script>
+  <script type="text/babel" src="demo-video/scenes-resolve.jsx"></script>
+  <script type="text/babel" src="demo-video/app.jsx"></script>
+</body>
+</html>
